@@ -1,0 +1,56 @@
+/* Importacion controlada de la arquitectura de estilos */
+@import "./themes/light.css";
+@import "./themes/dark.css";
+@import "./components/buttons.css";
+@import "./components/cards.css";
+@import "./utilities/animations.css";
+@import "./utilities/typography.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    --color-surface: 248 250 252;
+    --color-elevated: 255 255 255;
+    --color-text: 15 23 42;
+    --color-muted: 100 116 139;
+    --color-accent: 14 116 144;
+    --color-border: 226 232 240;
+    --radius-sm: 0.75rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: theme('fontFamily.sans');
+    scroll-behavior: smooth;
+    background-color: rgb(var(--color-surface));
+    color: rgb(var(--color-text));
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, rgba(14, 116, 144, 0.12), transparent 32%),
+      rgb(var(--color-surface));
+    text-rendering: optimizeLegibility;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}

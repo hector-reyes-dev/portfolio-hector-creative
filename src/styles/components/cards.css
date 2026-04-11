@@ -1,0 +1,5 @@
+@layer components {
+  .surface-card {
+    @apply rounded-[var(--radius-lg)] border border-border/80 bg-elevated/90 shadow-soft backdrop-blur;
+  }
+}

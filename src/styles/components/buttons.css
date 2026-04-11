@@ -1,0 +1,5 @@
+@layer components {
+  .button-focus {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface;
+  }
+}
