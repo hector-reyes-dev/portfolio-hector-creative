@@ -1,4 +1,5 @@
 /* Importacion controlada de la arquitectura de estilos */
+@import "tailwindcss";
 @import "./themes/light.css";
 @import "./themes/dark.css";
 @import "./components/buttons.css";
@@ -6,19 +7,25 @@
 @import "./utilities/animations.css";
 @import "./utilities/typography.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Tokens de tema: se resuelven en runtime para soportar light/dark */
+@theme inline {
+  --color-surface: rgb(var(--app-surface));
+  --color-elevated: rgb(var(--app-elevated));
+  --color-text: rgb(var(--app-text));
+  --color-muted: rgb(var(--app-muted));
+  --color-accent: rgb(var(--app-accent));
+  --color-border: rgb(var(--app-border));
+}
+
+@theme {
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Fraunces', Georgia, serif;
+  --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
 
 @layer base {
   :root {
     color-scheme: light dark;
-    --color-surface: 248 250 252;
-    --color-elevated: 255 255 255;
-    --color-text: 15 23 42;
-    --color-muted: 100 116 139;
-    --color-accent: 14 116 144;
-    --color-border: 226 232 240;
     --radius-sm: 0.75rem;
     --radius-md: 1rem;
     --radius-lg: 1.5rem;
@@ -29,10 +36,10 @@
   }
 
   html {
-    font-family: theme('fontFamily.sans');
+    font-family: var(--font-sans);
     scroll-behavior: smooth;
-    background-color: rgb(var(--color-surface));
-    color: rgb(var(--color-text));
+    background-color: rgb(var(--app-surface));
+    color: rgb(var(--app-text));
   }
 
   body {
@@ -40,7 +47,7 @@
     min-height: 100vh;
     background:
       radial-gradient(circle at top, rgba(14, 116, 144, 0.12), transparent 32%),
-      rgb(var(--color-surface));
+      rgb(var(--app-surface));
     text-rendering: optimizeLegibility;
   }
 

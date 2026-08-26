@@ -1,10 +1,6 @@
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
   .text-display {
-    font-family: theme('fontFamily.display');
+    font-family: var(--font-display);
     letter-spacing: -0.04em;
   }
 }

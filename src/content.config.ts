@@ -1,4 +1,5 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const commonSchema = z.object({
   title: z.string().min(1),
@@ -10,14 +11,14 @@ const commonSchema = z.object({
 });
 
 const posts = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
   schema: commonSchema.extend({
     cover: z.string().optional()
   })
 });
 
 const projects = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: commonSchema.extend({
     repoUrl: z.string().url().optional(),
     demoUrl: z.string().url().optional(),
@@ -26,7 +27,7 @@ const projects = defineCollection({
 });
 
 const experiments = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/experiments' }),
   schema: commonSchema.extend({
     status: z.enum(['draft', 'active', 'archived']).optional(),
     demoUrl: z.string().url().optional()
@@ -34,7 +35,7 @@ const experiments = defineCollection({
 });
 
 const packages = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/packages' }),
   schema: commonSchema.extend({
     packageManager: z.enum(['npm', 'pnpm', 'yarn', 'bun']).optional(),
     packageUrl: z.string().url().optional(),
@@ -43,7 +44,7 @@ const packages = defineCollection({
 });
 
 const components = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/components' }),
   schema: commonSchema.extend({
     category: z.string().optional(),
     docsUrl: z.string().url().optional()
@@ -51,7 +52,7 @@ const components = defineCollection({
 });
 
 const resources = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/resources' }),
   schema: commonSchema.extend({
     resourceType: z.enum(['article', 'video', 'tool', 'guide']).optional(),
     sourceUrl: z.string().url().optional()

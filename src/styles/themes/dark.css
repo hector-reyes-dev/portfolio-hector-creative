@@ -1,11 +1,11 @@
 @layer base {
   .dark {
     color-scheme: dark;
-    --color-surface: 2 6 23;
-    --color-elevated: 15 23 42;
-    --color-text: 226 232 240;
-    --color-muted: 148 163 184;
-    --color-accent: 34 211 238;
-    --color-border: 51 65 85;
+    --app-surface: 2 6 23;
+    --app-elevated: 15 23 42;
+    --app-text: 226 232 240;
+    --app-muted: 148 163 184;
+    --app-accent: 34 211 238;
+    --app-border: 51 65 85;
   }
 }

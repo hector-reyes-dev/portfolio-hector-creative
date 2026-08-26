@@ -1,11 +1,11 @@
 @layer base {
   :root,
   .light {
-    --color-surface: 248 250 252;
-    --color-elevated: 255 255 255;
-    --color-text: 15 23 42;
-    --color-muted: 100 116 139;
-    --color-accent: 14 116 144;
-    --color-border: 226 232 240;
+    --app-surface: 248 250 252;
+    --app-elevated: 255 255 255;
+    --app-text: 15 23 42;
+    --app-muted: 100 116 139;
+    --app-accent: 14 116 144;
+    --app-border: 226 232 240;
   }
 }

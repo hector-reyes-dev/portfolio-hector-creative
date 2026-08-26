@@ -10,16 +10,22 @@
     "check": "astro check"
   },
   "dependencies": {
-    "astro": "^5.7.0",
-    "gsap": "^3.13.0",
-    "zod": "^3.24.2"
+    "astro": "^7.2.7",
+    "gsap": "^3.15.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.8",
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.3",
-    "postcss-import": "^16.1.0",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.3"
+    "@astrojs/check": "^0.9.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }
