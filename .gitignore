@@ -21,5 +21,11 @@ pnpm-debug.log*
 .idea/
 .vscode/
 
+# agent configs
+.claude/
+.codex/
+.opencode/
+.pi/
+
 # coverage
 coverage/
