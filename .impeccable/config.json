@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.34, 1.56, .64, 1)",
+        "createdAt": "2026-09-12T01:56:48.205Z",
+        "reason": "Curva --ease-spring tomada verbatim de docs/sitio web.html; usada solo en el demo 'Toggle con muelle', descrito en el propio sitio como rebote deliberado. Tarea exige alta fidelidad a la spec HTML."
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "src/styles/portfolio/dock-window.css"
+        ],
+        "createdAt": "2026-09-12T01:56:50.854Z",
+        "reason": "Transicion de .dock__label (max-width/margin-left) copiada verbatim de docs/sitio web.html para el reveal de la etiqueta activa del dock; elemento de ~12ch, sin impacto real de layout thrash. Tarea exige alta fidelidad al recorte original."
+      }
+    ]
+  }
+}
