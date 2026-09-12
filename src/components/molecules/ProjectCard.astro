@@ -10,6 +10,7 @@ interface Props {
 const { project, class: extraClass } = Astro.props;
 const className = `card${extraClass ? ` ${extraClass}` : ''}`;
 const href = project.documented ? `#/caso/${project.slug}` : project.url;
+const mediaClass = `card__media card__media--${project.slug}`;
 const iconForTag = (tag: string): string => {
   const normalized = tag.toLowerCase();
   if (normalized.includes('dise')) return 'i-pen';
@@ -26,8 +27,7 @@ const iconForTag = (tag: string): string => {
   target={project.documented ? undefined : '_blank'}
   rel={project.documented ? undefined : 'noopener'}
 >
-    <div class="card__media">
-      <img src={`/${project.image}`} alt={project.full} loading="lazy" decoding="async" />
+    <div class={mediaClass} role="img" aria-label={project.full}>
       <div class="card__media-icons" aria-label={`Tipo de proyecto: ${project.tags.join(', ')}`}>
         {project.tags.map((tag) => (
           <span class="card__type" title={tag}>

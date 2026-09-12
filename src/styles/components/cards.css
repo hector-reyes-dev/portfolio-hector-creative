@@ -28,6 +28,35 @@
   object-position: center;
 }
 
+.card__media--ikni,
+.case__image--ikni {
+  background: linear-gradient(135deg, #5ca4ec 0%, #a9c9f2 44%, #9d8ee8 100%);
+}
+.card__media--acabados-integrales,
+.case__image--acabados-integrales {
+  background: linear-gradient(135deg, #ef9f83 0%, #f2c96a 52%, #e889b0 100%);
+}
+.card__media--blog,
+.case__image--blog {
+  background: linear-gradient(135deg, #2d3035 0%, #8f9ba8 50%, #d8e2eb 100%);
+}
+.card__media--food-mood,
+.case__image--food-mood {
+  background: linear-gradient(135deg, #e997ca 0%, #f0b3dc 52%, #f2d49a 100%);
+}
+.card__media--ofera,
+.case__image--ofera {
+  background: linear-gradient(135deg, #6763c2 0%, #a49cd9 52%, #f2b05f 100%);
+}
+.card__media--pin-estelar,
+.case__image--pin-estelar {
+  background: linear-gradient(135deg, #1c355f 0%, #719dd4 52%, #d6d6f0 100%);
+}
+.card__media--terapify,
+.case__image--terapify {
+  background: linear-gradient(135deg, #2bb3c2 0%, #68d0ba 52%, #399947 100%);
+}
+
 .card__media-icons {
   position: absolute;
   inset: 0;

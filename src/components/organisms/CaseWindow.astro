@@ -43,9 +43,7 @@ const { documentedProjects, cases, caseQuestions } = Astro.props;
               <Chip>{tag}</Chip>
             ))}
           </div>
-          <figure class="case__image">
-            <img src={`/${project.image}`} alt={project.full} width={project.w} height={project.h} decoding="async" />
-          </figure>
+          <figure class={`case__image case__image--${project.slug}`} role="img" aria-label={project.full}></figure>
         </header>
         <div class="qa-grid">
           {caseQuestions.map(([key, label]) => (
