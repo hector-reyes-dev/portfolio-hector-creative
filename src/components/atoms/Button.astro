@@ -2,50 +2,25 @@
 interface Props {
   href?: string;
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  disabled?: boolean;
+  variant?: 'accent' | 'pill';
+  target?: string;
+  rel?: string;
+  id?: string;
+  class?: string;
   ariaLabel?: string;
 }
 
-const {
-  href,
-  type = 'button',
-  variant = 'primary',
-  size = 'md',
-  disabled = false,
-  ariaLabel
-} = Astro.props;
-
-const baseClass =
-  'button-focus transition-standard inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] border font-medium tracking-tight';
-
-const variantClass = {
-  primary:
-    'border-transparent bg-accent px-5 text-white shadow-soft hover:-translate-y-0.5 hover:shadow-lg',
-  secondary:
-    'border-border bg-elevated text-text hover:-translate-y-0.5 hover:border-accent/40 hover:text-accent',
-  ghost:
-    'border-transparent bg-transparent text-text hover:bg-elevated/80 hover:text-accent'
-}[variant];
-
-const sizeClass = {
-  sm: 'min-h-10 px-4 text-sm',
-  md: 'min-h-11 px-5 text-sm',
-  lg: 'min-h-12 px-6 text-base'
-}[size];
-
-const stateClass = disabled ? 'pointer-events-none opacity-60' : '';
-const className = `${baseClass} ${variantClass} ${sizeClass} ${stateClass}`;
+const { href, type = 'button', variant = 'pill', target, rel, id, class: extraClass, ariaLabel, ...rest } = Astro.props;
+const className = `btn btn--${variant}${extraClass ? ` ${extraClass}` : ''}`;
 ---
 
 {
   href ? (
-    <a href={href} class={className} aria-label={ariaLabel} aria-disabled={disabled}>
+    <a id={id} href={href} class={className} target={target} rel={rel} aria-label={ariaLabel} {...rest}>
       <slot />
     </a>
   ) : (
-    <button type={type} class={className} aria-label={ariaLabel} disabled={disabled}>
+    <button id={id} type={type} class={className} aria-label={ariaLabel} {...rest}>
       <slot />
     </button>
   )

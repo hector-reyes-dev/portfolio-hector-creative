@@ -1,0 +1,15 @@
+---
+import Icon from '@atoms/Icon.astro';
+import type { ContactLink } from '../../types/site';
+
+interface Props {
+  link: ContactLink;
+}
+
+const { link } = Astro.props;
+---
+
+<a class="cta-link" href={link.url} target="_blank" rel="noopener">
+  {link.label}
+  <Icon id="i-external" />
+</a>

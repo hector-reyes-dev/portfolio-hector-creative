@@ -1,0 +1,19 @@
+---
+import type { Testimonial } from '../../types/site';
+
+interface Props {
+  testimonial: Testimonial;
+}
+
+const { testimonial } = Astro.props;
+const who = testimonial.name
+  ? testimonial.role
+    ? `${testimonial.name}, ${testimonial.role}`
+    : testimonial.name
+  : 'Nombre y cargo';
+---
+
+<figure class="testimonial" data-reveal>
+  <blockquote class="testimonial__quote">{testimonial.quote || 'Pendiente de añadir'}</blockquote>
+  <figcaption class="testimonial__who">{who}</figcaption>
+</figure>

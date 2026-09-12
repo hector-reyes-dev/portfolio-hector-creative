@@ -1,0 +1,13 @@
+---
+interface Props {
+  label: string;
+  value: string | null;
+}
+
+const { label, value } = Astro.props;
+---
+
+<section class={`qa${value ? '' : ' qa--pending'}`}>
+  <h4 class="qa__label">{label}</h4>
+  <p class="qa__text">{value || 'Pendiente de documentar'}</p>
+</section>

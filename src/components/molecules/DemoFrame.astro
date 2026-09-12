@@ -1,0 +1,19 @@
+---
+interface Props {
+  label: string;
+  caption: string;
+  edge?: boolean;
+}
+
+const { label, caption, edge = false } = Astro.props;
+---
+
+<article class="demo" data-reveal>
+  <div class={`demo__stage${edge ? ' demo__stage--edge' : ''}`}>
+    <slot />
+  </div>
+  <div class="demo__info">
+    <p class="demo__label">{label}</p>
+    <p class="demo__caption">{caption}</p>
+  </div>
+</article>

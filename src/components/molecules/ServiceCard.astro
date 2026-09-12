@@ -1,0 +1,23 @@
+---
+import type { Service } from '../../types/site';
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<article class="service-card" data-reveal>
+  <div class="service-card__body">
+    <div class="service-card__head">
+      <h3>{service.title}</h3>
+    </div>
+    <p>{service.desc}</p>
+    <ul>
+      {service.bullets.map((bullet) => (
+        <li>{bullet}</li>
+      ))}
+    </ul>
+  </div>
+</article>

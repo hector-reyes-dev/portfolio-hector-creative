@@ -1,0 +1,21 @@
+---
+import type { DockSection } from '../../types/site';
+
+interface Props {
+  section: DockSection;
+}
+
+const { section } = Astro.props;
+---
+
+<a class="dock__item" href={`#${section.id}`} data-section={section.id}>
+  <svg class="dock__icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      class="dock__path"
+      d={section.idlePath}
+      data-idle={section.idlePath}
+      data-active={section.activePath}
+    ></path>
+  </svg>
+  <span class="dock__label">{section.label}</span>
+</a>

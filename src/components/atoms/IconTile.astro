@@ -1,0 +1,11 @@
+---
+import Icon from '@atoms/Icon.astro';
+
+interface Props {
+  icon: string;
+}
+
+const { icon } = Astro.props;
+---
+
+<span class="icon-tile"><Icon id={icon} /></span>

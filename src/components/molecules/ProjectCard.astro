@@ -1,0 +1,52 @@
+---
+import Icon from '@atoms/Icon.astro';
+import IconTile from '@atoms/IconTile.astro';
+import type { Project } from '../../types/site';
+
+interface Props {
+  project: Project;
+  class?: string;
+}
+
+const { project, class: extraClass } = Astro.props;
+const className = `card${extraClass ? ` ${extraClass}` : ''}`;
+const href = project.documented ? `#/caso/${project.slug}` : project.url;
+---
+
+{project.documented ? (
+  <a class={className} data-reveal href={href}>
+    <div class="card__media">
+      <img src={`/${project.image}`} alt={project.full} loading="lazy" decoding="async" />
+    </div>
+    <div class="card__body">
+      <div class="card__top">
+        <IconTile icon={project.icon} />
+        <div class="card__heading">
+          <p class="card__num">#{project.num}</p>
+          <h3 class="card__title">{project.full}</h3>
+        </div>
+      </div>
+      <p class="card__desc">{project.desc}</p>
+    </div>
+  </a>
+) : (
+  <a class={className} data-reveal href={href} target="_blank" rel="noopener">
+    <div class="card__media">
+      <img src={`/${project.image}`} alt={project.full} loading="lazy" decoding="async" />
+    </div>
+    <div class="card__body">
+      <div class="card__top">
+        <IconTile icon={project.icon} />
+        <div class="card__heading">
+          <p class="card__num">#{project.num}</p>
+          <h3 class="card__title">
+            {project.full}
+            <Icon id="i-external" />
+            <span class="sr-only">(se abre en otra pestaña)</span>
+          </h3>
+        </div>
+      </div>
+      <p class="card__desc">{project.desc}</p>
+    </div>
+  </a>
+)}
