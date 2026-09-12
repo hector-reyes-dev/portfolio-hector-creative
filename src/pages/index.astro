@@ -1,29 +1,32 @@
 ---
-import Button from '@atoms/Button.astro';
-import AppLayout from '@layouts/AppLayout.astro';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PortfolioTemplate from '../components/templates/PortfolioTemplate.astro';
 ---
 
-<AppLayout
-  title="Portfolio Starter"
-  description="Base profesional para un portafolio modular con Astro, Tailwind CSS y GSAP."
+<BaseLayout
+  title="Héctor Reyes — Ingeniero de Producto"
+  description="Portafolio y servicios de Héctor Reyes: diseño de interfaz, desarrollo de aplicaciones web y sitios de principio a fin."
 >
-  <section class="surface-card flex flex-1 flex-col justify-between gap-10 overflow-hidden px-6 py-12 sm:px-8 lg:px-12">
-    <div class="max-w-3xl space-y-6">
-      <p class="text-sm font-medium uppercase tracking-[0.24em] text-muted">
-        Atomic Modular Stack
-      </p>
-      <h1 class="text-display text-balance text-4xl leading-none text-text sm:text-5xl lg:text-6xl">
-        Base lista para escalar un portafolio profesional en Astro.
-      </h1>
-      <p class="max-w-2xl text-base leading-7 text-muted sm:text-lg">
-        El proyecto ya separa UI, features, layouts, lib y content collections para crecer
-        sin mezclar presentación con lógica de negocio.
-      </p>
-    </div>
+  <Fragment slot="head">
+    <meta name="theme-color" content="#F9F9F9" />
+    <link rel="icon" href="/assets/branding/logo.png" type="image/png" />
+  </Fragment>
 
-    <div class="flex flex-wrap items-center gap-4">
-      <Button href="/projects" variant="primary">Ver arquitectura</Button>
-      <Button href="/blog" variant="secondary">Explorar colecciones</Button>
-    </div>
-  </section>
-</AppLayout>
+  <PortfolioTemplate />
+
+  <script>
+    import { initDock } from '@features/dock/init';
+    import { initReveals } from '@features/reveal/init';
+    import { initCaseWindow } from '@features/case-window/init';
+    import { initMagneticHover } from '@features/magnetic-hover/init';
+    import { initSpotlight } from '@features/spotlight/init';
+    import { initSwitchToggle } from '@features/switch-toggle/init';
+
+    initDock();
+    initReveals();
+    initCaseWindow();
+    initMagneticHover();
+    initSpotlight();
+    initSwitchToggle();
+  </script>
+</BaseLayout>

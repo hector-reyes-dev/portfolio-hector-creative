@@ -1,0 +1,26 @@
+---
+import SectionHeader from '@molecules/SectionHeader.astro';
+import ServiceCard from '@molecules/ServiceCard.astro';
+import type { Service } from '../../types/site';
+
+interface Props {
+  services: Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<section class="section" id="servicios">
+  <div class="container">
+    <SectionHeader
+      kicker="Servicios"
+      title="Cómo puedo ayudarte"
+      lead="Tres formas de aportar a tu producto. Elige la que necesites o escríbeme y lo vemos juntos."
+    />
+    <div class="service-grid">
+      {services.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+  </div>
+</section>

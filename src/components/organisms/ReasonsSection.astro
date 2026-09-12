@@ -1,0 +1,32 @@
+---
+import SectionHeader from '@molecules/SectionHeader.astro';
+import ReasonItem from '@molecules/ReasonItem.astro';
+import TestimonialItem from '@molecules/TestimonialItem.astro';
+import type { Reason, Testimonial } from '../../types/site';
+
+interface Props {
+  reasons: Reason[];
+  testimonials: Testimonial[];
+}
+
+const { reasons, testimonials } = Astro.props;
+---
+
+<section class="section" id="por-que">
+  <div class="container">
+    <SectionHeader kicker="Por qué yo" title="Por qué trabajar conmigo" />
+    <div class="reasons">
+      {reasons.map((reason) => (
+        <ReasonItem reason={reason} />
+      ))}
+    </div>
+    <div class="subsection">
+      <h3 class="subsection__title" data-reveal>Testimonios</h3>
+      <div class="testimonials">
+        {testimonials.map((testimonial) => (
+          <TestimonialItem testimonial={testimonial} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

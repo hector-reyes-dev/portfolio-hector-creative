@@ -1,0 +1,28 @@
+---
+import type { HeroContent } from '../../types/site';
+
+interface Props {
+  hero: HeroContent;
+}
+
+const { hero } = Astro.props;
+---
+
+<section class="hero" id="inicio">
+  <div class="container">
+    <img
+      class="hero__logo"
+      src="/assets/branding/logo.png"
+      alt="Logotipo de Héctor Reyes"
+      width="161"
+      height="88"
+    />
+    <h1 class="hero__name">Héctor Reyes</h1>
+    <p class="hero__role">{hero.role}</p>
+    <div class="hero__bio">
+      {hero.bio.map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+    </div>
+  </div>
+</section>

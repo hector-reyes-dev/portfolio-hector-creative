@@ -1,0 +1,36 @@
+---
+import SkipLink from '@atoms/SkipLink.astro';
+import IconSprite from '@atoms/IconSprite.astro';
+import Scrim from '@atoms/Scrim.astro';
+import Hero from '@organisms/Hero.astro';
+import CasesSection from '@organisms/CasesSection.astro';
+import ProjectsSection from '@organisms/ProjectsSection.astro';
+import ServicesSection from '@organisms/ServicesSection.astro';
+import ExperimentsSection from '@organisms/ExperimentsSection.astro';
+import ReasonsSection from '@organisms/ReasonsSection.astro';
+import ContactSection from '@organisms/ContactSection.astro';
+import SiteFooter from '@organisms/SiteFooter.astro';
+import Dock from '@organisms/Dock.astro';
+import CaseWindow from '@organisms/CaseWindow.astro';
+import { siteContent, documentedProjects } from '@lib/core/site-content';
+
+const cases = documentedProjects();
+---
+
+<SkipLink href="#trabajo">Saltar al contenido</SkipLink>
+<IconSprite />
+
+<main>
+  <Hero hero={siteContent.hero} />
+  <CasesSection cases={cases} />
+  <ProjectsSection projects={siteContent.projects} />
+  <ServicesSection services={siteContent.services} />
+  <ExperimentsSection />
+  <ReasonsSection reasons={siteContent.reasons} testimonials={siteContent.testimonials} />
+  <ContactSection contact={siteContent.contact} />
+</main>
+
+<SiteFooter />
+<Dock sections={siteContent.navigation} />
+<Scrim />
+<CaseWindow documentedProjects={cases} cases={siteContent.cases} caseQuestions={siteContent.caseQuestions} />
