@@ -1,5 +1,6 @@
 ---
 import type { DockSection } from '../../types/site';
+import Icon from '@atoms/Icon.astro';
 
 interface Props {
   section: DockSection;
@@ -9,13 +10,6 @@ const { section } = Astro.props;
 ---
 
 <a class="dock__item" href={`#${section.id}`} data-section={section.id}>
-  <svg class="dock__icon" viewBox="0 0 24 24" aria-hidden="true">
-    <path
-      class="dock__path"
-      d={section.idlePath}
-      data-idle={section.idlePath}
-      data-active={section.activePath}
-    ></path>
-  </svg>
+  <Icon id={section.icon} class="dock__icon" />
   <span class="dock__label">{section.label}</span>
 </a>

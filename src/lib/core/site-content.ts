@@ -302,7 +302,7 @@ const rawSiteContent = {
     {
       id: 'contacto',
       label: 'Contacto',
-      icon: 'i-contacto',
+      icon: 'i-whatsapp',
       idlePath: 'M 4 6.4 Q 4 5.5 4.9 5.5 L 19.1 5.5 Q 20 5.5 20 6.4 L 20 17.6 Q 20 18.5 19.1 18.5 L 4.9 18.5 Q 4 18.5 4 17.6 Z M 4.7 6.7 L 12 12.4 L 19.3 6.7',
       activePath: 'M 20.2 4.1 Q 20.8 3.9 20.4 4.5 L 4.2 11.2 Q 3.7 11.4 4.1 11.7 L 10.3 13.4 Q 10.7 13.55 10.8 13.95 L 12.9 20.2 Q 13 20.6 13.35 20.25 Z M 10.4 13.5 L 20.2 4.1 L 20.2 4.1'
     }

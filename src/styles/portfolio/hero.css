@@ -6,12 +6,21 @@
   padding: calc(var(--dock-space) + 40px) 0 clamp(40px, 7vh, 88px);
 }
 
-.hero__logo { height: clamp(44px, 6vh, 56px); width: auto; margin-bottom: clamp(26px, 5vh, 44px); }
-.hero__name { font-size: clamp(44px, 9vw, 92px); letter-spacing: -0.035em; line-height: .98; }
+.hero__logo {
+  width: 96px;
+  height: 96px;
+  margin-bottom: clamp(26px, 5vh, 44px);
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 28%;
+  box-shadow: var(--shadow-sm);
+}
+.hero__name { font-size: 56px; letter-spacing: -0.035em; line-height: .98; }
 .hero__role {
   font-family: var(--font-body);
   font-style: normal;
-  font-size: clamp(19px, 1.4vw + 14px, 24px);
+  font-size: 18px;
   color: var(--ink-2);
   margin-top: 10px;
 }
@@ -20,12 +29,14 @@
   gap: 1.1em;
   max-width: 100%;
   margin-top: clamp(24px, 4vh, 40px);
-  font-size: clamp(16.5px, .4vw + 15px, 18px);
+  font-size: 16px;
   line-height: 1.72;
 }
 
 @media (max-width: 767px) {
-  .hero__bio { font-size: 16.5px; }
+  .hero__logo { width: 72px; height: 72px; }
+  .hero__name { font-size: 40px; }
+  .hero__bio { font-size: 16px; }
 }
 
 @media (max-width: 430px) {
