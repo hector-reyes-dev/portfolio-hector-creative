@@ -1,4 +1,6 @@
 ---
+import Icon from '@atoms/Icon.astro';
+import Button from '@atoms/Button.astro';
 import type { Service } from '../../types/site';
 
 interface Props {
@@ -9,15 +11,12 @@ const { service } = Astro.props;
 ---
 
 <article class="service-card" data-reveal>
+  <span class="service-card__icon"><Icon id={service.icon} /></span>
   <div class="service-card__body">
     <div class="service-card__head">
       <h3>{service.title}</h3>
     </div>
     <p>{service.desc}</p>
-    <ul>
-      {service.bullets.map((bullet) => (
-        <li>{bullet}</li>
-      ))}
-    </ul>
   </div>
+  <Button variant="pill" href="#contacto">Hablemos de este servicio <Icon id="i-arrow" /></Button>
 </article>

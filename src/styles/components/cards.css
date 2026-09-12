@@ -1,7 +1,7 @@
 /* ── Cards (receta del usuario) ─────────────────────────── */
 .card {
   display: block;
-  border-radius: 16px;
+  border-radius: 20px;
   border: 1px solid var(--card-border);
   background: #fff;
   box-shadow: var(--card-shadow);
@@ -16,7 +16,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  aspect-ratio: 558 / 339;
+  aspect-ratio: 2.25 / 1;
   background: var(--fill);
 }
 .card__media img {
@@ -24,17 +24,32 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: top;
-}
-@media (min-width: 768px) {
-  .card__media { aspect-ratio: 1152 / 400; }
-  .card__media img { object-fit: cover; }
+  object-fit: cover;
+  object-position: center;
 }
 
-.card__body { padding: 16px; }
-.card__top { display: flex; align-items: center; gap: 14px; }
-.card__heading { min-width: 0; }
+.card__media-icons {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.card__type {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(32, 32, 32, .08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, .94);
+  color: var(--ink);
+  box-shadow: 0 6px 16px rgba(32, 32, 32, .1);
+}
+.card__type .i { width: 24px; height: 24px; }
+
+.card__body { padding: 22px 24px 24px; }
 .card__num {
   font-family: var(--font-display);
   font-size: 12.5px;
@@ -46,23 +61,17 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 3px;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 29px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
   letter-spacing: -0.01em;
 }
 .card__title .i { width: 16px; height: 16px; color: var(--ink-3); }
-.card__desc { margin-top: 14px; font-size: 15px; line-height: 23px; color: var(--desc); }
+.card__desc { margin-top: 8px; font-size: 16px; line-height: 1.6; color: var(--desc); }
 .card__cta { margin-top: 16px; }
 
 .card-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
 .card-grid--trabajo { grid-template-columns: 1fr; }
-
-@media (min-width: 768px) {
-  .card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .card-grid--trabajo { grid-template-columns: 1fr; }
-}
 
 .icon-tile {
   flex: none;
@@ -77,18 +86,30 @@
 .icon-tile .i { width: 21px; height: 21px; }
 
 /* ── Servicios ──────────────────────────────────────────── */
-.service-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
+.service-grid { display: grid; gap: 0; grid-template-columns: 1fr; }
 
-.service-card { min-width: 0; }
-.service-card__body { display: grid; gap: 16px; align-content: start; }
-.service-card__head h3 { font-size: 18px; line-height: 1.4; letter-spacing: -0.015em; }
+.service-card {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+.service-card__icon,
+.reason__icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  color: var(--accent-ink);
+}
+.service-card__icon .i,
+.reason__icon .i { width: 24px; height: 24px; }
+.service-card__body { display: grid; gap: 8px; align-content: start; }
+.service-card__head h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.015em; }
 .service-card__body p { color: var(--desc); font-size: 16px; line-height: 1.6; }
-.service-card__body ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.service-card__body li { font-size: 16px; line-height: 1.5; }
-
-@media (min-width: 768px) {
-  .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (min-width: 1024px) {
-  .service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
+.service-card > .btn { grid-column: 2; justify-self: start; margin-top: 2px; }

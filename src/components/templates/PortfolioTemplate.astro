@@ -3,6 +3,7 @@ import SkipLink from '@atoms/SkipLink.astro';
 import IconSprite from '@atoms/IconSprite.astro';
 import Scrim from '@atoms/Scrim.astro';
 import Hero from '@organisms/Hero.astro';
+import ExperienceSection from '@organisms/ExperienceSection.astro';
 import CasesSection from '@organisms/CasesSection.astro';
 import ProjectsSection from '@organisms/ProjectsSection.astro';
 import ServicesSection from '@organisms/ServicesSection.astro';
@@ -22,6 +23,7 @@ const cases = documentedProjects();
 
 <main>
   <Hero hero={siteContent.hero} />
+  <ExperienceSection experiences={siteContent.experiences} />
   <CasesSection cases={cases} />
   <ProjectsSection projects={siteContent.projects} />
   <ServicesSection services={siteContent.services} />

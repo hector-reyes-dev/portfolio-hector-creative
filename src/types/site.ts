@@ -31,9 +31,15 @@ export interface Service {
   icon: string;
   title: string;
   desc: string;
-  bullets: string[];
   image: string;
   alt: string;
+}
+
+export interface Experience {
+  period: string;
+  role: string;
+  company: string;
+  tone: 'kavak' | 'chedraui';
 }
 
 export interface Reason {

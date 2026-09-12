@@ -1,5 +1,6 @@
 ---
 import type { Reason } from '../../types/site';
+import Icon from '@atoms/Icon.astro';
 
 interface Props {
   reason: Reason;
@@ -9,6 +10,9 @@ const { reason } = Astro.props;
 ---
 
 <div class="reason" data-reveal>
-  <h3>{reason.title}</h3>
-  <p>{reason.text}</p>
+  <span class="reason__icon"><Icon id="i-star" /></span>
+  <div>
+    <h3>{reason.title}</h3>
+    <p>{reason.text}</p>
+  </div>
 </div>

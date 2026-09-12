@@ -34,9 +34,15 @@ const serviceSchema = z.object({
   icon: z.string().min(1),
   title: z.string().min(1),
   desc: z.string().min(1),
-  bullets: z.array(z.string().min(1)),
   image: z.string().min(1),
   alt: z.string().min(1)
+});
+
+const experienceSchema = z.object({
+  period: z.string().min(1),
+  role: z.string().min(1),
+  company: z.string().min(1),
+  tone: z.enum(['kavak', 'chedraui'])
 });
 
 const reasonSchema = z.object({
@@ -66,6 +72,7 @@ const dockSectionSchema = z.object({
 const siteContentSchema = z.object({
   hero: heroSchema,
   projects: z.array(projectSchema).min(1),
+  experiences: z.array(experienceSchema).min(1),
   cases: z.record(z.string(), caseStudySchema),
   services: z.array(serviceSchema).min(1),
   reasons: z.array(reasonSchema).min(1),
@@ -177,6 +184,20 @@ const rawSiteContent = {
       documented: true
     }
   ],
+  experiences: [
+    {
+      period: 'ene. 2023 – actualidad',
+      role: 'Especialista en Configuraciones Omnicanal',
+      company: 'Chedraui',
+      tone: 'chedraui'
+    },
+    {
+      period: 'oct. 2021 – nov. 2022',
+      role: 'Front-End Developer',
+      company: 'Kavak',
+      tone: 'kavak'
+    }
+  ],
   cases: {
     ikni: {
       problem: 'Aplicación de listas de compras colaborativas, conectada con e-commerce retailers.',
@@ -207,24 +228,21 @@ const rawSiteContent = {
     {
       icon: 'i-pen',
       title: 'Diseño de interfaz, UI kits y sistemas de diseño',
-      desc: 'Desde la creación de componentes atómicos hasta la implementación final. UI kits y sistemas que mantienen la coherencia visual de tus productos digitales.',
-      bullets: ['Diseño UI para e-commerce', 'Prototipos con Figma'],
+      desc: 'Interfaces, UI kits y sistemas de diseño que mantienen la coherencia visual de tu producto.',
       image: 'assets/projects/food-mood-project.webp',
       alt: 'Food Mood, UI kit de aplicación móvil'
     },
     {
       icon: 'i-code',
       title: 'Desarrollo de aplicaciones web',
-      desc: 'Aplicaciones web que se adaptan a las necesidades de tus usuarios: diseño atractivo, optimizadas y fáciles de usar.',
-      bullets: ['Auditoría de performance web', 'Instrumentación de métricas'],
+      desc: 'Aplicaciones web claras, rápidas y adaptadas a las necesidades de tus usuarios.',
       image: 'assets/projects/ikni-project.webp',
       alt: 'Ikni, aplicación de listas de compras colaborativas'
     },
     {
       icon: 'i-globe',
       title: 'Sitios web de principio a fin',
-      desc: 'Desde la planificación y el diseño hasta la programación, construcción y lanzamiento de tu sitio.',
-      bullets: ['Auditoría de accesibilidad web', 'Optimización para motores de búsqueda'],
+      desc: 'Planificación, diseño, desarrollo y lanzamiento de sitios completos.',
       image: 'assets/projects/acabados-integrales-project.webp',
       alt: 'Acabados Integrales, sitio web de muebles e interiores'
     }
