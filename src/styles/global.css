@@ -2,10 +2,17 @@
 @import "tailwindcss";
 @import "./themes/light.css";
 @import "./themes/dark.css";
+@import "./portfolio/tokens.css";
+@import "./portfolio/base.css";
+@import "./portfolio/hero.css";
 @import "./components/buttons.css";
 @import "./components/cards.css";
+@import "./portfolio/experiments.css";
+@import "./portfolio/dock-window.css";
+@import "./portfolio/footer-cta.css";
 @import "./utilities/animations.css";
 @import "./utilities/typography.css";
+@import "./portfolio/motion.css";
 
 /* Tokens de tema: se resuelven en runtime para soportar light/dark */
 @theme inline {
@@ -18,8 +25,6 @@
 }
 
 @theme {
-  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Fraunces', Georgia, serif;
   --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.08);
 }
 

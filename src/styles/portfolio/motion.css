@@ -1,0 +1,31 @@
+/* ── Scroll-transitions ─────────────────────────────────── */
+[data-reveal] { opacity: 0; transform: translateY(18px); filter: blur(6px); }
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition:
+    opacity .6s var(--ease-out),
+    transform .6s var(--ease-out),
+    filter .6s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+.reveal-strong { filter: blur(14px); transform: translateY(26px); }
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .marquee__track { animation: none; }
+  [data-reveal], .reveal-strong { opacity: 1; transform: none; filter: none; }
+  [data-reveal].is-in { transition: none; }
+  .card:hover { transform: none; }
+  .window, .scrim { transition: opacity .12s linear; }
+  .window { transform: translateX(-50%); }
+  .window.is-open { transform: translateX(-50%); }
+  .dock__label { transition: none; }
+}
