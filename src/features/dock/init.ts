@@ -1,36 +1,6 @@
-import { interpolatePath, tokenizePath, tokensCompatible } from '../../lib/utils/svg-path-morph';
-
-const MORPH_MS = 320;
 const SPY_IDS = ['trabajo', 'proyectos', 'servicios', 'experimentos', 'contacto'];
 
-const runIds = new WeakMap<SVGPathElement, number>();
-
-function morphPath(path: SVGPathElement | null, target: string | null, animate: boolean): void {
-  if (!path || !target) return;
-  const from = tokenizePath(path.getAttribute('d'));
-  const to = tokenizePath(target);
-  const compatible = tokensCompatible(from, to);
-
-  if (!animate || !compatible) {
-    path.setAttribute('d', target);
-    return;
-  }
-
-  const runId = (runIds.get(path) || 0) + 1;
-  runIds.set(path, runId);
-  const start = performance.now();
-
-  function frame(now: number) {
-    if (runIds.get(path as SVGPathElement) !== runId) return;
-    const progress = Math.min(1, (now - start) / MORPH_MS);
-    path!.setAttribute('d', interpolatePath(from, to, progress));
-    if (progress < 1) requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-}
-
 export function initDock(): void {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const dockItems = Array.from(document.querySelectorAll<HTMLAnchorElement>('.dock__item'));
   let activeSection: string | null = null;
 
@@ -42,9 +12,6 @@ export function initDock(): void {
       item.classList.toggle('is-active', isActive);
       if (isActive) item.setAttribute('aria-current', 'true');
       else item.removeAttribute('aria-current');
-      const path = item.querySelector<SVGPathElement>('.dock__path');
-      const target = path?.getAttribute(isActive ? 'data-active' : 'data-idle') ?? null;
-      morphPath(path, target, !reduceMotion.matches);
     });
   }
 

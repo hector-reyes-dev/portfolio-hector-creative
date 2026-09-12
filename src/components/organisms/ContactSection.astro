@@ -14,14 +14,13 @@ const { contact } = Astro.props;
 <section class="section section--cta" id="contacto">
   <div class="container">
     <div class="cta-panel reveal-strong" data-reveal>
-      <p class="kicker">Contacto</p>
       <h2 class="section-title">¿Trabajamos juntos?</h2>
       <p class="lead">
         Cuéntame qué tienes entre manos: una idea a medias, un producto que no termina de funcionar o un equipo al que
         le falta mano de diseño y front-end. Te digo cómo puedo ayudar.
       </p>
       <Button id="waBtn" variant="accent" href={contact.whatsapp} target="_blank" rel="noopener">
-        Escríbeme por WhatsApp <Icon id="i-external" />
+        Escríbeme por WhatsApp <Icon id="i-whatsapp" />
       </Button>
       <div class="cta-links">
         {contact.links.map((link) => (

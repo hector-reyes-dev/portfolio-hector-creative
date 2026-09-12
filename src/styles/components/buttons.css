@@ -12,15 +12,18 @@
   letter-spacing: -0.005em;
   line-height: 1;
   text-decoration: none;
+  border: 1px solid rgba(32, 32, 32, .12);
   transition: transform .15s var(--ease-out), background-color .15s var(--ease-out),
               box-shadow .15s var(--ease-out), border-color .15s var(--ease-out), color .15s var(--ease-out);
+  box-shadow: 0 3px 0 rgba(32, 32, 32, .18), 0 7px 14px rgba(32, 32, 32, .08);
 }
 .btn .i { width: 17px; height: 17px; }
 
 .btn--accent {
   background: var(--accent-ink);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(0, 116, 127, .22);
+  border-color: rgba(0, 83, 91, .5);
+  box-shadow: 0 3px 0 #00535b, 0 8px 16px rgba(0, 116, 127, .2);
 }
 
 .btn--pill {
@@ -30,8 +33,17 @@
   padding: 12px 20px;
 }
 
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 rgba(32, 32, 32, 0), 0 2px 6px rgba(32, 32, 32, .1);
+}
+
+.btn--accent:active {
+  box-shadow: 0 0 0 #00535b, 0 2px 6px rgba(0, 116, 127, .16);
+}
+
 @media (hover: hover) {
-  .btn--accent:hover { background: #006873; transform: translateY(-1px); box-shadow: 0 10px 24px rgba(0, 116, 127, .28); }
+  .btn--accent:hover { background: #006873; transform: translateY(-1px); box-shadow: 0 4px 0 #00535b, 0 10px 24px rgba(0, 116, 127, .28); }
   .btn--pill:hover { background: #e8e8ea; }
 }
 
