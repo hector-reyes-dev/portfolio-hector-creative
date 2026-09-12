@@ -1,6 +1,5 @@
 ---
 import Icon from '@atoms/Icon.astro';
-import IconTile from '@atoms/IconTile.astro';
 import type { Project } from '../../types/site';
 
 interface Props {
@@ -11,42 +10,39 @@ interface Props {
 const { project, class: extraClass } = Astro.props;
 const className = `card${extraClass ? ` ${extraClass}` : ''}`;
 const href = project.documented ? `#/caso/${project.slug}` : project.url;
+const iconForTag = (tag: string): string => {
+  const normalized = tag.toLowerCase();
+  if (normalized.includes('dise')) return 'i-pen';
+  if (normalized.includes('front') || normalized.includes('back') || normalized.includes('desarroll')) return 'i-code';
+  if (normalized.includes('app') || normalized.includes('mobile')) return 'i-cart';
+  return 'i-star';
+};
 ---
 
-{project.documented ? (
-  <a class={className} data-reveal href={href}>
+<a
+  class={className}
+  data-reveal
+  href={href}
+  target={project.documented ? undefined : '_blank'}
+  rel={project.documented ? undefined : 'noopener'}
+>
     <div class="card__media">
       <img src={`/${project.image}`} alt={project.full} loading="lazy" decoding="async" />
+      <div class="card__media-icons" aria-label={`Tipo de proyecto: ${project.tags.join(', ')}`}>
+        {project.tags.map((tag) => (
+          <span class="card__type" title={tag}>
+            <Icon id={iconForTag(tag)} />
+            <span class="sr-only">{tag}</span>
+          </span>
+        ))}
+      </div>
     </div>
     <div class="card__body">
-      <div class="card__top">
-        <IconTile icon={project.icon} />
-        <div class="card__heading">
-          <p class="card__num">#{project.num}</p>
-          <h3 class="card__title">{project.full}</h3>
-        </div>
-      </div>
+      <h3 class="card__title">
+        {project.full}
+        {!project.documented && <Icon id="i-external" />}
+        {!project.documented && <span class="sr-only">(se abre en otra pestaña)</span>}
+      </h3>
       <p class="card__desc">{project.desc}</p>
     </div>
-  </a>
-) : (
-  <a class={className} data-reveal href={href} target="_blank" rel="noopener">
-    <div class="card__media">
-      <img src={`/${project.image}`} alt={project.full} loading="lazy" decoding="async" />
-    </div>
-    <div class="card__body">
-      <div class="card__top">
-        <IconTile icon={project.icon} />
-        <div class="card__heading">
-          <p class="card__num">#{project.num}</p>
-          <h3 class="card__title">
-            {project.full}
-            <Icon id="i-external" />
-            <span class="sr-only">(se abre en otra pestaña)</span>
-          </h3>
-        </div>
-      </div>
-      <p class="card__desc">{project.desc}</p>
-    </div>
-  </a>
-)}
+</a>
