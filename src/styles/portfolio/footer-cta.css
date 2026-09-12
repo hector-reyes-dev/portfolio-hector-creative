@@ -2,15 +2,14 @@
 .reasons {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0;
+  gap: 14px;
 }
 .reason {
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr);
   gap: 16px;
   align-content: start;
-  padding: 22px 0;
-  border-top: 1px solid var(--line);
+  padding: 8px 0;
 }
 .reason h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.01em; }
 .reason p { margin-top: 8px; color: var(--ink-2); font-size: 16px; line-height: 1.6; }

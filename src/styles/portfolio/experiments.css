@@ -18,7 +18,7 @@
 }
 .demo__stage--edge { padding: 0; }
 .demo__info { display: grid; gap: 4px; padding: 15px 18px 18px; border-top: 1px solid var(--card-border); }
-.demo__label { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; }
+.demo__label { font-family: var(--font-display); font-size: 20px; line-height: 1.3; font-weight: 600; letter-spacing: -0.015em; }
 .demo__caption { font-size: 14.5px; line-height: 1.6; color: var(--desc); }
 
 @media (hover: hover) and (pointer: fine) {

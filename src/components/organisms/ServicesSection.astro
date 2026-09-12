@@ -1,4 +1,6 @@
 ---
+import Button from '@atoms/Button.astro';
+import Icon from '@atoms/Icon.astro';
 import SectionHeader from '@molecules/SectionHeader.astro';
 import ServiceCard from '@molecules/ServiceCard.astro';
 import type { Service } from '../../types/site';
@@ -21,5 +23,6 @@ const { services } = Astro.props;
         <ServiceCard service={service} />
       ))}
     </div>
+    <Button variant="accent" href="#contacto">Hablemos de servicios <Icon id="i-arrow" /></Button>
   </div>
 </section>

@@ -54,7 +54,7 @@
 }
 
 .dock__item.is-active { background: var(--accent-ink); color: #fff; }
-.dock__item.is-active .dock__label { max-width: 12ch; opacity: 1; margin-left: 8px; }
+.dock__item.is-active .dock__label { max-width: 12ch; opacity: 1; margin-left: 4px; }
 @media (hover: hover) {
   .dock__item.is-active:hover { background: var(--accent-ink); color: #fff; }
 }

@@ -1,6 +1,5 @@
 ---
 import Icon from '@atoms/Icon.astro';
-import Button from '@atoms/Button.astro';
 import type { Service } from '../../types/site';
 
 interface Props {
@@ -18,5 +17,4 @@ const { service } = Astro.props;
     </div>
     <p>{service.desc}</p>
   </div>
-  <Button variant="pill" href="#contacto">Hablemos de este servicio <Icon id="i-arrow" /></Button>
 </article>

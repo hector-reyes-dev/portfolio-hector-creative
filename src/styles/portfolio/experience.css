@@ -1,5 +1,5 @@
 /* ── Experiencia ────────────────────────────────────────── */
-.experience-list { display: grid; border-top: 1px solid var(--line); }
+.experience-list { display: grid; gap: 8px; }
 .experience-item {
   display: grid;
   grid-template-columns: 112px minmax(0, 1fr) 116px;
@@ -7,7 +7,6 @@
   align-items: center;
   min-height: 86px;
   padding: 16px 0;
-  border-bottom: 1px solid var(--line);
 }
 .experience-item__period {
   color: var(--ink-3);

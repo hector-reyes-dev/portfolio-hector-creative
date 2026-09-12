@@ -1,7 +1,8 @@
 /* ── Cards (receta del usuario) ─────────────────────────── */
 .card {
   display: block;
-  border-radius: 20px;
+  padding: 6px;
+  border-radius: 22px;
   border: 1px solid var(--card-border);
   background: #fff;
   box-shadow: var(--card-shadow);
@@ -16,7 +17,9 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  aspect-ratio: 2.25 / 1;
+  aspect-ratio: 1.65 / 1;
+  border: 1px solid rgba(32, 32, 32, .08);
+  border-radius: 16px;
   background: var(--fill);
 }
 .card__media img {
@@ -57,28 +60,21 @@
   background: linear-gradient(135deg, #2bb3c2 0%, #68d0ba 52%, #399947 100%);
 }
 
-.card__media-icons {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
+.card__types { display: flex; gap: 8px; margin-top: 16px; }
 .card__type {
-  width: 56px;
-  height: 56px;
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
   border: 1px solid rgba(32, 32, 32, .08);
-  border-radius: 16px;
+  border-radius: 10px;
   background: rgba(255, 255, 255, .94);
   color: var(--ink);
   box-shadow: 0 6px 16px rgba(32, 32, 32, .1);
 }
-.card__type .i { width: 24px; height: 24px; }
+.card__type .i { width: 16px; height: 16px; }
 
-.card__body { padding: 22px 24px 24px; }
+.card__body { padding: 18px 12px 14px; }
 .card__num {
   font-family: var(--font-display);
   font-size: 12.5px;
@@ -90,7 +86,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -101,6 +97,10 @@
 
 .card-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
 .card-grid--trabajo { grid-template-columns: 1fr; }
+
+@media (min-width: 768px) {
+  .card-grid:not(.card-grid--trabajo) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 
 .icon-tile {
   flex: none;
@@ -141,4 +141,4 @@
 .service-card__body { display: grid; gap: 8px; align-content: start; }
 .service-card__head h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.015em; }
 .service-card__body p { color: var(--desc); font-size: 16px; line-height: 1.6; }
-.service-card > .btn { grid-column: 2; justify-self: start; margin-top: 2px; }
+.service-grid + .btn { margin-top: 24px; }
