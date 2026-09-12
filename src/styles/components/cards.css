@@ -60,7 +60,13 @@
   background: linear-gradient(135deg, #2bb3c2 0%, #68d0ba 52%, #399947 100%);
 }
 
-.card__types { display: flex; gap: 8px; margin-top: 16px; }
+.card__types {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  display: flex;
+  gap: 8px;
+}
 .card__type {
   width: 32px;
   height: 32px;
@@ -68,9 +74,11 @@
   place-items: center;
   border: 1px solid rgba(32, 32, 32, .08);
   border-radius: 10px;
-  background: rgba(255, 255, 255, .94);
+  background: rgba(255, 255, 255, .68);
   color: var(--ink);
-  box-shadow: 0 6px 16px rgba(32, 32, 32, .1);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 .card__type .i { width: 16px; height: 16px; }
 
@@ -124,7 +132,6 @@
   align-items: start;
   min-width: 0;
   padding: 22px 0;
-  border-top: 1px solid var(--line);
 }
 .service-card__icon,
 .reason__icon {

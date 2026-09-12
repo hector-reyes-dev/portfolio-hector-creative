@@ -27,14 +27,7 @@ const iconForTag = (tag: string): string => {
   target={project.documented ? undefined : '_blank'}
   rel={project.documented ? undefined : 'noopener'}
 >
-    <div class={mediaClass} role="img" aria-label={project.full}></div>
-    <div class="card__body">
-      <h3 class="card__title">
-        {project.full}
-        {!project.documented && <Icon id="i-external" />}
-        {!project.documented && <span class="sr-only">(se abre en otra pestaña)</span>}
-      </h3>
-      <p class="card__desc">{project.desc}</p>
+    <div class={mediaClass} role="img" aria-label={project.full}>
       <div class="card__types" aria-label={`Tipo de proyecto: ${project.tags.join(', ')}`}>
         {project.tags.map((tag) => (
           <span class="card__type" title={tag}>
@@ -43,5 +36,13 @@ const iconForTag = (tag: string): string => {
           </span>
         ))}
       </div>
+    </div>
+    <div class="card__body">
+      <h3 class="card__title">
+        {project.full}
+        {!project.documented && <Icon id="i-external" />}
+        {!project.documented && <span class="sr-only">(se abre en otra pestaña)</span>}
+      </h3>
+      <p class="card__desc">{project.desc}</p>
     </div>
 </a>
