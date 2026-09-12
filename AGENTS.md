@@ -31,3 +31,9 @@ Este documento define las reglas de oro para mantener la integridad de la arquit
 > "La UI (`src/components/`) es un cascarón tonto; la inteligencia reside en `src/features/`; la infraestructura reside en `src/lib/`."
 
 Cualquier cambio que rompa esta jerarquía se considera una deuda técnica inmediata.
+
+<!-- flujo-orca-openspec:start -->
+Lee docs/flujo-orca-openspec.md para los roles, autorizaciones y procedimiento de Orca + OpenSpec.
+Antes de despachar un hijo, sincroniza la configuración desde el coordinador con
+`pnpm agents:sync --target <ruta-hijo> --apply` y comprueba con `--check`.
+<!-- flujo-orca-openspec:end -->

@@ -1,0 +1,23 @@
+schema: spec-driven
+
+context: |
+  Portafolio personal en Astro 7, TypeScript estricto, Tailwind CSS, GSAP y pnpm.
+  Seguir AGENTS.md y docs/flujo-orca-openspec.md.
+  Mantener la arquitectura Atomic Modular Stack: UI en src/components,
+  lógica de producto en src/features e infraestructura en src/lib.
+  El checkout principal coordina con Codex Luna xhigh. Las specs se preparan
+  con Astra medium en un worktree hijo y la implementación se ejecuta con
+  Claude Code Sonnet cuando el usuario la solicita.
+  Los cambios visuales deben validar accesibilidad, responsive behavior y
+  los scripts Astro más cercanos al área afectada.
+
+rules:
+  proposal:
+    - Delimitar alcance, exclusiones y dependencias de otros cambios.
+  specs:
+    - Incluir escenarios verificables de aceptación y estados de error cuando apliquen.
+    - Conservar el formato Requirement, Scenario y SHALL/MUST de OpenSpec.
+  design:
+    - Documentar componentes, rutas, tokens y riesgos suficientes para implementar sin el historial del chat.
+  tasks:
+    - Crear tareas concretas y marcar solo las que el implementador haya comprobado.
