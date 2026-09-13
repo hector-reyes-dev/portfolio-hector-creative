@@ -11,9 +11,9 @@ Resuelve decisiones locales dentro del alcance y continúa hasta cumplir la acep
 la fase asignada. Consulta al usuario si falta una decisión que cambie el alcance o un
 acceso necesario; una dificultad técnica no requiere por sí misma otra aprobación.
 
-Commit, push, merge y publicación requieren petición explícita. Solicita permiso para
-red, escrituras fuera del workspace y acciones destructivas no autorizadas.
-El principal usa `always-ask`; yolo/auto-approve solo en worktrees desechables autorizados.
+Commit, push, merge y publicación requieren petición explícita. Solicita permiso para  
+red, escrituras fuera del workspace y acciones destructivas no autorizadas.  
+El principal usa `write`; yolo/auto-approve solo en worktrees desechables autorizados.  
 Las herramientas `write` y `edit` están autorizadas sin confirmación adicional. En propose su alcance
 es exclusivamente `openspec/changes/<cambio>/`; el permiso técnico no filtra rutas.
 También están autorizados `task` y `orca orchestration send` para delegar y comunicar
