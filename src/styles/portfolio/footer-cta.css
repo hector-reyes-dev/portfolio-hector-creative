@@ -46,7 +46,7 @@
   text-decoration: none;
   transition: color .15s var(--ease-out);
 }
-.cta-link .i { width: 14px; height: 14px; color: var(--ink-3); transition: color .15s var(--ease-out), transform .15s var(--ease-out); }
+.cta-link .i { width: 7px; height: 7px; color: var(--ink-3); transition: color .15s var(--ease-out), transform .15s var(--ease-out); }
 @media (hover: hover) {
   .cta-link:hover { color: var(--accent-ink); }
   .cta-link:hover .i { color: var(--accent-ink); transform: translate(2px, -2px); }

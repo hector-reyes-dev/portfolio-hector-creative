@@ -37,7 +37,7 @@
   line-height: 1;
   transition: background-color .28s var(--ease-out), color .28s var(--ease-out), box-shadow .28s var(--ease-out);
 }
-.dock__icon { width: 22px; height: 22px; flex: none; display: block; }
+.dock__icon { width: 19px; height: 19px; flex: none; display: block; }
 
 /* Control de tema: contenedor glass propio, independiente del dock. */
 .dock__theme-toggle {
@@ -76,14 +76,14 @@
 }
 
 .dock__item.is-active { background: var(--accent-ink); color: rgb(var(--app-accent-contrast)); padding-inline: 16px; }
-.dock__item.is-active .dock__label { max-width: 12ch; opacity: 1; margin-left: 4px; }
+.dock__item.is-active .dock__label { max-width: 12ch; opacity: 1; margin-left: 8px; }
 @media (hover: hover) {
   .dock__item.is-active:hover { background: var(--accent-ink); color: rgb(var(--app-accent-contrast)); }
 }
 
 @media (max-width: 430px) {
   .dock__item { padding: 6px 10px; }
-  .dock__icon { width: 21px; height: 21px; }
+  .dock__icon { width: 18px; height: 18px; }
   /* La etiqueta activa se colapsa visualmente y conserva su nombre accesible. */
   .dock__item.is-active { padding-inline: 10px; }
   .dock__item.is-active .dock__label { max-width: 0; opacity: 0; margin-left: 0; }
