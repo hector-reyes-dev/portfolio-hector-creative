@@ -222,6 +222,75 @@ bash:
     - { match: 'rtk pnpm build', approval: allow }
     - { match: 'rtk proxy pnpm check', approval: allow }
     - { match: 'rtk proxy pnpm build', approval: allow }
+    - { match: 'cd *', approval: allow }
+    - { match: 'rtk cd *', approval: allow }
+    - { match: 'rtk proxy cd *', approval: allow }
+    - { match: 'curl *localhost*', approval: allow }
+    - { match: 'curl *127.0.0.1*', approval: allow }
+    - { match: 'rtk curl *localhost*', approval: allow }
+    - { match: 'rtk curl *127.0.0.1*', approval: allow }
+    - { match: 'rtk proxy curl *localhost*', approval: allow }
+    - { match: 'rtk proxy curl *127.0.0.1*', approval: allow }
+    - { match: 'pnpm exec openspec context', approval: allow }
+    - { match: 'pnpm exec openspec context *', approval: allow }
+    - { match: 'rtk pnpm exec openspec context', approval: allow }
+    - { match: 'rtk pnpm exec openspec context *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec context', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec context *', approval: allow }
+    - { match: 'pnpm exec openspec status', approval: allow }
+    - { match: 'pnpm exec openspec status *', approval: allow }
+    - { match: 'pnpm exec openspec list', approval: allow }
+    - { match: 'pnpm exec openspec list *', approval: allow }
+    - { match: 'pnpm exec openspec show', approval: allow }
+    - { match: 'pnpm exec openspec show *', approval: allow }
+    - { match: 'pnpm exec openspec validate', approval: allow }
+    - { match: 'pnpm exec openspec validate *', approval: allow }
+    - { match: 'pnpm exec openspec instructions', approval: allow }
+    - { match: 'pnpm exec openspec instructions *', approval: allow }
+    - { match: 'pnpm exec openspec schemas', approval: allow }
+    - { match: 'pnpm exec openspec schemas *', approval: allow }
+    - { match: 'pnpm exec openspec templates', approval: allow }
+    - { match: 'pnpm exec openspec templates *', approval: allow }
+    - { match: 'pnpm exec openspec doctor', approval: allow }
+    - { match: 'pnpm exec openspec doctor *', approval: allow }
+    - { match: 'pnpm exec openspec new change *', approval: allow }
+    - { match: 'rtk pnpm exec openspec status', approval: allow }
+    - { match: 'rtk pnpm exec openspec status *', approval: allow }
+    - { match: 'rtk pnpm exec openspec list', approval: allow }
+    - { match: 'rtk pnpm exec openspec list *', approval: allow }
+    - { match: 'rtk pnpm exec openspec show', approval: allow }
+    - { match: 'rtk pnpm exec openspec show *', approval: allow }
+    - { match: 'rtk pnpm exec openspec validate', approval: allow }
+    - { match: 'rtk pnpm exec openspec validate *', approval: allow }
+    - { match: 'rtk pnpm exec openspec instructions', approval: allow }
+    - { match: 'rtk pnpm exec openspec instructions *', approval: allow }
+    - { match: 'rtk pnpm exec openspec schemas', approval: allow }
+    - { match: 'rtk pnpm exec openspec schemas *', approval: allow }
+    - { match: 'rtk pnpm exec openspec templates', approval: allow }
+    - { match: 'rtk pnpm exec openspec templates *', approval: allow }
+    - { match: 'rtk pnpm exec openspec doctor', approval: allow }
+    - { match: 'rtk pnpm exec openspec doctor *', approval: allow }
+    - { match: 'rtk pnpm exec openspec new change *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec status', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec status *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec list', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec list *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec show', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec show *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec validate', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec validate *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec instructions', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec instructions *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec schemas', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec schemas *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec templates', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec templates *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec doctor', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec doctor *', approval: allow }
+    - { match: 'rtk proxy pnpm exec openspec new change *', approval: allow }
+    - { match: 'mkdir *', approval: allow }
+    - { match: 'rtk mkdir *', approval: allow }
+    - { match: 'rtk proxy mkdir *', approval: allow }
 prewalk:
   enabled: false
 plan:
