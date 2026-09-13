@@ -21,7 +21,7 @@ pnpm-debug.log*
 .idea/
 .vscode/
 
-# agent configs
+# non-OMP agent harnesses stay local only; this repo is OMP single-harness
 .claude/
 .codex/
 .opencode/
@@ -29,26 +29,3 @@ pnpm-debug.log*
 
 # coverage
 coverage/
-
-# flujo-agentes:start
-!.agent-flow/
-!.codex/
-.codex/*
-!.codex/rules/
-.codex/rules/*
-!.codex/rules/flujo-agentes.rules
-!.claude/
-.claude/*
-!.claude/settings.json
-# flujo-agentes:end
-
-# Configuración compartida del flujo Orca
-!.codex/
-.codex/*
-!.codex/config.toml
-!.codex/rules/
-.codex/rules/*
-!.codex/rules/orca.rules
-!.claude/
-.claude/*
-!.claude/settings.json

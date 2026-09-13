@@ -1,9 +1,0 @@
-# Coordinación local autorizada; no incluye borrado, reset, merge, publicación ni deploy.
-prefix_rule(pattern=[["orca", "/usr/local/bin/orca"], "status"], decision="allow")
-prefix_rule(pattern=[["orca", "/usr/local/bin/orca"], "skills", "get"], decision="allow")
-prefix_rule(pattern=[["orca", "/usr/local/bin/orca"], "repo", ["show", "list", "search-refs"]], decision="allow")
-prefix_rule(pattern=[["orca", "/usr/local/bin/orca"], "worktree", ["list", "ps", "current", "show", "create", "set"]], decision="allow")
-prefix_rule(pattern=[["orca", "/usr/local/bin/orca"], "terminal", ["list", "show", "read", "wait", "create", "send", "rename"]], decision="allow")
-prefix_rule(pattern=[["orca", "/usr/local/bin/orca"], "orchestration", ["run-list", "run-show", "run-create", "task-list", "task-create", "task-update", "dispatch", "dispatch-show", "worker-start", "worker-show", "worker-list", "worker-read", "worker-release", "check", "inbox", "send", "reply", "ask", "gate-list"]], decision="allow")
-prefix_rule(pattern=["openspec", ["status", "list", "instructions", "validate", "--version"]], decision="allow")
-prefix_rule(pattern=["pnpm", ["agents:sync", "agents:setup", "agents:update"]], decision="allow")
