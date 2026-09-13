@@ -1,0 +1,933 @@
+{
+  "method": "Chromium headless 1440×900, revelados activados con scroll real. Texto: color calculado vs mediana de píxeles pintados del recuadro que no coinciden con el color de texto (fondo efectivo, incluye vidrio y gradientes). Controles: muestreo puntual de píxeles pintados. Ratio WCAG 2.x por luminancia relativa.",
+  "thresholds": "4.5 texto normal, 3 texto grande e indicadores/controles",
+  "light": [
+    {
+      "id": "body-paragraph",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 4140
+    },
+    {
+      "id": "hero-role",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 18,
+      "fontWeight": "400",
+      "bgSamples": 1568
+    },
+    {
+      "id": "hero-name",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": null,
+      "fontSize": 56,
+      "fontWeight": "600",
+      "bgSamples": 2312
+    },
+    {
+      "id": "section-title",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": null,
+      "fontSize": 28,
+      "fontWeight": "600",
+      "bgSamples": 1496
+    },
+    {
+      "id": "lead",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 2606
+    },
+    {
+      "id": "card-desc",
+      "thr": 4.5,
+      "fg": "rgb(79,79,79)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 7.78,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 2478
+    },
+    {
+      "id": "card-title",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": null,
+      "fontSize": 20,
+      "fontWeight": "600",
+      "bgSamples": 1075
+    },
+    {
+      "id": "card-badge-icon",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(224,222,248)",
+      "ratio": 12.39,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 1022
+    },
+    {
+      "id": "service-icon",
+      "thr": 3,
+      "fg": "rgb(0,116,127)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.24,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 3088
+    },
+    {
+      "id": "btn-accent",
+      "thr": 4.5,
+      "fg": "rgb(255,255,255)",
+      "bg": "rgb(0,116,127)",
+      "ratio": 5.52,
+      "note": null,
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2465
+    },
+    {
+      "id": "btn-pill",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(244,244,245)",
+      "ratio": 14.82,
+      "note": null,
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2288
+    },
+    {
+      "id": "dock-item",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(247,247,247)",
+      "ratio": 5.52,
+      "note": null,
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2162
+    },
+    {
+      "id": "dock-active",
+      "thr": 4.5,
+      "fg": "rgb(255,255,255)",
+      "bg": "rgb(6,119,130)",
+      "ratio": 5.29,
+      "note": null,
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2803
+    },
+    {
+      "id": "dock-toggle",
+      "thr": 3,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(251,251,251)",
+      "ratio": 5.72,
+      "note": null,
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2266
+    },
+    {
+      "id": "demo-label",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": null,
+      "fontSize": 20,
+      "fontWeight": "600",
+      "bgSamples": 1205
+    },
+    {
+      "id": "demo-caption",
+      "thr": 4.5,
+      "fg": "rgb(79,79,79)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 7.78,
+      "note": null,
+      "fontSize": 14.5,
+      "fontWeight": "400",
+      "bgSamples": 2227
+    },
+    {
+      "id": "spot-label",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(244,244,245)",
+      "ratio": 5.38,
+      "note": null,
+      "fontSize": 13,
+      "fontWeight": "600",
+      "bgSamples": 1047
+    },
+    {
+      "id": "marquee-strong",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": null,
+      "fontSize": 26,
+      "fontWeight": "600",
+      "bgSamples": 990
+    },
+    {
+      "id": "experience-period",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 13,
+      "fontWeight": "400",
+      "bgSamples": 1926
+    },
+    {
+      "id": "testimonial-quote",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 18,
+      "fontWeight": "400",
+      "bgSamples": 1327
+    },
+    {
+      "id": "footer",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 12.5,
+      "fontWeight": "400",
+      "bgSamples": 1112
+    },
+    {
+      "id": "cta-link",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 13.5,
+      "fontWeight": "500",
+      "bgSamples": 2831
+    },
+    {
+      "id": "reasons-body",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 5.62,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 3624
+    },
+    {
+      "id": "service-body",
+      "thr": 4.5,
+      "fg": "rgb(79,79,79)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 7.78,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 2445
+    },
+    {
+      "id": "btn-accent-hover",
+      "thr": 4.5,
+      "fg": "rgb(255,255,255)",
+      "bg": "rgb(0,104,115)",
+      "ratio": 6.51,
+      "note": "hover",
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2471
+    },
+    {
+      "id": "btn-pill-hover",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(232,232,234)",
+      "ratio": 13.32,
+      "note": "hover",
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2286
+    },
+    {
+      "id": "dock-item-hover",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(237,237,237)",
+      "ratio": 13.92,
+      "note": "hover",
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2168
+    },
+    {
+      "id": "btn-accent-pressed",
+      "thr": 4.5,
+      "fg": "rgb(255,255,255)",
+      "bg": "rgb(0,116,127)",
+      "ratio": 5.52,
+      "note": "pressed",
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2465
+    },
+    {
+      "id": "skip-link-focused",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(249,249,249)",
+      "ratio": 15.48,
+      "note": "enfocado",
+      "fontSize": 13,
+      "fontWeight": "600",
+      "bgSamples": 2340
+    },
+    {
+      "id": "window-title",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(254,254,254)",
+      "ratio": 16.16,
+      "note": null,
+      "fontSize": 15,
+      "fontWeight": "600",
+      "bgSamples": 754
+    },
+    {
+      "id": "window-close-icon",
+      "thr": 3,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(254,254,254)",
+      "ratio": 5.87,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 1919
+    },
+    {
+      "id": "case-num",
+      "thr": 4.5,
+      "fg": "rgb(0,116,127)",
+      "bg": "rgb(254,254,254)",
+      "ratio": 5.47,
+      "note": null,
+      "fontSize": 12.5,
+      "fontWeight": "600",
+      "bgSamples": 1063
+    },
+    {
+      "id": "qa-label",
+      "thr": 4.5,
+      "fg": "rgb(100,100,100)",
+      "bg": "rgb(253,253,253)",
+      "ratio": 5.82,
+      "note": null,
+      "fontSize": 11.5,
+      "fontWeight": "600",
+      "bgSamples": 677
+    },
+    {
+      "id": "qa-text",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(252,252,252)",
+      "ratio": 15.88,
+      "note": null,
+      "fontSize": 16.5,
+      "fontWeight": "400",
+      "bgSamples": 2784
+    },
+    {
+      "id": "case-title",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(254,254,254)",
+      "ratio": 16.16,
+      "note": null,
+      "fontSize": 34,
+      "fontWeight": "600",
+      "bgSamples": 3310
+    },
+    {
+      "id": "case-chip",
+      "thr": 4.5,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(244,244,245)",
+      "ratio": 14.82,
+      "note": null,
+      "fontSize": 14,
+      "fontWeight": "500",
+      "bgSamples": 1569
+    },
+    {
+      "id": "case-icon-tile",
+      "thr": 3,
+      "fg": "rgb(0,116,127)",
+      "bg": "rgb(230,243,244)",
+      "ratio": 4.86,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 1870
+    },
+    {
+      "id": "switch-off-knob-vs-track",
+      "thr": 3,
+      "fg": "rgb(255,255,255)",
+      "bg": "rgb(138,138,142)",
+      "ratio": 3.44,
+      "note": "perilla inactiva vs pista"
+    },
+    {
+      "id": "switch-on-knob-vs-track",
+      "thr": 3,
+      "fg": "rgb(255,255,255)",
+      "bg": "rgb(0,116,127)",
+      "ratio": 5.52,
+      "note": "perilla activa vs pista"
+    },
+    {
+      "id": "switch-off-track-vs-stage",
+      "thr": 3,
+      "fg": "rgb(138,138,142)",
+      "bg": "rgb(244,244,245)",
+      "ratio": 3.13,
+      "note": "pista inactiva vs fondo del stage"
+    },
+    {
+      "id": "switch-on-track-vs-stage",
+      "thr": 3,
+      "fg": "rgb(0,116,127)",
+      "bg": "rgb(244,244,245)",
+      "ratio": 5.02,
+      "note": "pista activa vs fondo del stage"
+    },
+    {
+      "id": "toggle-focus-ring",
+      "thr": 3,
+      "fg": "rgb(0,116,127)",
+      "bg": "rgb(252,252,252)",
+      "ratio": 5.38,
+      "note": "píxel puro del anillo de foco 2px vs fondo adyacente"
+    }
+  ],
+  "dark": [
+    {
+      "id": "body-paragraph",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 4141
+    },
+    {
+      "id": "hero-role",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 18,
+      "fontWeight": "400",
+      "bgSamples": 1568
+    },
+    {
+      "id": "hero-name",
+      "thr": 3,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": null,
+      "fontSize": 56,
+      "fontWeight": "600",
+      "bgSamples": 2312
+    },
+    {
+      "id": "section-title",
+      "thr": 3,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": null,
+      "fontSize": 28,
+      "fontWeight": "600",
+      "bgSamples": 1498
+    },
+    {
+      "id": "lead",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 2610
+    },
+    {
+      "id": "card-desc",
+      "thr": 4.5,
+      "fg": "rgb(203,213,225)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 13.59,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 2489
+    },
+    {
+      "id": "card-title",
+      "thr": 3,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": null,
+      "fontSize": 20,
+      "fontWeight": "600",
+      "bgSamples": 1075
+    },
+    {
+      "id": "card-badge-icon",
+      "thr": 3,
+      "fg": "rgb(32,32,32)",
+      "bg": "rgb(224,222,248)",
+      "ratio": 12.39,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 1022
+    },
+    {
+      "id": "service-icon",
+      "thr": 3,
+      "fg": "rgb(34,211,238)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 11.16,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 3079
+    },
+    {
+      "id": "btn-accent",
+      "thr": 4.5,
+      "fg": "rgb(2,6,23)",
+      "bg": "rgb(34,211,238)",
+      "ratio": 11.16,
+      "note": null,
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2461
+    },
+    {
+      "id": "btn-pill",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(30,41,59)",
+      "ratio": 11.87,
+      "note": null,
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2283
+    },
+    {
+      "id": "dock-item",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(15,25,47)",
+      "ratio": 6.82,
+      "note": null,
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2159
+    },
+    {
+      "id": "dock-active",
+      "thr": 4.5,
+      "fg": "rgb(2,6,23)",
+      "bg": "rgb(34,211,238)",
+      "ratio": 11.16,
+      "note": null,
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2794
+    },
+    {
+      "id": "dock-toggle",
+      "thr": 3,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(12,20,43)",
+      "ratio": 7.12,
+      "note": null,
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2250
+    },
+    {
+      "id": "demo-label",
+      "thr": 3,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": null,
+      "fontSize": 20,
+      "fontWeight": "600",
+      "bgSamples": 1205
+    },
+    {
+      "id": "demo-caption",
+      "thr": 4.5,
+      "fg": "rgb(203,213,225)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 13.59,
+      "note": null,
+      "fontSize": 14.5,
+      "fontWeight": "400",
+      "bgSamples": 2233
+    },
+    {
+      "id": "spot-label",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(30,41,59)",
+      "ratio": 5.71,
+      "note": null,
+      "fontSize": 13,
+      "fontWeight": "600",
+      "bgSamples": 1024
+    },
+    {
+      "id": "marquee-strong",
+      "thr": 3,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": null,
+      "fontSize": 26,
+      "fontWeight": "600",
+      "bgSamples": 990
+    },
+    {
+      "id": "experience-period",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 13,
+      "fontWeight": "400",
+      "bgSamples": 1927
+    },
+    {
+      "id": "testimonial-quote",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 18,
+      "fontWeight": "400",
+      "bgSamples": 1333
+    },
+    {
+      "id": "footer",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 12.5,
+      "fontWeight": "400",
+      "bgSamples": 1114
+    },
+    {
+      "id": "cta-link",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 13.5,
+      "fontWeight": "500",
+      "bgSamples": 2833
+    },
+    {
+      "id": "reasons-body",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 7.87,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 3632
+    },
+    {
+      "id": "service-body",
+      "thr": 4.5,
+      "fg": "rgb(203,213,225)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 13.59,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 2454
+    },
+    {
+      "id": "btn-accent-hover",
+      "thr": 4.5,
+      "fg": "rgb(2,6,23)",
+      "bg": "rgb(103,232,249)",
+      "ratio": 13.92,
+      "note": "hover",
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2470
+    },
+    {
+      "id": "btn-pill-hover",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(51,65,85)",
+      "ratio": 8.4,
+      "note": "hover",
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2280
+    },
+    {
+      "id": "dock-item-hover",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(31,40,61)",
+      "ratio": 11.92,
+      "note": "hover",
+      "fontSize": 12,
+      "fontWeight": "500",
+      "bgSamples": 2168
+    },
+    {
+      "id": "btn-accent-pressed",
+      "thr": 4.5,
+      "fg": "rgb(2,6,23)",
+      "bg": "rgb(34,211,238)",
+      "ratio": 11.16,
+      "note": "pressed",
+      "fontSize": 14.5,
+      "fontWeight": "500",
+      "bgSamples": 2461
+    },
+    {
+      "id": "skip-link-focused",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(2,6,23)",
+      "ratio": 16.36,
+      "note": "enfocado",
+      "fontSize": 13,
+      "fontWeight": "600",
+      "bgSamples": 2340
+    },
+    {
+      "id": "window-title",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(23,32,51)",
+      "ratio": 13.2,
+      "note": null,
+      "fontSize": 15,
+      "fontWeight": "600",
+      "bgSamples": 743
+    },
+    {
+      "id": "window-close-icon",
+      "thr": 3,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(23,32,51)",
+      "ratio": 6.34,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 1919
+    },
+    {
+      "id": "case-num",
+      "thr": 4.5,
+      "fg": "rgb(34,211,238)",
+      "bg": "rgb(12,20,40)",
+      "ratio": 10.14,
+      "note": null,
+      "fontSize": 12.5,
+      "fontWeight": "600",
+      "bgSamples": 1063
+    },
+    {
+      "id": "qa-label",
+      "thr": 4.5,
+      "fg": "rgb(148,163,184)",
+      "bg": "rgb(12,20,40)",
+      "ratio": 7.14,
+      "note": null,
+      "fontSize": 11.5,
+      "fontWeight": "600",
+      "bgSamples": 677
+    },
+    {
+      "id": "qa-text",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(13,21,40)",
+      "ratio": 14.75,
+      "note": null,
+      "fontSize": 16.5,
+      "fontWeight": "400",
+      "bgSamples": 2781
+    },
+    {
+      "id": "case-title",
+      "thr": 3,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(12,20,40)",
+      "ratio": 14.86,
+      "note": null,
+      "fontSize": 34,
+      "fontWeight": "600",
+      "bgSamples": 3307
+    },
+    {
+      "id": "case-chip",
+      "thr": 4.5,
+      "fg": "rgb(226,232,240)",
+      "bg": "rgb(30,41,59)",
+      "ratio": 11.87,
+      "note": null,
+      "fontSize": 14,
+      "fontWeight": "500",
+      "bgSamples": 1569
+    },
+    {
+      "id": "case-icon-tile",
+      "thr": 3,
+      "fg": "rgb(34,211,238)",
+      "bg": "rgb(18,51,63)",
+      "ratio": 7.4,
+      "note": null,
+      "fontSize": 16,
+      "fontWeight": "400",
+      "bgSamples": 1866
+    },
+    {
+      "id": "switch-off-knob-vs-track",
+      "thr": 3,
+      "fg": "rgb(2,6,23)",
+      "bg": "rgb(107,124,147)",
+      "ratio": 4.74,
+      "note": "perilla inactiva vs pista"
+    },
+    {
+      "id": "switch-on-knob-vs-track",
+      "thr": 3,
+      "fg": "rgb(2,6,23)",
+      "bg": "rgb(34,211,238)",
+      "ratio": 11.16,
+      "note": "perilla activa vs pista"
+    },
+    {
+      "id": "switch-off-track-vs-stage",
+      "thr": 3,
+      "fg": "rgb(107,124,147)",
+      "bg": "rgb(30,41,59)",
+      "ratio": 3.43,
+      "note": "pista inactiva vs fondo del stage"
+    },
+    {
+      "id": "switch-on-track-vs-stage",
+      "thr": 3,
+      "fg": "rgb(34,211,238)",
+      "bg": "rgb(30,41,59)",
+      "ratio": 8.09,
+      "note": "pista activa vs fondo del stage"
+    },
+    {
+      "id": "toggle-focus-ring",
+      "thr": 3,
+      "fg": "rgb(34,211,238)",
+      "bg": "rgb(9,16,39)",
+      "ratio": 10.42,
+      "note": "píxel puro del anillo de foco 2px vs fondo adyacente"
+    }
+  ],
+  "informational": {
+    "window-head-vs-body": {
+      "light": {
+        "head": [
+          242,
+          249,
+          249
+        ],
+        "body": [
+          241,
+          241,
+          241
+        ],
+        "ratio": 1.06
+      },
+      "dark": {
+        "head": [
+          21,
+          42,
+          57
+        ],
+        "body": [
+          24,
+          33,
+          53
+        ],
+        "ratio": 1.09
+      },
+      "note": "Separación informativa; la ventana se delimita con borde y sombra (sin umbral WCAG)."
+    }
+  }
+}

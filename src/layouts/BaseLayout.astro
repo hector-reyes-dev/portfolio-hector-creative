@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import bootstrapTheme from '@features/theme-switcher/bootstrap.js?raw';
 
 interface Props {
   title: string;
@@ -18,6 +19,8 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#F9F9F9" />
+    <script is:inline set:html={bootstrapTheme} />
     <title>{title}</title>
     <slot name="head" />
   </head>

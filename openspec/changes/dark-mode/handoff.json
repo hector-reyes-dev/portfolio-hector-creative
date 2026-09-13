@@ -1,0 +1,81 @@
+{
+  "change": "dark-mode",
+  "phase": "apply",
+  "model": "opencode-go/deepseek-v4.1-flash",
+  "modelEffort": "max",
+  "modelEvidence": "PI_SMOL_MODEL=opencode-go/deepseek-v4.1-flash:max en el entorno de la sesión apply; no se cambió de modelo ni de effort durante la fase.",
+  "worktreePath": "/Users/hectorreyes/orca/workspaces/portfolio-hector-creative/dark-mode",
+  "branch": "dark-mode",
+  "branchEvidence": "git branch --show-current devolvió dark-mode",
+  "orca": {
+    "runId": "run_41176a173cec",
+    "runIdEvidence": "Devuelto por `orca orchestration check --terminal term_62ae0df1-... --json` durante esta sesión (runId run_41176a173cec, taskId y dispatchId coincidentes); no se fabricó.",
+    "taskId": "task_ca3bc340249d",
+    "dispatchId": "ctx_83735a8bc14d",
+    "dispatchCapability": "dcap__8hXMs_KlB_l_MjP6KbuHoMc_3BZTURNx4YB7vD_www",
+    "workerTerminal": "term_62ae0df1-5ca6-477d-9b05-faa02290b4b3",
+    "coordinatorTerminal": "term_07a40585-9012-4a28-90dd-45da93580dd5"
+  },
+  "approval": {
+    "receipt": "openspec/changes/dark-mode/review.json",
+    "decision": "approved",
+    "approvedAt": "2026-09-13T05:03:17.496Z",
+    "planHash": "24c24eed40758cb70c5a81889cd6e383b45ec6ba6169f4e085eae817b7748eef",
+    "hashRecomputedAfterApply": "24c24eed40758cb70c5a81889cd6e383b45ec6ba6169f4e085eae817b7748eef",
+    "hashCheckCommand": "node .omp/scripts/pipeline.mjs ready dark-mode",
+    "approvalCreatedByThisSession": false
+  },
+  "artifacts": {
+    "source": [
+      "src/features/theme-switcher/bootstrap.js",
+      "src/features/theme-switcher/init.ts",
+      "src/features/theme-switcher/types.ts",
+      "src/components/atoms/ThemeToggle.astro",
+      "src/components/organisms/Dock.astro",
+      "src/layouts/BaseLayout.astro",
+      "src/pages/index.astro",
+      "src/styles/themes/light.css",
+      "src/styles/themes/dark.css",
+      "src/styles/global.css",
+      "src/styles/portfolio/tokens.css",
+      "src/styles/portfolio/base.css",
+      "src/styles/portfolio/experiments.css",
+      "src/styles/portfolio/dock-window.css",
+      "src/styles/components/buttons.css",
+      "src/styles/components/cards.css"
+    ],
+    "evidence": [
+      "openspec/changes/dark-mode/evidence/browser-acceptance.md",
+      "openspec/changes/dark-mode/evidence/acceptance-resolution.json",
+      "openspec/changes/dark-mode/evidence/acceptance-interaction.json",
+      "openspec/changes/dark-mode/evidence/acceptance-responsive.json",
+      "openspec/changes/dark-mode/evidence/acceptance-fallback.json",
+      "openspec/changes/dark-mode/evidence/acceptance-reduced-motion.json",
+      "openspec/changes/dark-mode/evidence/contrast.json",
+      "openspec/changes/dark-mode/evidence/screens/"
+    ]
+  },
+  "validation": {
+    "command": "pnpm agent:verify dark-mode",
+    "exitCode": 0,
+    "result": "passed",
+    "verificationFile": "openspec/changes/dark-mode/verification.json",
+    "planHash": "24c24eed40758cb70c5a81889cd6e383b45ec6ba6169f4e085eae817b7748eef",
+    "checks": "pnpm agent:test = pnpm check && pnpm build",
+    "browserAcceptance": "openspec/changes/dark-mode/evidence/browser-acceptance.md (Chrome/150.0.7871.24, 13 escenarios de resolución, 2 de primer pintado con bundle retrasado, 42+42 mediciones de contraste, 4 anchos × 2 temas, zoom 200%, reduced motion, fallback sin backdrop-filter, teclado y árbol accesible)"
+  },
+  "findings": [
+    "Los temas en @layer base no podían ganar a la paleta legacy sin capa de portfolio/tokens.css; el cutover mueve todos los valores cromáticos a themes/light.css y themes/dark.css y deja en tokens.css solo constantes y aliases.",
+    "El bloque @supports not de dock-window.css estaba antes de las reglas base, que lo pisaban; ahora va después y usa tokens --app-glass-*-solid por tema.",
+    "El acento oscuro (#22d3ee) exigía un rol propio de texto sobre acento: se añadió --app-accent-contrast con #020617 (11.16:1 medido).",
+    "La pista inactiva del switch (#d9d9d9) no alcanzaba 3:1 contra la perilla ni contra el fondo del stage; se ajustó a #8a8a8e (claro) y #6b7c93 (oscuro).",
+    "Con window.matchMedia ausente o lanzando, el bundle compartido aborta en initCaseWindow/initSpotlight (preexistente) y el tema quedaba sin control; se invoca initThemeSwitcher() primero en index.astro para que el control de tema no dependa de las demás features.",
+    "El worktree tiene .omp/config.yml modificado por una concesión de permisos del harness (tools.approval.edit), ajena a este cambio; no se tocó."
+  ],
+  "implementationPerformed": true,
+  "sourceCodeEdited": true,
+  "commitPushMergePerformed": false,
+  "archivePerformed": false,
+  "tasksMarkedWithEvidence": 15,
+  "next": "Revisión humana del diff y de la aceptación funcional; después archive/sync de OpenSpec. Commit, push y merge requieren petición explícita."
+}

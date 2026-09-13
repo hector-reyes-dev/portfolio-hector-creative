@@ -1,0 +1,184 @@
+{
+  "firstPaint": [
+    {
+      "name": "storage-dark-os-light",
+      "os": "light",
+      "stored": "dark",
+      "delayedBundles": 1,
+      "preBundle": {
+        "cls": "dark",
+        "scheme": "dark",
+        "meta": "#020617",
+        "pressed": "false",
+        "hidden": true,
+        "scrollY": 0,
+        "url": "http://127.0.0.1:4399/"
+      },
+      "distinctClasses": [
+        "dark"
+      ],
+      "distinctBackgrounds": [
+        "rgb(2, 6, 23)"
+      ],
+      "distinctMeta": [
+        "#020617"
+      ],
+      "bundleBoundDuringSampling": [
+        false
+      ],
+      "samples": 200,
+      "postBundle": {
+        "cls": "dark",
+        "scheme": "dark",
+        "meta": "#020617",
+        "pressed": "true",
+        "hidden": false,
+        "scrollY": 0,
+        "url": "http://127.0.0.1:4399/"
+      }
+    },
+    {
+      "name": "storage-light-os-dark",
+      "os": "dark",
+      "stored": "light",
+      "delayedBundles": 1,
+      "preBundle": {
+        "cls": "light",
+        "scheme": "light",
+        "meta": "#F9F9F9",
+        "pressed": "false",
+        "hidden": true,
+        "scrollY": 0,
+        "url": "http://127.0.0.1:4399/"
+      },
+      "distinctClasses": [
+        "light"
+      ],
+      "distinctBackgrounds": [
+        "rgb(249, 249, 249)"
+      ],
+      "distinctMeta": [
+        "#F9F9F9"
+      ],
+      "bundleBoundDuringSampling": [
+        false
+      ],
+      "samples": 200,
+      "postBundle": {
+        "cls": "light",
+        "scheme": "light",
+        "meta": "#F9F9F9",
+        "pressed": "false",
+        "hidden": false,
+        "scrollY": 0,
+        "url": "http://127.0.0.1:4399/"
+      }
+    }
+  ],
+  "noJavaScript": {
+    "htmlTag": "<html lang=\"es-MX\">",
+    "themeClassAttribute": "(sin clase de tema)",
+    "meta": "#F9F9F9",
+    "buttonMarkup": "<button class=\"dock__theme-toggle\" type=\"button\" data-theme-toggle=\"\" aria-label=\"Modo oscuro\" aria-pressed=\"false\" hidden=\"\">"
+  },
+  "keyboard": {
+    "tabOrder": {
+      "isToggle": true,
+      "label": "Modo oscuro"
+    },
+    "axLight": {
+      "role": "button",
+      "name": "Modo oscuro",
+      "pressed": "false",
+      "focusable": true
+    },
+    "axDark": {
+      "role": "button",
+      "name": "Modo oscuro",
+      "pressed": "false",
+      "focusable": true
+    },
+    "y0": 1500,
+    "afterEnter": {
+      "cls": "dark",
+      "scheme": "dark",
+      "meta": "#020617",
+      "pressed": "true",
+      "hidden": false,
+      "scrollY": 1500,
+      "url": "http://127.0.0.1:4399/"
+    },
+    "afterSpace": {
+      "cls": "light",
+      "scheme": "light",
+      "meta": "#F9F9F9",
+      "pressed": "false",
+      "hidden": false,
+      "scrollY": 1500,
+      "url": "http://127.0.0.1:4399/"
+    },
+    "afterClick": {
+      "cls": "dark",
+      "scheme": "dark",
+      "meta": "#020617",
+      "pressed": "true",
+      "hidden": false,
+      "scrollY": 1500,
+      "url": "http://127.0.0.1:4399/"
+    },
+    "reinitSingleFlip": {
+      "finalClass": "light",
+      "pressed": "false",
+      "scrollY": 1500
+    }
+  },
+  "independence": {
+    "themeBeforeNav": "light",
+    "navState": {
+      "theme": "light",
+      "active": "trabajo",
+      "current": "trabajo",
+      "toggleAriaCurrent": null,
+      "toggleClass": "dock__theme-toggle",
+      "hash": "#trabajo"
+    },
+    "switchOn": "true",
+    "afterTheme": {
+      "theme": "dark",
+      "switch": "true"
+    },
+    "afterSwitch": {
+      "theme": "dark",
+      "switch": "false"
+    },
+    "scrollLock": {
+      "baseY": 900,
+      "wheelBeforeOpen": 1700,
+      "openY": 1700,
+      "lockedY": 1700,
+      "lockedAfterTheme": 1700,
+      "releasedY": 2400
+    },
+    "windowOpen": {
+      "hasWindow": true,
+      "theme": "dark has-window",
+      "hidden": false,
+      "focused": "windowTitle",
+      "titleColor": "rgb(226, 232, 240)",
+      "bodyOverflow": "hidden"
+    },
+    "windowWithThemeSwitch": {
+      "hasWindow": true,
+      "theme": "has-window light",
+      "hidden": false,
+      "titleColor": "rgb(32, 32, 32)"
+    },
+    "focusAfterTab": "windowClose",
+    "windowClosed": {
+      "hasWindow": false,
+      "hidden": true,
+      "focused": "#trabajo",
+      "theme": "light"
+    }
+  }
+}

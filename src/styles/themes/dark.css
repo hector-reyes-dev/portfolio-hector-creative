@@ -1,11 +1,62 @@
 @layer base {
-  .dark {
+  /*
+    Tema oscuro. Conserva la base anterior (`--app-*` de slate) y añade los roles
+    que faltaban: acento de contraste sobre relleno, vidrios opacos sin
+    backdrop-filter, elevación y controles. `:root.dark` gana la cascada frente a
+    `:root` por especificidad, sin `!important`.
+  */
+  :root.dark {
     color-scheme: dark;
+
     --app-surface: 2 6 23;
     --app-elevated: 15 23 42;
+    --app-fill: 30 41 59;
     --app-text: 226 232 240;
     --app-muted: 148 163 184;
+    --app-text-body: 203 213 225;
+
     --app-accent: 34 211 238;
+    --app-accent-ink: 34 211 238;
+    --app-accent-soft: 18 51 63;
+    --app-accent-contrast: 2 6 23;
+    --app-accent-hover: 103 232 249;
+    --app-accent-pressed: 8 145 178;
+
     --app-border: 51 65 85;
+    --app-line: rgba(226, 232, 240, 0.14);
+    --app-line-strong: rgba(226, 232, 240, 0.26);
+
+    --app-hover: rgba(226, 232, 240, 0.08);
+    --app-fill-hover: #334155;
+    /* Sobre gradientes e imágenes de marca, que no cambian con el tema. */
+    --app-badge-bg: rgba(255, 255, 255, 0.68);
+    --app-badge-border: rgba(32, 32, 32, 0.08);
+    --app-badge-ink: #202020;
+    --app-switch-track: #6b7c93;
+    --app-switch-knob: #020617;
+    --app-switch-knob-shadow: 0 1px 3px rgba(2, 6, 23, 0.7);
+    --app-glow: rgba(34, 211, 238, 0.1);
+
+    --app-glass-nav: rgba(15, 23, 42, 0.62);
+    --app-glass-window: rgba(15, 23, 42, 0.82);
+    --app-glass-head: rgba(30, 41, 59, 0.6);
+    --app-glass-scrim: rgba(2, 6, 23, 0.6);
+    --app-glass-nav-solid: rgba(13, 20, 36, 0.97);
+    --app-glass-window-solid: #0d1424;
+    --app-glass-scrim-solid: rgba(2, 6, 23, 0.9);
+
+    --app-shadow-card: 0 0 0 4px rgba(2, 6, 23, 0.5), 0 4px 12px 0 rgba(2, 6, 23, 0.5);
+    --app-shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.6);
+    --app-shadow-md: 0 8px 24px rgba(2, 6, 23, 0.55);
+    --app-shadow-window: 0 24px 64px rgba(2, 6, 23, 0.7), 0 2px 8px rgba(2, 6, 23, 0.5);
+    --app-shadow-dock: 0 12px 32px rgba(2, 6, 23, 0.6), 0 1px 0 rgba(226, 232, 240, 0.06) inset;
+
+    --app-border-btn: rgba(226, 232, 240, 0.18);
+    --app-shadow-btn: 0 3px 0 rgba(2, 6, 23, 0.55), 0 7px 14px rgba(2, 6, 23, 0.35);
+    --app-shadow-btn-active: 0 0 0 rgba(2, 6, 23, 0), 0 2px 6px rgba(2, 6, 23, 0.4);
+    --app-border-btn-accent: rgba(8, 145, 178, 0.6);
+    --app-shadow-btn-accent: 0 3px 0 #0891b2, 0 8px 16px rgba(34, 211, 238, 0.25);
+    --app-shadow-btn-accent-hover: 0 4px 0 #0891b2, 0 10px 24px rgba(34, 211, 238, 0.32);
+    --app-shadow-btn-accent-active: 0 0 0 #0891b2, 0 2px 6px rgba(34, 211, 238, 0.2);
   }
 }

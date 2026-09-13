@@ -4,7 +4,7 @@
   padding: 6px;
   border-radius: 22px;
   border: 1px solid var(--card-border);
-  background: #fff;
+  background: var(--app-elevated);
   box-shadow: var(--card-shadow);
   overflow: hidden;
   color: inherit;
@@ -18,7 +18,7 @@
   width: 100%;
   overflow: hidden;
   aspect-ratio: 1.65 / 1;
-  border: 1px solid rgba(32, 32, 32, .08);
+  border: 1px solid var(--line);
   border-radius: 16px;
   background: var(--fill);
 }
@@ -72,10 +72,10 @@
   height: 32px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(32, 32, 32, .08);
+  border: 1px solid var(--app-badge-border);
   border-radius: 10px;
-  background: rgba(255, 255, 255, .68);
-  color: var(--ink);
+  background: var(--app-badge-bg);
+  color: var(--app-badge-ink);
   box-shadow: none;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);

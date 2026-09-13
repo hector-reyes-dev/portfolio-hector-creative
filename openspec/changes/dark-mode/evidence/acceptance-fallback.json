@@ -1,0 +1,69 @@
+{
+  "method": "Emulación: se inyectan como reglas activas las declaraciones del bloque @supports not del CSS compilado (mismos tokens --app-glass-*-solid). No se desactiva el soporte real de backdrop-filter del navegador; por eso se reproduce la rama, no el fallo de soporte.",
+  "limits": "La rama real solo se ejecuta en navegadores sin backdrop-filter; aquí se verifica que las declaraciones del fallback usan variantes del tema correcto y mantienen legibilidad.",
+  "cssOrderCheck": "En el CSS compilado el bloque @supports not (offset 28083) queda después de las reglas base .dock (24588), .scrim (26412) y .window (26592); antes lo pisaban por orden de cascada.",
+  "themes": {
+    "light": {
+      "appliedBackgrounds": {
+        "dock": "rgba(255, 255, 255, 0.94)",
+        "window": "rgba(255, 255, 255, 0.96)",
+        "scrim": "rgba(252, 252, 252, 0.85)",
+        "head": "rgba(255, 255, 255, 0.5)"
+      },
+      "sampledPixels": {
+        "dock": [
+          254,
+          254,
+          254
+        ],
+        "window": [
+          255,
+          255,
+          255
+        ],
+        "scrim": [
+          250,
+          250,
+          250
+        ]
+      },
+      "contrast": {
+        "dockItemVsDock": 5.87,
+        "windowTitleVsWindow": 16.29,
+        "qaTextVsWindow": 16.29
+      },
+      "whiteInDarkRegression": null
+    },
+    "dark": {
+      "appliedBackgrounds": {
+        "dock": "rgba(13, 20, 36, 0.97)",
+        "window": "rgb(13, 20, 36)",
+        "scrim": "rgba(2, 6, 23, 0.9)",
+        "head": "rgba(30, 41, 59, 0.6)"
+      },
+      "sampledPixels": {
+        "dock": [
+          13,
+          19,
+          36
+        ],
+        "window": [
+          23,
+          33,
+          50
+        ],
+        "scrim": [
+          2,
+          6,
+          23
+        ]
+      },
+      "contrast": {
+        "dockItemVsDock": 7.21,
+        "windowTitleVsWindow": 13.1,
+        "qaTextVsWindow": 13.1
+      },
+      "whiteInDarkRegression": true
+    }
+  }
+}

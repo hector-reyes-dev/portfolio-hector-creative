@@ -8,7 +8,6 @@ import PortfolioTemplate from '../components/templates/PortfolioTemplate.astro';
   description="Portafolio y servicios de Héctor Reyes: diseño de interfaz, desarrollo de aplicaciones web y sitios de principio a fin."
 >
   <Fragment slot="head">
-    <meta name="theme-color" content="#F9F9F9" />
     <link rel="icon" href="/assets/branding/logo.png" type="image/png" />
   </Fragment>
 
@@ -22,7 +21,9 @@ import PortfolioTemplate from '../components/templates/PortfolioTemplate.astro';
     import { initSpotlight } from '@features/spotlight/init';
     import { initSwitchToggle } from '@features/switch-toggle/init';
     import { initButtonPress } from '@features/button-press/init';
+    import { initThemeSwitcher } from '@features/theme-switcher/init';
 
+    initThemeSwitcher();
     initDock();
     initReveals();
     initCaseWindow();

@@ -1,0 +1,11 @@
+{
+  "change": "dark-mode",
+  "planHash": "24c24eed40758cb70c5a81889cd6e383b45ec6ba6169f4e085eae817b7748eef",
+  "startedAt": "2026-09-13T05:41:21.170Z",
+  "finishedAt": "2026-09-13T05:41:25.176Z",
+  "command": "pnpm agent:test",
+  "result": "passed",
+  "head": "9b5b48fcf8366b46b79f83e4ba212ad0dcd705c8",
+  "gitStatus": "M .omp/config.yml\n M src/components/organisms/Dock.astro\n D src/features/theme-switcher/.gitkeep\n M src/layouts/BaseLayout.astro\n M src/pages/index.astro\n M src/styles/components/buttons.css\n M src/styles/components/cards.css\n M src/styles/global.css\n M src/styles/portfolio/base.css\n M src/styles/portfolio/dock-window.css\n M src/styles/portfolio/experiments.css\n M src/styles/portfolio/tokens.css\n M src/styles/themes/dark.css\n M src/styles/themes/light.css\n?? openspec/changes/dark-mode/\n?? src/components/atoms/ThemeToggle.astro\n?? src/features/theme-switcher/bootstrap.js\n?? src/features/theme-switcher/init.ts\n?? src/features/theme-switcher/types.ts",
+  "limits": "check/build no sustituyen pruebas funcionales ni revisión visual. Repetir si cambia código."
+}
