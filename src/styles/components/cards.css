@@ -1,8 +1,7 @@
 /* ── Cards (receta del usuario) ─────────────────────────── */
 .card {
   display: block;
-  padding: 6px;
-  border-radius: 22px;
+  border-radius: 32px;
   border: 1px solid var(--card-border);
   background: var(--app-elevated);
   box-shadow: var(--card-shadow);
@@ -18,8 +17,7 @@
   width: 100%;
   overflow: hidden;
   aspect-ratio: 1.65 / 1;
-  border: 1px solid var(--line);
-  border-radius: 16px;
+  border-radius: 32px;
   background: var(--fill);
 }
 .card__media img {
@@ -60,29 +58,7 @@
   background: linear-gradient(135deg, #2bb3c2 0%, #68d0ba 52%, #399947 100%);
 }
 
-.card__types {
-  position: absolute;
-  right: 4px;
-  bottom: 4px;
-  display: flex;
-  gap: 8px;
-}
-.card__type {
-  width: 32px;
-  height: 32px;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--app-badge-border);
-  border-radius: 10px;
-  background: var(--app-badge-bg);
-  color: var(--app-badge-ink);
-  box-shadow: none;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-}
-.card__type .i { width: 16px; height: 16px; }
-
-.card__body { padding: 18px 12px 14px; }
+.card__body { padding: 18px 20px 14px; }
 .card__num {
   font-family: var(--font-display);
   font-size: 12.5px;
@@ -99,7 +75,6 @@
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
-.card__title .i { width: 16px; height: 16px; color: var(--ink-3); }
 .card__desc { margin-top: 8px; font-size: 16px; line-height: 1.6; color: var(--desc); }
 .card__cta { margin-top: 16px; }
 

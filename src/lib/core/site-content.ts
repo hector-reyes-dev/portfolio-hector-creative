@@ -290,6 +290,13 @@ const rawSiteContent = {
   ],
   navigation: [
     {
+      id: 'inicio',
+      label: 'About',
+      icon: 'i-about',
+      idlePath: 'M 12 11.6 Q 9.3 11.6 9.3 8.3 Q 9.3 5 12 5 Q 14.7 5 14.7 8.3 Q 14.7 11.6 12 11.6 Z M 5.5 19.5 Q 5.5 13.6 12 13.6 Q 18.5 13.6 18.5 19.5',
+      activePath: 'M 12 12.6 Q 8.8 12.6 8.8 8.3 Q 8.8 4 12 4 Q 15.2 4 15.2 8.3 Q 15.2 12.6 12 12.6 Z M 4.5 20.5 Q 4.5 12.6 12 12.6 Q 19.5 12.6 19.5 20.5'
+    },
+    {
       id: 'trabajo',
       label: 'Trabajo',
       icon: 'i-trabajo',
@@ -320,7 +327,7 @@ const rawSiteContent = {
     {
       id: 'contacto',
       label: 'Contacto',
-      icon: 'i-whatsapp',
+      icon: 'i-bubble',
       idlePath: 'M 4 6.4 Q 4 5.5 4.9 5.5 L 19.1 5.5 Q 20 5.5 20 6.4 L 20 17.6 Q 20 18.5 19.1 18.5 L 4.9 18.5 Q 4 18.5 4 17.6 Z M 4.7 6.7 L 12 12.4 L 19.3 6.7',
       activePath: 'M 20.2 4.1 Q 20.8 3.9 20.4 4.5 L 4.2 11.2 Q 3.7 11.4 4.1 11.7 L 10.3 13.4 Q 10.7 13.55 10.8 13.95 L 12.9 20.2 Q 13 20.6 13.35 20.25 Z M 10.4 13.5 L 20.2 4.1 L 20.2 4.1'
     }

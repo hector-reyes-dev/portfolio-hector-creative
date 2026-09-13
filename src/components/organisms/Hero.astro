@@ -1,4 +1,6 @@
 ---
+import Button from '@atoms/Button.astro';
+import Icon from '@atoms/Icon.astro';
 import type { HeroContent } from '../../types/site';
 
 interface Props {
@@ -24,5 +26,8 @@ const { hero } = Astro.props;
         <p>{paragraph}</p>
       ))}
     </div>
+    <Button href="#proyectos" variant="accent" class="hero__cta">
+      Ver proyectos <Icon id="i-arrow" />
+    </Button>
   </div>
 </section>

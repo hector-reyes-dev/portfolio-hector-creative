@@ -10,9 +10,11 @@ interface Props {
 const { sections } = Astro.props;
 ---
 
-<nav class="dock" aria-label="Secciones del sitio">
-  {sections.map((section) => (
-    <DockItem section={section} />
-  ))}
+<div class="dock-bar">
+  <nav class="dock" aria-label="Secciones del sitio">
+    {sections.map((section) => (
+      <DockItem section={section} />
+    ))}
+  </nav>
   <ThemeToggle />
-</nav>
+</div>

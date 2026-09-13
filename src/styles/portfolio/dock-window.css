@@ -1,10 +1,16 @@
 /* ── Dock ───────────────────────────────────────────────── */
-.dock {
+.dock-bar {
   position: fixed;
   left: 50%;
   bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   transform: translateX(-50%);
   z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dock {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -17,8 +23,7 @@
   box-shadow: var(--shadow-dock);
 }
 
-.dock__item,
-.dock__theme-toggle {
+.dock__item {
   display: flex;
   align-items: center;
   min-height: 48px;
@@ -34,12 +39,21 @@
 }
 .dock__icon { width: 22px; height: 22px; flex: none; display: block; }
 
-/* Control de tema: mismo lenguaje visual que los enlaces, estado propio. */
+/* Control de tema: contenedor glass propio, independiente del dock. */
 .dock__theme-toggle {
-  justify-content: center;
+  display: grid;
+  place-items: center;
+  flex: none;
   width: 48px;
-  min-width: 48px;
-  padding: 0;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--ink-2);
+  background: var(--glass-nav);
+  -webkit-backdrop-filter: var(--blur-nav);
+  backdrop-filter: var(--blur-nav);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-dock);
+  transition: background-color .28s var(--ease-out), color .28s var(--ease-out), box-shadow .28s var(--ease-out);
 }
 .dock__theme-toggle .i { width: 22px; height: 22px; }
 .dock__theme-toggle .dock__theme-toggle-icon--moon { display: none; }
@@ -57,11 +71,11 @@
 }
 
 @media (hover: hover) {
-  .dock__item:hover,
+  .dock__item:hover { background: var(--app-hover); color: var(--ink); }
   .dock__theme-toggle:hover { background: var(--app-hover); color: var(--ink); }
 }
 
-.dock__item.is-active { background: var(--accent-ink); color: rgb(var(--app-accent-contrast)); }
+.dock__item.is-active { background: var(--accent-ink); color: rgb(var(--app-accent-contrast)); padding-inline: 16px; }
 .dock__item.is-active .dock__label { max-width: 12ch; opacity: 1; margin-left: 4px; }
 @media (hover: hover) {
   .dock__item.is-active:hover { background: var(--accent-ink); color: rgb(var(--app-accent-contrast)); }
@@ -71,6 +85,7 @@
   .dock__item { padding: 6px 10px; }
   .dock__icon { width: 21px; height: 21px; }
   /* La etiqueta activa se colapsa visualmente y conserva su nombre accesible. */
+  .dock__item.is-active { padding-inline: 10px; }
   .dock__item.is-active .dock__label { max-width: 0; opacity: 0; margin-left: 0; }
 }
 
@@ -161,7 +176,7 @@
 /* Sin backdrop-filter los vidrios usan la variante opaca del mismo tema.
    Va después de las reglas base para no ser sobrescrito por ellas. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .dock { background: var(--app-glass-nav-solid); }
+  .dock, .dock__theme-toggle { background: var(--app-glass-nav-solid); }
   .window { background: var(--app-glass-window-solid); }
   .scrim { background: var(--app-glass-scrim-solid); }
 }

@@ -1,4 +1,4 @@
-const SPY_IDS = ['trabajo', 'proyectos', 'servicios', 'experimentos', 'contacto'];
+const SPY_IDS = ['inicio', 'trabajo', 'proyectos', 'servicios', 'experimentos', 'contacto'];
 
 export function initDock(): void {
   const dockItems = Array.from(document.querySelectorAll<HTMLAnchorElement>('.dock__item'));

@@ -1,5 +1,4 @@
 ---
-import Icon from '@atoms/Icon.astro';
 import type { Project } from '../../types/site';
 
 interface Props {
@@ -11,13 +10,6 @@ const { project, class: extraClass } = Astro.props;
 const className = `card${extraClass ? ` ${extraClass}` : ''}`;
 const href = project.documented ? `#/caso/${project.slug}` : project.url;
 const mediaClass = `card__media card__media--${project.slug}`;
-const iconForTag = (tag: string): string => {
-  const normalized = tag.toLowerCase();
-  if (normalized.includes('dise')) return 'i-pen';
-  if (normalized.includes('front') || normalized.includes('back') || normalized.includes('desarroll')) return 'i-code';
-  if (normalized.includes('app') || normalized.includes('mobile')) return 'i-cart';
-  return 'i-star';
-};
 ---
 
 <a
@@ -27,20 +19,10 @@ const iconForTag = (tag: string): string => {
   target={project.documented ? undefined : '_blank'}
   rel={project.documented ? undefined : 'noopener'}
 >
-    <div class={mediaClass} role="img" aria-label={project.full}>
-      <div class="card__types" aria-label={`Tipo de proyecto: ${project.tags.join(', ')}`}>
-        {project.tags.map((tag) => (
-          <span class="card__type" title={tag}>
-            <Icon id={iconForTag(tag)} />
-            <span class="sr-only">{tag}</span>
-          </span>
-        ))}
-      </div>
-    </div>
+    <div class={mediaClass} role="img" aria-label={project.full}></div>
     <div class="card__body">
       <h3 class="card__title">
         {project.full}
-        {!project.documented && <Icon id="i-external" />}
         {!project.documented && <span class="sr-only">(se abre en otra pestaña)</span>}
       </h3>
       <p class="card__desc">{project.desc}</p>
