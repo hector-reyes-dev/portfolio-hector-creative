@@ -1,0 +1,279 @@
+{
+  "method": "Chromium headless; viewport 1440×900 y 320/375/768/1440×760; zoom 200% = layout 720 CSS px con deviceScaleFactor 2; cada sección activada por scroll real; revelados activados con scroll previo.",
+  "results": [
+    {
+      "theme": "light",
+      "widths": [
+        {
+          "width": 320,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "false"
+          ]
+        },
+        {
+          "width": 375,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "false"
+          ]
+        },
+        {
+          "width": 768,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "false"
+          ]
+        },
+        {
+          "width": 1440,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "false"
+          ]
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "widths": [
+        {
+          "width": 320,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "true"
+          ]
+        },
+        {
+          "width": 375,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "true"
+          ]
+        },
+        {
+          "width": 768,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "true"
+          ]
+        },
+        {
+          "width": 1440,
+          "dockWithinViewport": true,
+          "toggleWithinViewport": true,
+          "toggleBox": "48x48",
+          "noHorizontalOverflow": true,
+          "sectionsActivated": [
+            "trabajo",
+            "proyectos",
+            "servicios",
+            "experimentos",
+            "contacto"
+          ],
+          "footerClearsDock": true,
+          "accessibleDockNames": [
+            "Trabajo",
+            "Proyectos",
+            "Servicios",
+            "Experimentos",
+            "Contacto"
+          ],
+          "toggleAccessibleName": [
+            "Modo oscuro"
+          ],
+          "togglePressed": [
+            "true"
+          ]
+        }
+      ]
+    }
+  ],
+  "zoom200": {
+    "light": {
+      "innerWidth": 720,
+      "devicePixelRatio": 2,
+      "docScrollWidth": 720,
+      "dock": {
+        "left": 209,
+        "right": 511,
+        "width": 302
+      },
+      "toggle": {
+        "w": 48,
+        "h": 48
+      },
+      "horizontalOverflow": false
+    },
+    "dark": {
+      "innerWidth": 720,
+      "devicePixelRatio": 2,
+      "docScrollWidth": 720,
+      "dock": {
+        "left": 209,
+        "right": 511,
+        "width": 302
+      },
+      "toggle": {
+        "w": 48,
+        "h": 48
+      },
+      "horizontalOverflow": false
+    }
+  },
+  "axeDarkToggle": {
+    "axDarkToggle": {
+      "name": "Modo oscuro",
+      "pressed": "true",
+      "focusable": true
+    },
+    "theme": "dark"
+  }
+}

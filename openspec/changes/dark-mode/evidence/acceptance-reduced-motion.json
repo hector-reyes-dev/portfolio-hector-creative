@@ -1,0 +1,22 @@
+{
+  "baseline": {
+    "bodyTransition": "1e-05s",
+    "htmlAnimations": 0,
+    "matches": true
+  },
+  "distinctBackgrounds": [
+    "rgb(249, 249, 249)",
+    "rgb(2, 6, 23)"
+  ],
+  "classes": [
+    "light",
+    "dark"
+  ],
+  "focusRetained": false,
+  "samples": 30,
+  "afterPointer": {
+    "cls": "light",
+    "animations": 0,
+    "focused": true
+  }
+}

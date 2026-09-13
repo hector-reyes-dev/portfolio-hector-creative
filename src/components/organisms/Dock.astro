@@ -1,5 +1,6 @@
 ---
 import DockItem from '@molecules/DockItem.astro';
+import ThemeToggle from '@atoms/ThemeToggle.astro';
 import type { DockSection } from '../../types/site';
 
 interface Props {
@@ -13,4 +14,5 @@ const { sections } = Astro.props;
   {sections.map((section) => (
     <DockItem section={section} />
   ))}
+  <ThemeToggle />
 </nav>

@@ -42,48 +42,44 @@
   font-display: swap;
 }
 
-/* ── Paleta de la réplica (sobreescribe los tokens de tema para esta página) ── */
+/* ── Constantes de layout y aliases legacy ─────────────────
+   Los valores cromáticos viven en themes/light.css y themes/dark.css, dentro de
+   @layer base; aquí solo quedan tipografía, radios, blur, easings y los nombres
+   legacy que consumen los estilos existentes, resueltos contra los tokens de tema. */
 :root {
-  --app-surface: 249 249 249;
-  --app-elevated: 255 255 255;
-  --app-text: 32 32 32;
-  --app-muted: 100 100 100;
-  --app-accent: 0 116 127;
-  --app-border: 234 235 238;
-
   --font-sans: "Eudoxus Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-display: "Eudoxus Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-body: "Iowan Old Style", Georgia, "Times New Roman", serif;
 
   --bg: var(--bg-soft);
-  --bg-soft: #f9f9f9;
-  --fill: #f4f4f5;
-  --card-border: #eaebee;
-  --card-shadow: 0 0 0 4px rgba(82, 88, 112, .03), 0 4px 12px 0 rgba(82, 88, 112, .02);
+  --bg-soft: rgb(var(--app-surface));
+  --fill: rgb(var(--app-fill));
+  --card-border: rgb(var(--app-border));
+  --card-shadow: var(--app-shadow-card);
   --card-ease: cubic-bezier(.22, 1, .36, 1);
 
-  --ink: #202020;
-  --ink-2: #646464;
-  --ink-3: #6e6e6e;
-  --desc: #4f4f4f;
-  --line: rgba(32, 32, 32, .08);
-  --line-strong: rgba(32, 32, 32, .16);
+  --ink: rgb(var(--app-text));
+  --ink-2: rgb(var(--app-muted));
+  --ink-3: rgb(var(--app-muted)); /* rol secundario compartido con --ink-2 */
+  --desc: rgb(var(--app-text-body));
+  --line: var(--app-line);
+  --line-strong: var(--app-line-strong);
 
-  --accent: #008692;
-  --accent-ink: #00747f;
-  --accent-soft: #e6f3f4;
+  --accent: rgb(var(--app-accent));
+  --accent-ink: rgb(var(--app-accent-ink));
+  --accent-soft: rgb(var(--app-accent-soft));
 
-  --glass-nav: rgba(255, 255, 255, .44);
-  --glass-window: rgba(255, 255, 255, .72);
-  --glass-scrim: rgba(252, 252, 252, .55);
+  --glass-nav: var(--app-glass-nav);
+  --glass-window: var(--app-glass-window);
+  --glass-scrim: var(--app-glass-scrim);
   --blur-nav: blur(22px) saturate(1.6);
   --blur-window: blur(24px) saturate(1.4);
   --blur-scrim: blur(8px) saturate(1.05);
 
-  --shadow-sm: 0 1px 2px rgba(32, 32, 32, .06);
-  --shadow-md: 0 8px 24px rgba(32, 32, 32, .08);
-  --shadow-window: 0 24px 64px rgba(32, 32, 32, .16), 0 2px 8px rgba(32, 32, 32, .06);
-  --shadow-dock: 0 12px 32px rgba(32, 32, 32, .10), 0 1px 0 rgba(255, 255, 255, .8) inset;
+  --shadow-sm: var(--app-shadow-sm);
+  --shadow-md: var(--app-shadow-md);
+  --shadow-window: var(--app-shadow-window);
+  --shadow-dock: var(--app-shadow-dock);
 
   --r-sm: 8px;
   --r-md: 12px;

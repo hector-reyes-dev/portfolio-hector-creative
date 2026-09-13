@@ -1,11 +1,63 @@
 @layer base {
+  /*
+    Tema claro. Parte de los valores efectivos de la paleta anterior
+    (#F9F9F9 / #202020 / #00747f / #eaebee) para no alterar la apariencia actual.
+    El rol neutro de las sombras y los vidrios también vive aquí para que
+    `:root.dark` los sustituya sin `!important`.
+  */
   :root,
-  .light {
-    --app-surface: 248 250 252;
+  :root.light {
+    color-scheme: light;
+
+    --app-surface: 249 249 249;
     --app-elevated: 255 255 255;
-    --app-text: 15 23 42;
-    --app-muted: 100 116 139;
-    --app-accent: 14 116 144;
-    --app-border: 226 232 240;
+    --app-fill: 244 244 245;
+    --app-text: 32 32 32;
+    --app-muted: 100 100 100;
+    --app-text-body: 79 79 79;
+
+    --app-accent: 0 116 127;
+    --app-accent-ink: 0 116 127;
+    --app-accent-soft: 230 243 244;
+    --app-accent-contrast: 255 255 255;
+    --app-accent-hover: 0 104 115;
+    --app-accent-pressed: 0 83 91;
+
+    --app-border: 234 235 238;
+    --app-line: rgba(32, 32, 32, 0.08);
+    --app-line-strong: rgba(32, 32, 32, 0.16);
+
+    --app-hover: rgba(32, 32, 32, 0.05);
+    --app-fill-hover: #e8e8ea;
+    /* Sobre gradientes e imágenes de marca, que no cambian con el tema. */
+    --app-badge-bg: rgba(255, 255, 255, 0.68);
+    --app-badge-border: rgba(32, 32, 32, 0.08);
+    --app-badge-ink: #202020;
+    --app-switch-track: #8a8a8e;
+    --app-switch-knob: #ffffff;
+    --app-switch-knob-shadow: 0 1px 3px rgba(32, 32, 32, 0.25);
+    --app-glow: rgba(14, 116, 144, 0.12);
+
+    --app-glass-nav: rgba(255, 255, 255, 0.44);
+    --app-glass-window: rgba(255, 255, 255, 0.72);
+    --app-glass-head: rgba(255, 255, 255, 0.5);
+    --app-glass-scrim: rgba(252, 252, 252, 0.55);
+    --app-glass-nav-solid: rgba(255, 255, 255, 0.94);
+    --app-glass-window-solid: rgba(255, 255, 255, 0.96);
+    --app-glass-scrim-solid: rgba(252, 252, 252, 0.85);
+
+    --app-shadow-card: 0 0 0 4px rgba(82, 88, 112, 0.03), 0 4px 12px 0 rgba(82, 88, 112, 0.02);
+    --app-shadow-sm: 0 1px 2px rgba(32, 32, 32, 0.06);
+    --app-shadow-md: 0 8px 24px rgba(32, 32, 32, 0.08);
+    --app-shadow-window: 0 24px 64px rgba(32, 32, 32, 0.16), 0 2px 8px rgba(32, 32, 32, 0.06);
+    --app-shadow-dock: 0 12px 32px rgba(32, 32, 32, 0.1), 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+
+    --app-border-btn: rgba(32, 32, 32, 0.12);
+    --app-shadow-btn: 0 3px 0 rgba(32, 32, 32, 0.18), 0 7px 14px rgba(32, 32, 32, 0.08);
+    --app-shadow-btn-active: 0 0 0 rgba(32, 32, 32, 0), 0 2px 6px rgba(32, 32, 32, 0.1);
+    --app-border-btn-accent: rgba(0, 83, 91, 0.5);
+    --app-shadow-btn-accent: 0 3px 0 #00535b, 0 8px 16px rgba(0, 116, 127, 0.2);
+    --app-shadow-btn-accent-hover: 0 4px 0 #00535b, 0 10px 24px rgba(0, 116, 127, 0.28);
+    --app-shadow-btn-accent-active: 0 0 0 #00535b, 0 2px 6px rgba(0, 116, 127, 0.16);
   }
 }

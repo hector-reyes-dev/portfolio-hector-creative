@@ -1,0 +1,284 @@
+{
+  "base": "http://127.0.0.1:4399/",
+  "browser": "Chrome/150.0.7871.24",
+  "groups": {
+    "initialResolution": [
+      {
+        "name": "sin-storage-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      {
+        "name": "sin-storage-os-light",
+        "os": "light",
+        "state": {
+          "cls": "light",
+          "scheme": "light",
+          "meta": "#F9F9F9",
+          "metaCount": 1,
+          "pressed": "false",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      {
+        "name": "storage-dark-os-light",
+        "os": "light",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": "dark",
+          "keys": "theme"
+        }
+      },
+      {
+        "name": "storage-light-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "light",
+          "scheme": "light",
+          "meta": "#F9F9F9",
+          "metaCount": 1,
+          "pressed": "false",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": "light",
+          "keys": "theme"
+        }
+      },
+      {
+        "name": "invalido-vacio-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": "",
+          "keys": "otra,theme"
+        }
+      },
+      {
+        "name": "invalido-DARK-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": "DARK",
+          "keys": "otra,theme"
+        }
+      },
+      {
+        "name": "invalido-system-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": "system",
+          "keys": "otra,theme"
+        }
+      },
+      {
+        "name": "invalido-json-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": "\"dark\"",
+          "keys": "otra,theme"
+        }
+      },
+      {
+        "name": "storage-bloqueado-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      {
+        "name": "getitem-lanza-os-dark",
+        "os": "dark",
+        "state": {
+          "cls": "dark",
+          "scheme": "dark",
+          "meta": "#020617",
+          "metaCount": 1,
+          "pressed": "true",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      {
+        "name": "sin-matchmedia",
+        "os": "dark",
+        "state": {
+          "cls": "light",
+          "scheme": "light",
+          "meta": "#F9F9F9",
+          "metaCount": 1,
+          "pressed": "false",
+          "hidden": false
+        },
+        "switchFeatureAlive": false,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      {
+        "name": "matchmedia-lanza",
+        "os": "dark",
+        "state": {
+          "cls": "light",
+          "scheme": "light",
+          "meta": "#F9F9F9",
+          "metaCount": 1,
+          "pressed": "false",
+          "hidden": false
+        },
+        "switchFeatureAlive": false,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      {
+        "name": "matchmedia-malformado",
+        "os": "dark",
+        "state": {
+          "cls": "light",
+          "scheme": "light",
+          "meta": "#F9F9F9",
+          "metaCount": 1,
+          "pressed": "false",
+          "hidden": false
+        },
+        "switchFeatureAlive": true,
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      }
+    ],
+    "osFollowAndPersistence": {
+      "followsOsWithoutManualChoice": {
+        "start": "light",
+        "dark": "dark",
+        "back": "light",
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      "manualBeatsOs": {
+        "manual": "dark",
+        "afterOsFlip": "dark",
+        "afterOsFlipBack": "dark",
+        "storage": {
+          "theme": "dark",
+          "keys": "theme"
+        }
+      },
+      "toggleRoundTrip": {
+        "first": {
+          "state": "dark",
+          "storage": {
+            "theme": "dark",
+            "keys": "theme"
+          }
+        },
+        "reloaded": "dark",
+        "second": {
+          "state": "light",
+          "storage": {
+            "theme": "light",
+            "keys": "theme"
+          }
+        }
+      },
+      "failedWrite": {
+        "afterClick": "dark",
+        "afterOsFlip": "dark",
+        "reloadWithOsLight": "light",
+        "storage": {
+          "theme": null,
+          "keys": ""
+        }
+      },
+      "invalidValueFollowsOs": {
+        "start": "dark",
+        "afterOsLight": "light",
+        "storage": {
+          "theme": "system",
+          "keys": "theme"
+        }
+      }
+    },
+    "errors": []
+  }
+}
