@@ -54,7 +54,8 @@ model/effort para OMP. No existe una prohibición general de dispatch para propo
 hay que arrancar la sesión con el modelo correcto antes de adoptarla.
 
 Guardar IDs/rutas en openspec/changes/dark-mode/handoff.json en el hijo.
-Atender preguntas. Ante worker_done, comprobar archivos y ejecutar agent:ready desde el hijo.
+Atender preguntas y esperar eventos sin sondeo continuo de terminales. Ante worker_done,
+comprobar archivos y evidencia; no repetir la exploración realizada por el worker.
 Liberar al worker asentado y reconocer la entrega:
 
 ```sh
@@ -63,9 +64,29 @@ orca orchestration check --ack <delivery-id> --json
 ```
 
 No liberar ante silencio, timeout o estado desconocido: consultar recuperación de Orca.
-Presentar el plan al humano y esperar. Todavía no hay apply.
+Continuar con revisión técnica. Todavía no hay apply.
 
-## Revisión y apply
+## Review visible y supervisado
+
+En el mismo worktree, sin otro checkout ni `task` interno:
+
+```sh
+orca terminal create --worktree "id:<repoId>::<ruta-hijo>" --title "REVIEW · Sonnet" --command "pnpm agent:review" --json
+orca terminal wait --terminal <handle-review> --for tui-idle --timeout-ms 60000 --json
+orca orchestration worker-start --worktree "id:<repoId>::<ruta-hijo>" --terminal <handle-review> --spec "Revisa el change dark-mode siguiendo Revisión técnica de .omp/AGENTS.md. Escribe solo openspec/changes/dark-mode/spec-review.md. Reporta dictamen, hash y ruta con worker_done según el preámbulo. No implementar ni aprobar." --json
+orca orchestration check --wait --types "worker_done,escalation,question" --timeout-ms 60000 --json
+```
+
+Adoptar únicamente con wait.satisfied:true. Comprobar Sonnet 5 high en la sesión.
+No iniciar dos revisiones simultáneas del mismo plan. Una revisión interna existente
+no migra a esta terminal; esperar su cierre antes de un nuevo despacho.
+Al terminar, comprobar spec-review.md y su hash con agent:ready; liberar/ack con los
+IDs reales como en propose. Si hay bloqueos, devolver a propose y despachar a review
+solo el delta, dependencias y hallazgos previos; no otra auditoría completa salvo nuevo
+alcance o riesgo. Las sugerencias opcionales no exigen otra ronda.
+Presentar al humano el plan y el reporte vigentes; esperar su aprobación explícita.
+
+## Aprobación humana y apply
 
 El humano desde el hijo ejecuta pnpm agent:approve dark-mode.
 Tras aprobar, el coordinador abre una sesión nueva, sin prompt hasta adoptarla:
@@ -78,7 +99,9 @@ orca orchestration check --wait --types "worker_done,escalation,question" --time
 ```
 
 Para Sonnet: comando de terminal pnpm agent:apply dark-mode --idle.
-Tras éxito ejecutar agent:verify en el hijo, revisar diff y comportamiento; liberar/ack.
+Tras éxito comprobar verification.json, evidencia funcional y diff vigente; liberar/ack.
+No repetir agent:verify si su evidencia corresponde al estado entregado. Si falta o
+está desactualizada, ejecutarlo en el hijo; no aceptar un mensaje de éxito como prueba.
 Si cambia el plan, nueva revisión. El receipt local no es una frontera de seguridad.
 Archive en el hijo: openspec archive dark-mode, sin --yes; revisar sync y confirmar.
 Spec y apply comparten worktree. Reportar resultado/ruta/pruebas; sin commit/push/merge.
@@ -92,6 +115,8 @@ pnpm install --frozen-lockfile
 pnpm agent:propose
 # /opsx-propose dark-mode ...
 pnpm agent:ready dark-mode
+pnpm agent:review
+# Pedir revisión técnica de dark-mode; leer spec-review.md antes de aprobar.
 pnpm agent:approve dark-mode
 pnpm agent:apply:flash dark-mode
 pnpm agent:verify dark-mode

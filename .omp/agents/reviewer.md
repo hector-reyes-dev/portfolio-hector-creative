@@ -13,7 +13,7 @@ tools:
 spawns:
   - scout
 model:
-  - "@slow"
+  - "@review"
 output:
   properties:
     overall_correctness:

@@ -6,6 +6,7 @@
   "scripts": {
     "agent:orchestrator": "omp --model @orchestrator --append-system-prompt \"Actúa como coordinador según .omp/AGENTS.md; espera la solicitud del usuario.\"",
     "agent:propose": "omp --model @plan",
+    "agent:review": "omp --model @review --no-prewalk --tools read,grep,glob,bash,write --append-system-prompt \"Actúa como reviewer de specs según la sección Revisión técnica de .omp/AGENTS.md; espera el change y el encargo del coordinador.\"",
     "agent:apply": "node .omp/scripts/pipeline.mjs apply default",
     "agent:apply:flash": "node .omp/scripts/pipeline.mjs apply smol",
     "agent:ready": "node .omp/scripts/pipeline.mjs ready",
