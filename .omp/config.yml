@@ -19,6 +19,10 @@ modelRoles:
   gherkin: openai-codex/gpt-6-astra:medium
   tdd: opencode-go/deepseek-v4.1-flash:medium
   harden: anthropic/claude-sonnet-5:high
+  # @smol es un rol nativo de OMP, no inventado aquí: lo usan `scout` (agente
+  # empaquetado que despacha harden/reviewer) y `sonic` (ediciones mecánicas).
+  # Sin pin cae al smol global de OMP — se fija para que no cambie sin avisar.
+  smol: opencode-go/deepseek-v4.1-flash:medium
 skills:
   enableCodexUser: false
   enableClaudeUser: false
