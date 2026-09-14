@@ -66,7 +66,7 @@ Todo entre D y H ocurre **en un solo turno** del coordinador, vía subagentes in
 2. Escribe esa lista en `mutate` de `stryker.config.json` (estado efímero de este worktree).
 3. `pnpm test:mutation` — Stryker.
 4. Por sobreviviente: test que lo mata, o `// Stryker: sobreviviente equivalente — <razón>`. **Sin gate numérico** — el mutation score es informativo.
-5. `pnpm test:complexity` (`eslintcc`, umbral 6, sube a 8 si 6 es demasiado agresivo) — este sí falla la etapa si una función lo excede.
+5. `pnpm test:complexity` (`eslintcc`, rank `A` = complejidad ≤ 5 por función; sube a rank `B` = ≤ 10 si `A` es demasiado agresivo) — este sí falla la etapa si una función lo excede.
 6. `pnpm check:boundaries` (`dependency-cruiser`) — `src/components/**` no puede importar `src/features/**`. Gate determinista.
 7. `pnpm check && pnpm build` — si falla, la historia no se cierra.
 
@@ -105,6 +105,6 @@ No hay archivo de recibo (`verification.json`): la salida de las herramientas en
 ```bash
 pnpm test              # vitest run
 pnpm test:mutation     # stryker run (usa el `mutate` vigente en stryker.config.json)
-pnpm test:complexity   # eslintcc src --rule complexity --max 6
+pnpm test:complexity   # eslintcc "src/**/*.ts" "src/**/*.js" --rules complexity --max-rank A
 pnpm check:boundaries  # depcruise src --config .dependency-cruiser.cjs
 ```
