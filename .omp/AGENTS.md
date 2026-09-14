@@ -15,7 +15,7 @@ Referencias según la tarea:
 
 ### Cómo se fija el modelo por carril
 
-El ciclo ágil TDD fija modelo vía `model:` en el frontmatter de cada agente (`.omp/agents/gherkin.md`, `tdd.md`, `harden.md`, resueltos contra `modelRoles` en `.omp/config.yml`). Un carril OpenSpec, si se invoca, usaría en cambio terminales OMP distintas para fijar el modelo por etapa. Ambos mecanismos coexisten para carriles distintos del mismo worktree — no se mezclan dentro de un mismo carril.
+El ciclo ágil TDD fija modelo vía `model:` en el frontmatter de cada agente (`.omp/agents/gherkin.md`, `tdd.md`, `harden.md`, resueltos contra `modelRoles` en `.omp/config.yml`). El coordinador (`pnpm agent:story`, comando `/agile-story`) también está pinneado, vía `--model @story` en el script — sin esto cae al modelo global de OMP, no al de este repo. Un carril OpenSpec, si se invoca, usaría en cambio terminales OMP distintas para fijar el modelo por etapa. Ambos mecanismos coexisten para carriles distintos del mismo worktree — no se mezclan dentro de un mismo carril.
 
 ### Sobre agregar agentes nuevos
 

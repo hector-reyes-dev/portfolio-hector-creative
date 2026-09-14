@@ -15,6 +15,7 @@ bash:
 # Roles de modelo del ciclo ágil TDD (docs/flujo-agil-tdd.md). Dedicados y no
 # reutilizados de otros carriles para no acoplar su ajuste a otros pipelines.
 modelRoles:
+  story: openai-codex/gpt-6-astra:medium
   gherkin: openai-codex/gpt-6-astra:medium
   tdd: opencode-go/deepseek-v4.1-flash:medium
   harden: anthropic/claude-sonnet-5:high
