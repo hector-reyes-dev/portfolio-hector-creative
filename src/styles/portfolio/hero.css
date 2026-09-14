@@ -6,10 +6,45 @@
   padding: calc(var(--dock-space) + 40px) 0 clamp(40px, 7vh, 88px);
 }
 
-.hero__logo {
-  width: 96px;
-  height: 96px;
+.hero-portrait {
+  --portrait-size: 120px;
+  position: relative;
+  isolation: isolate;
+  width: var(--portrait-size);
+  height: var(--portrait-size);
   margin-bottom: clamp(26px, 5vh, 44px);
+}
+
+.hero-portrait__layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-portrait__particle {
+  position: absolute;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  will-change: transform, opacity;
+}
+
+.hero-portrait__trigger {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  cursor: default;
+}
+
+.hero-portrait__image {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   object-fit: cover;
@@ -36,9 +71,13 @@
 
 @media (max-width: 767px) {
   .hero { padding-top: calc(24px + env(safe-area-inset-top, 0px)); }
-  .hero__logo { width: 72px; height: 72px; }
+  .hero-portrait { --portrait-size: 90px; }
   .hero__name { font-size: 40px; }
   .hero__bio { font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-portrait__layer { display: none; }
 }
 
 @media (max-width: 430px) {

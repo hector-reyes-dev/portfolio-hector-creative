@@ -1,6 +1,7 @@
 ---
 import Button from '@atoms/Button.astro';
 import Icon from '@atoms/Icon.astro';
+import HeroPortrait from '@molecules/HeroPortrait.astro';
 import type { HeroContent } from '../../types/site';
 
 interface Props {
@@ -12,13 +13,7 @@ const { hero } = Astro.props;
 
 <section class="hero" id="inicio">
   <div class="container">
-    <img
-      class="hero__logo"
-      src="/assets/branding/hector-reyes.png"
-      alt="Fotografía de Héctor Reyes"
-      width="500"
-      height="500"
-    />
+    <HeroPortrait />
     <h1 class="hero__name">Héctor Reyes</h1>
     <p class="hero__role">{hero.role}</p>
     <div class="hero__bio">
