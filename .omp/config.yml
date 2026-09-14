@@ -1,28 +1,19 @@
-# Instalación limpia: sin reglas de proyecto ni globales. Solo autenticación y MCP,
-# que viven en la configuración global de OMP (~/.omp, ~/.pi) y no se tocan aquí.
 tools:
   approvalMode: yolo
 bash:
   allowCompoundCommands: true
-  # Destraba las etapas tdd/harden del ciclo ágil TDD (docs/flujo-agil-tdd.md).
-  # Corren en approvalMode: yolo dentro de sus subagentes, pero esta entrada
-  # aplica a cualquier sesión del repo, no solo a esos tres agentes.
   patterns:
     - { match: 'pnpm test', approval: allow }
     - { match: 'pnpm test:mutation', approval: allow }
     - { match: 'pnpm test:complexity', approval: allow }
     - { match: 'pnpm check:boundaries', approval: allow }
-# Roles de modelo del ciclo ágil TDD (docs/flujo-agil-tdd.md). Dedicados y no
-# reutilizados de otros carriles para no acoplar su ajuste a otros pipelines.
+# Roles de modelo del ciclo ágil TDD (docs/flujo-agil-tdd.md). 
 modelRoles:
-  story: openai-codex/gpt-5.6-luna:medium
+  story: openai-codex/gpt-5.6-luna:high
   gherkin: openai-codex/gpt-6-astra:medium
-  tdd: opencode-go/deepseek-v4.1-flash:medium
-  harden: anthropic/claude-sonnet-5:high
-  # @smol es un rol nativo de OMP, no inventado aquí: lo usan `scout` (agente
-  # empaquetado que despacha harden/reviewer) y `sonic` (ediciones mecánicas).
-  # Sin pin cae al smol global de OMP — se fija para que no cambie sin avisar.
-  smol: opencode-go/deepseek-v4.1-flash:medium
+  tdd: opencode-go/deepseek-v4.1-flash:high
+  harden: anthropic/claude-opus-5:high
+  smol: opencode-go/deepseek-v4.1-flash:low
 skills:
   enableCodexUser: false
   enableClaudeUser: false
