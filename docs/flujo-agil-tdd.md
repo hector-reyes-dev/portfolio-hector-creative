@@ -20,19 +20,15 @@ Sin este paso no existe `node_modules` y nada de lo siguiente funciona.
 
 ## 2. Correr el ciclo
 
-Dentro del worktree, en una terminal:
+Dentro del worktree, en una terminal, pasa la historia como mensaje inicial — no la escribas después de que OMP ya esté abierto:
 
 ```bash
-pnpm agent:story
+pnpm agent:story -- "/agile-story <tu historia en 1-2 frases>"
 ```
 
-Y luego, en esa sesión:
+`pnpm` reenvía todo lo que sigue a `--` como mensaje inicial de `omp`. Esto importa: si en vez de esto abres `pnpm agent:story` sin argumento y escribes la historia directo en el prompt, **nunca se carga `.omp/commands/agile-story.md`** — el coordinador queda librado a inferir el flujo de memoria, sin las instrucciones explícitas del comando (ver "Despacho obligatorio de etapas" en `.omp/AGENTS.md`). Ya pasó: una corrida así saltó `agent: tdd` al despachar la etapa de implementación y cayó en el agente genérico de OMP, sin el modelo pinneado ni el contrato de `tdd.md`.
 
-```
-/agile-story <tu historia en 1-2 frases>
-```
-
-Dos historias chicas → pásalas juntas, se procesan en secuencia en el mismo worktree y turno.
+Dos historias chicas → pásalas juntas en el mismo mensaje, se procesan en secuencia en el mismo worktree y turno.
 
 ## 3. Qué pasa en ese turno
 
