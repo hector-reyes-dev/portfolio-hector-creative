@@ -30,7 +30,16 @@ pnpm agent:story -- "/agile-story <tu historia en 1-2 frases>"
 
 Dos historias chicas → pásalas juntas en el mismo mensaje, se procesan en secuencia en el mismo worktree y turno.
 
-**Alternativa sin escribir la historia de antemano:** `scripts/start-story.sh` (opcional `<slug>` para crear worktree nuevo) abre la terminal, corre `pnpm agent:story`, espera a que OMP cargue y deja `/agile-story ` ya escrito en el input — sin enviarlo — para que completes la historia y des Enter tú. Usa Orca CLI (`terminal send` sin `--enter`), así que necesita la app de Orca abierta.
+**Alternativa sin escribir la historia de antemano:** `scripts/start-story.sh` corre `pnpm agent:story` en la terminal donde se ejecuta (se identifica vía `ORCA_TERMINAL_HANDLE`, no abre una nueva), espera a que OMP cargue y deja `/agile-story ` ya escrito en el input — sin enviarlo — para que completes la historia y des Enter tú. Necesita correr dentro de una terminal administrada por Orca, con la app abierta.
+
+Config como comando rápido de Orca (barra de pestañas → editar comando rápido):
+
+| Campo | Valor |
+|---|---|
+| Acción | `Terminal` |
+| Command | `./scripts/start-story.sh` |
+| Append Enter | encendido |
+| Alcance | Proyecto → `portfolio-hector-creative` |
 
 ## 3. Qué pasa en ese turno
 
