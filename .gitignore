@@ -29,3 +29,6 @@ pnpm-debug.log*
 
 # coverage
 coverage/
+
+# Stryker mutation testing sandboxes
+.stryker-tmp/

@@ -14,6 +14,7 @@
     "agent:verify": "node .omp/scripts/pipeline.mjs verify",
     "agent:test": "pnpm check && pnpm build",
     "agent:test:pipeline": "node --test .omp/scripts/pipeline.test.mjs",
+    "agent:story": "omp --model @default --append-system-prompt \"Actúa como coordinador del ciclo ágil TDD según docs/flujo-agil-tdd.md; despacha gherkin→tdd→harden como subagentes internos vía task.\"",
     "commit": "omp commit",
     "cleanse": "omp cleanse --all -t",
     "agents:setup": "OPENSPEC_TELEMETRY=0 openspec init --tools oh-my-pi --force",
@@ -21,7 +22,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "test": "vitest run",
+    "test:mutation": "stryker run",
+    "test:complexity": "eslintcc src --rule complexity --max 6",
+    "check:boundaries": "depcruise src --config .dependency-cruiser.cjs"
   },
   "dependencies": {
     "astro": "^7.2.7",
@@ -30,11 +35,18 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@stryker-mutator/core": "^10.0.0",
+    "@stryker-mutator/vitest-runner": "^10.0.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.5.1",
+    "@vitest/coverage-v8": "^5.0.0",
     "autoprefixer": "^10.5.4",
+    "dependency-cruiser": "^18.3.0",
+    "eslintcc": "^0.8.3",
     "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
