@@ -1,0 +1,11 @@
+{
+  "change": "hero-emoji-burst",
+  "planHash": "cf02b62bfe401b9b63b71754f25aae1c573c14a1fe34c58efae12d1c6fdfab62",
+  "startedAt": "2026-09-13T22:15:03.972Z",
+  "finishedAt": "2026-09-13T22:15:08.393Z",
+  "command": "pnpm agent:test",
+  "result": "passed",
+  "head": "114586ac1ae5388b21ab823f09819f6cf19c1b60",
+  "gitStatus": "M src/components/organisms/Hero.astro\n M src/styles/portfolio/hero.css\n?? openspec/changes/hero-emoji-burst/\n?? src/components/molecules/HeroPortrait.astro\n?? src/lib/core/hero-emoji-burst.ts",
+  "limits": "check/build no sustituyen pruebas funcionales ni revisión visual. Repetir si cambia código."
+}

@@ -1,0 +1,28 @@
+---
+// Molecule de presentación: botón circular con la fotografía del Hero más una
+// capa decorativa hermana para las ráfagas. No importa features ni estado.
+---
+
+<div class="hero-portrait" data-hero-portrait>
+  <span class="hero-portrait__layer" data-hero-emoji-layer aria-hidden="true"></span>
+  <button
+    class="hero-portrait__trigger"
+    type="button"
+    data-hero-portrait-trigger
+    aria-label="Mostrar emojis sobre la fotografía de Héctor Reyes"
+  >
+    <img
+      class="hero-portrait__image"
+      src="/assets/branding/hector-reyes.png"
+      alt="Fotografía de Héctor Reyes"
+      width="500"
+      height="500"
+    />
+  </button>
+</div>
+
+<script>
+  import { initHeroEmojiBurst } from '@lib/core/hero-emoji-burst';
+
+  initHeroEmojiBurst();
+</script>
