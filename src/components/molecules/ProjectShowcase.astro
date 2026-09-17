@@ -1,0 +1,65 @@
+---
+import type { Project } from '../../types/site';
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+const showcase = projects.filter(Boolean);
+const initial = showcase[0];
+---
+
+{initial && (
+  <div
+    class="project-showcase"
+    data-project-showcase
+    data-reduced-motion="false"
+    style={`--showcase-duration: 420ms; --showcase-count: ${showcase.length}`}
+  >
+    <div
+      class="project-showcase__panel"
+      data-project-panel
+      aria-live="polite"
+      aria-atomic="true"
+    >
+      <div class="project-showcase__copy">
+        <p class="project-showcase__eyebrow" data-project-tags>{initial.tags.join(' · ')}</p>
+        <h3 class="project-showcase__title" data-project-title>{initial.full}</h3>
+        <p class="project-showcase__description" data-project-description>{initial.desc}</p>
+      </div>
+      <div class={`project-showcase__media card__media--${initial.slug}`} data-project-media>
+        <img
+          data-project-image
+          src={`/${initial.image}`}
+          alt={initial.full}
+          width={initial.w}
+          height={initial.h}
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+
+    <div class="project-showcase__selectors" role="group" aria-label="Seleccionar proyecto">
+      {showcase.map((project, index) => (
+        <button
+          class="project-showcase__selector"
+          type="button"
+          data-project-trigger
+          data-project-index={index}
+          data-project-image={`/${project.image}`}
+          data-project-full={project.full}
+          data-project-desc={project.desc}
+          data-project-tags={project.tags.join(' · ')}
+          data-project-width={project.w}
+          data-project-height={project.h}
+          data-project-slug={project.slug}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+          aria-label={project.full}
+          style={`background-image: url("/${project.image}")`}
+        ></button>
+      ))}
+    </div>
+  </div>
+)}
