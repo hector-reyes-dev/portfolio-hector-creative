@@ -79,6 +79,17 @@ Todo entre D y H ocurre **en un solo turno** del coordinador, vía subagentes in
 
 Runtime esperado de Stryker: minutos (mutate acotado). Si el timeout de bash lo corta, correr con `timeout: 0`, no recortar el alcance. Un timeout de Stryker es fallo de `harden`, no "sobreviviente no detectado".
 
+En `mutate` solo entran archivos que Stryker sepa parsear: `.ts`/`.js`. Los `.astro` de la
+lista del paso 1 se quedan fuera — no hay parser `.astro` registrado y Stryker aborta la
+corrida entera con `Unable to parse … No parser registered for .astro!` antes de instrumentar.
+
+`@stryker-mutator/vitest-runner@10.0.0` lleva un parche propio en `patches/` (vía
+`pnpm.patchedDependencies`): construye los ids y el `testNamePattern` de cada test uniendo
+`describe` y `it` con un espacio, mientras Vitest 5 los une con `" > "` (`createTaskName`).
+Sin el parche, cada corrida de mutante filtra por un patrón que no casa con ningún test, los
+salta todos y **todos los mutantes sobreviven** (score ~2-6 % con tests que sí los matan a
+mano). Si algún día el score se desploma de golpe, revisar primero que el parche siga aplicado.
+
 ## 5. "Hecho" para una corrida
 
 - Escenarios Gherkin escritos.

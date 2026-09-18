@@ -3,7 +3,9 @@
   "testRunner": "vitest",
   "coverageAnalysis": "perTest",
   "mutate": [
-    "src/features/projects/init.ts"
+    "src/features/blog/init.ts",
+    "src/lib/utils/blog-markup.ts",
+    "src/lib/utils/blog-posts.ts"
   ],
   "reporters": ["progress", "clear-text"]
 }

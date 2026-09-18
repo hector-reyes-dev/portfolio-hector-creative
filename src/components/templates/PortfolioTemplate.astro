@@ -8,6 +8,7 @@ import CasesSection from '@organisms/CasesSection.astro';
 import ProjectsSection from '@organisms/ProjectsSection.astro';
 import ServicesSection from '@organisms/ServicesSection.astro';
 import ExperimentsSection from '@organisms/ExperimentsSection.astro';
+import BlogSection from '@organisms/BlogSection.astro';
 import ReasonsSection from '@organisms/ReasonsSection.astro';
 import ContactSection from '@organisms/ContactSection.astro';
 import SiteFooter from '@organisms/SiteFooter.astro';
@@ -28,6 +29,7 @@ const cases = documentedProjects();
   <ProjectsSection projects={siteContent.projects} />
   <ServicesSection services={siteContent.services} />
   <ExperimentsSection />
+  <BlogSection />
   <ReasonsSection reasons={siteContent.reasons} testimonials={siteContent.testimonials} />
   <ContactSection contact={siteContent.contact} />
 </main>

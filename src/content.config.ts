@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { BLOG_TOPIC_IDS } from './lib/utils/blog-posts';
 
 const commonSchema = z.object({
   title: z.string().min(1),
@@ -13,6 +14,8 @@ const commonSchema = z.object({
 const posts = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
   schema: commonSchema.extend({
+    /** Tema que decide la pestaña del blog donde aparece la nota. */
+    topic: z.enum(BLOG_TOPIC_IDS),
     cover: z.string().optional()
   })
 });

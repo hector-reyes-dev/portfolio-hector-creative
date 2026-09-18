@@ -15,6 +15,7 @@
 @import "./utilities/typography.css";
 @import "./portfolio/motion.css";
 @import "./portfolio/projects.css";
+@import "./portfolio/blog.css";
 
 /* Tokens de tema: se resuelven en runtime para soportar light/dark */
 @theme inline {

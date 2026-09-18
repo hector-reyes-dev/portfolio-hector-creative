@@ -1,0 +1,28 @@
+---
+import SectionHeader from '@molecules/SectionHeader.astro';
+import { getCollection } from 'astro:content';
+import { buildBlogTopics, renderBlogArchive } from '@lib/utils/blog-markup';
+
+const entries = await getCollection('posts');
+// El agrupado, el recorte a cinco notas y el orden de las pestañas viven en `blog-markup`,
+// que es también lo que la suite comprueba: aquí solo queda decidir el estado vacío.
+const topics = buildBlogTopics(entries.map((entry) => ({ slug: entry.id, ...entry.data })));
+const archive = renderBlogArchive(topics);
+---
+
+<section class="section" id="blog">
+  <div class="container">
+    <SectionHeader
+      title="Notas de ingeniería"
+      lead="Apuntes de trabajo sobre arquitectura, rendimiento y detalle de interfaz: lo que deja aprender cada producto."
+    />
+
+    {
+      topics.length === 0 ? (
+        <p class="blog__empty">Todavía no hay notas publicadas.</p>
+      ) : (
+        <Fragment set:html={archive} />
+      )
+    }
+  </div>
+</section>

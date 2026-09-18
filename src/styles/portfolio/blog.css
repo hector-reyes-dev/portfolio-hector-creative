@@ -1,0 +1,177 @@
+/* ── Blog ───────────────────────────────────────────────── */
+/* Archivo del blog: pestañas de tema repartidas sobre una única superficie gris
+   con las notas dentro. Sin cápsula alrededor de las pestañas y sin cards: cada
+   nota es su título en cursiva y su fecha corta, nada más.
+
+   Silueta: la pestaña activa es una elevación del mismo gris que se une al panel
+   por esquinas internas redondeadas. El radio lo comparten las esquinas externas
+   del panel, las superiores de la pestaña activa y las concavidades de la unión,
+   para que toda la superficie se lea como una sola pieza. */
+.blog {
+  --blog-radius: 28px;
+  display: grid;
+  /* Una columna y dos filas: las pestañas arriba y, debajo, la celda donde se
+     apilan los tres paneles. La fila la mide el tema más largo, así que la
+     superficie conserva su alto al cambiar de pestaña y el contenido posterior
+     no se desplaza nunca. */
+  grid-template-areas:
+    'tabs'
+    'surface';
+  gap: 0;
+}
+.blog__empty { font-size: 16px; color: var(--ink-2); }
+#blog { padding-block: clamp(32px, 4vw, 52px); }
+
+/* Origen del resaltado: `position: relative` hace que sus pestañas y el
+   resaltado compartan el mismo offsetParent, así `offsetLeft` de la pestaña
+   activa es directamente el `left` que anima el feature. El relleno superior
+   deja el resaltado pegado a la superficie, que es lo que lo funde con ella.
+   El recorte elimina las concavidades que caen fuera de la superficie cuando la
+   pestaña activa es la primera o la última, sin dejar artefacto. */
+.blog__tabs-wrap {
+  grid-area: tabs;
+  position: relative;
+  padding-top: 10px;
+  overflow: hidden;
+}
+
+.blog__tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+/* Pestaña temática: 14px con peso normal, también la activa; el estado se
+   distingue por color, no por grosor ni tamaño. */
+.blog__tab {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  min-height: 52px;
+  padding: 8px clamp(4px, 1.6vw, 14px) 14px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink-2);
+  text-align: center;
+  transition: color .25s var(--ease-out);
+}
+.blog__tab:hover { color: var(--ink); }
+.blog__tab[aria-selected="true"] { color: var(--ink); }
+/* El recorte del contenedor cortaría el anillo de foco de la primera y la última
+   pestaña: se dibuja por dentro para que llegue completo. */
+.blog__tab:focus-visible { outline-offset: -2px; }
+
+/* Forma del tema activo: mismo gris que la superficie, con las esquinas
+   superiores redondeadas y el borde inferior fundido con el panel. */
+.blog__highlight {
+  position: absolute;
+  top: 10px;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  width: 0;
+  border-radius: var(--blog-radius) var(--blog-radius) 0 0;
+  background: var(--fill);
+}
+
+/* Esquinas internas de la unión: un cuarto de disco gris a cada lado, tangente
+   al borde de la pestaña activa y al borde superior del panel, de modo que el
+   contorno de la superficie entra y sale del panel sin ningún ángulo recto.
+   Al ser del mismo gris, la unión no depende del color que quede detrás. */
+.blog__highlight::before,
+.blog__highlight::after {
+  position: absolute;
+  bottom: 0;
+  width: var(--blog-radius);
+  height: var(--blog-radius);
+  background: var(--fill);
+  content: '';
+}
+.blog__highlight::before {
+  left: calc(-1 * var(--blog-radius));
+  border-top-left-radius: var(--blog-radius);
+}
+.blog__highlight::after {
+  right: calc(-1 * var(--blog-radius));
+  border-top-right-radius: var(--blog-radius);
+}
+
+/* Superficie única: los tres temas comparten la misma caja gris y el mismo
+   relleno; lo que cambia entre paneles es solo la lista de notas. Los tres se
+   apilan en la misma celda —la fila `surface`— y estiran su gris a lo alto de
+   esa fila, así que el alto lo fija el tema más largo: un tema con menos notas
+   conserva todas las suyas, sin recortes y sin filas de relleno, y el contenido
+   siguiente arranca siempre a la misma altura. Dentro de la superficie el
+   contenido queda anclado arriba y el aire sobrante, abajo. */
+.blog__panel {
+  grid-area: surface;
+  align-self: stretch;
+  display: grid;
+  align-content: start;
+  padding: clamp(24px, 4vw, 36px) clamp(18px, 4vw, 32px) clamp(28px, 4vw, 40px);
+  /* Las cuatro esquinas externas de la superficie, incluidas las superiores que
+     quedan a los lados de la pestaña activa. */
+  border-radius: var(--blog-radius);
+  background: var(--fill);
+}
+/* El `[hidden]` de Preflight (`display: none !important`, dentro de
+   `@layer base`) saca del flujo al panel y con él su alto: sin reponerlo, la
+   superficie mediría solo el tema activo y el contenido siguiente se movería al
+   cambiar de pestaña. Se repone en esa misma capa —misma importancia, más
+   especificidad— y se oculta con `visibility`, que deja el alto contando sin
+   pintar el tema ni exponerlo al árbol de accesibilidad. */
+@layer base {
+  .blog__panel[hidden] {
+    display: grid !important;
+    visibility: hidden;
+  }
+}
+
+/* Lista abierta: el aire entre notas separa sin dibujar divisores ni cajas. */
+.blog__list { display: grid; gap: clamp(18px, 2.6vw, 28px); }
+
+/* Cada nota es una fila abierta —título y fecha— sin borde, sombra, fondo ni
+   divisor: la única separación entre entradas es el aire de la lista. La fecha
+   no cede su ancho, así que el título se reparte el resto y envuelve dentro de
+   su columna en vez de desbordar en pantallas estrechas. */
+.blog__entry {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(12px, 3vw, 24px);
+}
+
+/* 17px en cursiva: el título es el único texto de la entrada, no un titular. */
+.blog__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+/* Fecha corta (`ago 2026`): arriba con la primera línea del título, en su
+   propia columna para que no se comprima ni empuje al título. */
+.blog__date {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--ink-2);
+}
+
+@media (max-width: 640px) {
+  .blog { --blog-radius: var(--r-xl); }
+  .blog__tab { min-height: 46px; padding-bottom: 12px; }
+}
+
+/* Con movimiento reducido el cambio de tema no transiciona ni el color. */
+@media (prefers-reduced-motion: reduce) {
+  .blog__tab { transition: none; }
+}
