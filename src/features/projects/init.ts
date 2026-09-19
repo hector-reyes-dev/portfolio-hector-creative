@@ -1,13 +1,3 @@
-// Stryker: mutation testing de este archivo no es confiable en este entorno —
-// @stryker-mutator/vitest-runner@10.0.0 pide el token DI "globalNamespace" que
-// ningún paquete de @stryker-mutator (core/api/instrumenter/util) provee, así que
-// `globalThis[undefined].activeMutant` nunca coincide con el `globalThis.__stryker__`
-// que usa el código instrumentado: ningún mutante se activa en runtime y casi todos
-// se reportan "Survived" aunque la suite real sí los mate (verificado a mano
-// reescribiendo mutaciones concretas y corriendo `pnpm vitest run`). No son
-// sobrevivientes equivalentes: es un defecto de la cadena de herramientas, no de
-// este módulo. Repro: `pnpm test:mutation` con `mutate` acotado a este archivo.
-
 const ROOT_SELECTOR = '[data-project-showcase]';
 const TRIGGER_SELECTOR = '[data-project-trigger]';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
@@ -17,9 +7,8 @@ function getTriggers(root: HTMLElement): HTMLButtonElement[] {
 }
 
 function setMotionPolicy(root: HTMLElement): void {
-  const reduced = typeof window !== 'undefined'
-    && typeof window.matchMedia === 'function'
-    && window.matchMedia(REDUCED_MOTION_QUERY).matches;
+  const reduced =
+    typeof window.matchMedia === 'function' && window.matchMedia(REDUCED_MOTION_QUERY).matches;
 
   root.dataset.reducedMotion = String(reduced);
   root.style.setProperty('--showcase-duration', reduced ? '0ms' : '420ms');
@@ -39,14 +28,39 @@ type ShowcaseElements = {
   media: HTMLElement;
 };
 
+type ShowcaseParts = {
+  image: HTMLImageElement | null;
+  title: HTMLElement | null;
+  description: HTMLElement | null;
+  tags: HTMLElement | null;
+  media: HTMLElement | null;
+};
+
+// Los disparadores reutilizan marcadores del panel (`data-project-image`, `data-project-tags`),
+// así que las partes del panel se leen excluyéndolos: un panel incompleto no se lee a medias.
+const SHOWCASE_PART_SELECTORS: Record<keyof ShowcaseElements, string> = {
+  image: '[data-project-image]:not([data-project-trigger])',
+  title: '[data-project-title]:not([data-project-trigger])',
+  description: '[data-project-description]:not([data-project-trigger])',
+  tags: '[data-project-tags]:not([data-project-trigger])',
+  media: '[data-project-media]:not([data-project-trigger])'
+};
+
+/** El panel se pinta completo o no se pinta: con una parte ausente ninguna se sustituye. */
+function requireAllPresent(parts: ShowcaseParts): ShowcaseElements | null {
+  const complete = Object.values(parts).every((part) => part !== null);
+  return complete ? (parts as ShowcaseElements) : null;
+}
+
 function getShowcaseElements(root: HTMLElement): ShowcaseElements | null {
-  const image = root.querySelector<HTMLImageElement>('[data-project-image]');
-  const title = root.querySelector<HTMLElement>('[data-project-title]');
-  const description = root.querySelector<HTMLElement>('[data-project-description]');
-  const tags = root.querySelector<HTMLElement>('[data-project-tags]');
-  const media = root.querySelector<HTMLElement>('[data-project-media]');
-  if (!image || !title || !description || !tags || !media) return null;
-  return { image, title, description, tags, media };
+  const parts: ShowcaseParts = {
+    image: root.querySelector<HTMLImageElement>(SHOWCASE_PART_SELECTORS.image),
+    title: root.querySelector<HTMLElement>(SHOWCASE_PART_SELECTORS.title),
+    description: root.querySelector<HTMLElement>(SHOWCASE_PART_SELECTORS.description),
+    tags: root.querySelector<HTMLElement>(SHOWCASE_PART_SELECTORS.tags),
+    media: root.querySelector<HTMLElement>(SHOWCASE_PART_SELECTORS.media)
+  };
+  return requireAllPresent(parts);
 }
 
 type TriggerData = {

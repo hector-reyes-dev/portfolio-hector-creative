@@ -59,7 +59,7 @@ El dock SHALL ofrecer un control binario que cambie al tema opuesto inmediatamen
 
 ### Requirement: Tema correcto desde el primer pintado
 
-Con JavaScript habilitado, el sitio SHALL aplicar el tema resuelto antes de pintar contenido, sin mostrar primero el tema opuesto ni esperar al bundle de interacciones. SHALL mantener sincronizados el esquema de controles nativos y el único `theme-color` con el tema efectivo: `#F9F9F9` para claro y `#020617` para oscuro.
+Con JavaScript habilitado, el sitio SHALL aplicar el tema resuelto antes de pintar contenido, sin mostrar primero el tema opuesto ni esperar al bundle de interacciones. SHALL mantener sincronizados el esquema de controles nativos y el único `theme-color` con el tema efectivo: `#F9F9F9` para claro y `#050b1a` para oscuro, el mismo color con el que el tema oscuro pinta su superficie global.
 
 #### Scenario: Carga oscura con bundle retrasado
 - **WHEN** se carga una preferencia oscura válida con SO claro y se retrasa el bundle principal

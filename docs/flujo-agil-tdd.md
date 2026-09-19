@@ -90,6 +90,13 @@ Sin el parche, cada corrida de mutante filtra por un patrón que no casa con nin
 salta todos y **todos los mutantes sobreviven** (score ~2-6 % con tests que sí los matan a
 mano). Si algún día el score se desploma de golpe, revisar primero que el parche siga aplicado.
 
+`stryker.config.json` fija `vitest: { related: false }`. Con el modo `related` de Vitest (el
+predeterminado), Stryker solo corre los tests que el grafo de módulos de Vite relaciona con el
+archivo mutado; un módulo que el test carga como texto (`import … from './bootstrap.js?raw'`,
+el arranque inline del tema) no entra en ese grafo, así que **ningún test corre para sus
+mutantes y el archivo entero reporta 0 %** con `# survived` igual al total. Si un archivo
+aparece con score 0 y sus mutantes salen "covered" pero sin tests ejecutados, esa es la causa.
+
 ## 5. "Hecho" para una corrida
 
 - Escenarios Gherkin escritos.
