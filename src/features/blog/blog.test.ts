@@ -129,11 +129,9 @@ import {
 import type { BlogTopic, PostLike } from '@lib/utils/blog-posts';
 import { initBlog } from './init';
 
-vi.mock('@lib/core/gsap', () => ({ gsap: { set: vi.fn(), to: vi.fn(), fromTo: vi.fn() } }));
+vi.mock('@lib/core/gsap', () => ({ gsap: { set: vi.fn(), to: vi.fn(), fromTo: vi.fn(), killTweensOf: vi.fn() } }));
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
-/** Geometría que jsdom no calcula: cada pestaña ocupa una franja fija. */
-const TAB_STRIDE = 120;
 
 type AnimationMock = { set: Mock; to: Mock; fromTo: Mock };
 const gsapMock = gsap as unknown as AnimationMock;
@@ -268,17 +266,19 @@ function expectSelection(root: HTMLElement, index: number): void {
 }
 
 /** Posiciones que ha recibido el resaltado, en orden de invocación. */
-function highlightPlacements(): { left?: number; width?: number }[] {
-  return [...gsapMock.set.mock.calls, ...gsapMock.to.mock.calls]
-    .filter(([target]) => target instanceof HTMLElement && target.hasAttribute('data-blog-highlight'))
-    .map(([, vars]) => vars as { left?: number; width?: number });
+function highlightPlacements(): { xPercent?: number }[] {
+  return [gsapMock.set, gsapMock.to]
+    .flatMap((mock) => mock.mock.calls.map((args, index) => ({ args, order: mock.mock.invocationCallOrder[index] })))
+    .sort((a, b) => a.order - b.order)
+    .filter(({ args: [target] }) => target instanceof HTMLElement && target.hasAttribute('data-blog-highlight'))
+    .map(({ args: [, vars] }) => vars as { xPercent?: number });
 }
 
 /** Movimientos animados del resaltado: los que el feature pide como transición, no como salto. */
-function animatedHighlightMoves(): { left?: number; width?: number; duration?: number }[] {
+function animatedHighlightMoves(): { xPercent?: number; duration?: number }[] {
   return gsapMock.to.mock.calls
     .filter(([target]) => target instanceof HTMLElement && target.hasAttribute('data-blog-highlight'))
-    .map(([, vars]) => vars as { left?: number; width?: number; duration?: number });
+    .map(([, vars]) => vars as { xPercent?: number; duration?: number });
 }
 
 /** Fades de entradas pedidos al motor, con sus puntos de partida y llegada. */
@@ -311,7 +311,7 @@ function installMatchMedia(reducedMotion: boolean): void {
 }
 
 /**
- * Monta el marcado real del archivo y lo inicializa, con la geometría de pestañas simulada.
+ * Monta el marcado real del archivo y lo inicializa, sin depender de geometría simulada.
  * `beforeInit` observa el marcado tal como se sirve, antes de que corra el feature.
  */
 function mount(
@@ -323,11 +323,6 @@ function mount(
 
   const root = document.querySelector<HTMLElement>('[data-blog]')!;
   options.beforeInit?.(root);
-
-  tabsOf(root).forEach((tab, index) => {
-    Object.defineProperty(tab, 'offsetLeft', { value: index * TAB_STRIDE, configurable: true });
-    Object.defineProperty(tab, 'offsetWidth', { value: TAB_STRIDE, configurable: true });
-  });
 
   initBlog();
   return root;
@@ -513,7 +508,7 @@ describe('Blog por temas', () => {
     expect(gsapMock.to).not.toHaveBeenCalled();
     expect(gsapMock.fromTo).not.toHaveBeenCalled();
     // El resaltado acompaña la selección sin animación, ya en su posición final.
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: TAB_STRIDE, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 100 });
 
     const reveal = gsapMock.set.mock.calls.find(([target]) => Array.isArray(target));
     expect(reveal).toBeDefined();
@@ -527,7 +522,7 @@ describe('Blog por temas', () => {
     expectSelection(root, 1);
     expect(gsapMock.to).not.toHaveBeenCalled();
     expect(gsapMock.fromTo).not.toHaveBeenCalled();
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: TAB_STRIDE, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 100 });
   });
 
   // Scenario: cada tema conserva como máximo cinco notas recientes sin añadir entradas de relleno
@@ -687,7 +682,7 @@ describe('Blog por temas', () => {
     expect(fades[0].targets.every((entry) => entry.closest('[data-blog-panel]') === panels[1])).toBe(true);
     // El resaltado tampoco salta: acompaña el cambio con una transición hacia la pestaña elegida.
     expect(animatedHighlightMoves()).toEqual([
-      expect.objectContaining({ left: TAB_STRIDE, width: TAB_STRIDE })
+      expect.objectContaining({ xPercent: 100 })
     ]);
     expect(animatedHighlightMoves()[0].duration).toBeGreaterThan(0);
 
@@ -695,6 +690,7 @@ describe('Blog por temas', () => {
 
     fades = fadeCalls();
     expect(fades).toHaveLength(2);
+    expectSelection(root, 2);
     expectSameNodes(fades[1].targets, entriesOf(panels[2]));
 
     // Volver a un tema ya visitado vuelve a animar sus entradas.
@@ -703,6 +699,18 @@ describe('Blog por temas', () => {
     fades = fadeCalls();
     expect(fades).toHaveLength(3);
     expectSameNodes(fades[2].targets, entriesOf(panels[1]));
+  });
+
+  it('pulsar la pestaña activa no reinicia el indicador ni sus entradas', () => {
+    const root = mount();
+    const tabs = tabsOf(root);
+    tabs[1].click();
+    const moves = gsapMock.to.mock.calls.length;
+    const fades = gsapMock.fromTo.mock.calls.length;
+    tabs[1].click();
+    expectSelection(root, 1);
+    expect(gsapMock.to).toHaveBeenCalledTimes(moves);
+    expect(gsapMock.fromTo).toHaveBeenCalledTimes(fades);
   });
 
   // Scenario: la pestaña activa se eleva y se une al panel con esquinas internas y externas redondeadas
@@ -715,26 +723,26 @@ describe('Blog por temas', () => {
     // Una sola superficie: el resaltado es el mismo elemento y se mueve con la pestaña activa.
     expect(root.querySelectorAll('[data-blog-highlight]')).toHaveLength(1);
     expectSelection(root, 0);
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: 0, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 0 });
 
     tabs[1].click();
     expectSelection(root, 1);
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: TAB_STRIDE, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 100 });
 
     tabs[2].click();
     expectSelection(root, 2);
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: 2 * TAB_STRIDE, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 200 });
 
     // De vuelta a la primera y a la intermedia con el teclado, el foco y la selección se conservan.
     pressKey(tabs[2], 'ArrowLeft');
     expect(document.activeElement).toBe(tabs[1]);
     expectSelection(root, 1);
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: TAB_STRIDE, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 100 });
 
     pressKey(tabs[1], 'ArrowLeft');
     expect(document.activeElement).toBe(tabs[0]);
     expectSelection(root, 0);
-    expect(highlightPlacements().at(-1)).toMatchObject({ left: 0, width: TAB_STRIDE });
+    expect(highlightPlacements().at(-1)).toMatchObject({ xPercent: 0 });
 
     // El refinamiento no toca el contenido: cada panel conserva sus entradas.
     expect(panels.map((panel) => entriesOf(panel).length)).toEqual([3, 2, 2]);

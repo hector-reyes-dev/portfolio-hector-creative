@@ -95,7 +95,7 @@ ${topic.entries.map(renderEntry).join('\n')}
     )
     .join('\n');
 
-  return `<div class="blog" data-blog>
+  return `<div class="blog" data-blog style="--blog-topic-count: ${topics.length}">
 <div class="blog__tabs-wrap">
 <span class="blog__highlight" data-blog-highlight aria-hidden="true"></span>
 <div class="blog__tabs" role="tablist" aria-label="Notas por tema">

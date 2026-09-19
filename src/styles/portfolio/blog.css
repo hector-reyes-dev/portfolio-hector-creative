@@ -9,6 +9,14 @@
    para que toda la superficie se lea como una sola pieza. */
 .blog {
   --blog-radius: 28px;
+  /* Margen libre a cada lado de la franja de pestañas: la esquina exterior del panel más
+     la concavidad de la unión. Con él, la pestaña activa nunca alcanza los extremos y la
+     silueta conserva sus radios en todo el recorrido, así que al cambiar de tema se
+     traslada sin deformarse —una esquina que crece o se cierra a media transición es
+     justo lo que delata la figura. */
+  --blog-inset: calc(var(--blog-radius) * 2);
+  position: relative;
+  isolation: isolate;
   display: grid;
   /* Una columna y dos filas: las pestañas arriba y, debajo, la celda donde se
      apilan los tres paneles. La fila la mide el tema más largo, así que la
@@ -22,17 +30,15 @@
 .blog__empty { font-size: 16px; color: var(--ink-2); }
 #blog { padding-block: clamp(32px, 4vw, 52px); }
 
-/* Origen del resaltado: `position: relative` hace que sus pestañas y el
-   resaltado compartan el mismo offsetParent, así `offsetLeft` de la pestaña
-   activa es directamente el `left` que anima el feature. El relleno superior
-   deja el resaltado pegado a la superficie, que es lo que lo funde con ella.
-   El recorte elimina las concavidades que caen fuera de la superficie cuando la
-   pestaña activa es la primera o la última, sin dejar artefacto. */
+/* El resaltado penetra un radio en el panel para cerrar la unión con él. Se recortan solo
+   los laterales, conservando ese solape inferior. El relleno lateral es el margen que las
+   pestañas dejan libre, y el superior, el alzado de la pestaña sobre el panel: el trazado
+   lee ambos de aquí en vez de repetirlos. */
 .blog__tabs-wrap {
   grid-area: tabs;
   position: relative;
-  padding-top: 10px;
-  overflow: hidden;
+  padding: 10px var(--blog-inset) 0;
+  clip-path: inset(0 0 calc(-1 * var(--blog-radius)));
 }
 
 .blog__tabs {
@@ -68,35 +74,50 @@
 .blog__highlight {
   position: absolute;
   top: 10px;
-  bottom: 0;
-  left: 0;
+  bottom: calc(-1 * var(--blog-radius));
+  left: var(--blog-inset);
   z-index: 0;
-  width: 0;
+  width: calc((100% - 2 * var(--blog-inset)) / var(--blog-topic-count, 3));
+  pointer-events: none;
+  /* GSAP controla el movimiento, incluso cuando el cambio es inmediato. */
+  transition-property: none;
   border-radius: var(--blog-radius) var(--blog-radius) 0 0;
   background: var(--fill);
 }
 
-/* Esquinas internas de la unión: un cuarto de disco gris a cada lado, tangente
-   al borde de la pestaña activa y al borde superior del panel, de modo que el
-   contorno de la superficie entra y sale del panel sin ningún ángulo recto.
-   Al ser del mismo gris, la unión no depende del color que quede detrás. */
+/* Cuartos de círculo transparentes: la superficie rodea el arco cóncavo
+   sin taparlo con el color de la página, también en modo oscuro. */
 .blog__highlight::before,
 .blog__highlight::after {
   position: absolute;
-  bottom: 0;
+  bottom: var(--blog-radius);
   width: var(--blog-radius);
   height: var(--blog-radius);
-  background: var(--fill);
   content: '';
 }
 .blog__highlight::before {
   left: calc(-1 * var(--blog-radius));
-  border-top-left-radius: var(--blog-radius);
+  background: radial-gradient(circle at top left, transparent calc(var(--blog-radius) - .5px), var(--fill) var(--blog-radius));
 }
 .blog__highlight::after {
   right: calc(-1 * var(--blog-radius));
-  border-top-right-radius: var(--blog-radius);
+  background: radial-gradient(circle at top right, transparent calc(var(--blog-radius) - .5px), var(--fill) var(--blog-radius));
 }
+
+/* Mejora progresiva: un solo trazado para todas las esquinas y la pestaña.
+   El resaltado conserva su transform como referencia del movimiento. */
+.blog__shape {
+  position: absolute;
+  inset: 0 auto auto 0;
+  z-index: -1;
+  width: 100%;
+  fill: var(--fill);
+  overflow: visible;
+  pointer-events: none;
+}
+.blog--continuous .blog__tabs-wrap { clip-path: none; }
+.blog--continuous .blog__highlight { visibility: hidden; }
+.blog--continuous .blog__panel { background: transparent; }
 
 /* Superficie única: los tres temas comparten la misma caja gris y el mismo
    relleno; lo que cambia entre paneles es solo la lista de notas. Los tres se

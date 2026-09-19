@@ -1,4 +1,7 @@
 import { gsap } from '@lib/core/gsap';
+import { initBlogSurface } from './surface';
+
+const surfaces = new WeakMap<HTMLElement, (percent: number) => void>();
 
 const ROOT_SELECTOR = '[data-blog]';
 const TAB_SELECTOR = '[data-blog-tab]';
@@ -7,12 +10,12 @@ const PANEL_SELECTOR = '[data-blog-panel]';
 const ENTRY_SELECTOR = '[data-blog-entry]';
 const HIGHLIGHT_SELECTOR = '[data-blog-highlight]';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
-const HIGHLIGHT_DURATION = 0.4;
-const ENTRY_FADE_DURATION = 0.45;
+const HIGHLIGHT_DURATION = 0.38;
+const ENTRY_FADE_DURATION = 0.3;
 /** Escalón entre entradas: cada una empieza después de la anterior, en orden de lectura. */
-const ENTRY_STAGGER = 0.06;
+const ENTRY_STAGGER = 0.04;
 /** Punto de partida del fade ascendente: desplazada hacia abajo. */
-const ENTRY_FROM = { opacity: 0, y: 16 };
+const ENTRY_FROM = { opacity: 0, y: 10 };
 /** Estado final, el mismo que se fija sin animación con movimiento reducido. */
 const ENTRY_TO = { opacity: 1, y: 0 };
 /** Desplazamiento circular de la selección por tecla de flecha. */
@@ -58,14 +61,25 @@ function paintSelection(root: HTMLElement, tabs: HTMLButtonElement[], activeTab:
 }
 
 function moveHighlight(highlight: HTMLElement, tab: HTMLButtonElement, animate: boolean): void {
-  const target = { left: tab.offsetLeft, width: tab.offsetWidth };
+  // Las columnas tienen el mismo ancho: el porcentaje sigue alineado al redimensionar.
+  const index = Array.from(tab.parentElement!.children).indexOf(tab);
+  const target = { xPercent: index * 100 };
+  const draw = surfaces.get(highlight);
   if (!animate || prefersReducedMotion()) {
+    gsap.killTweensOf(highlight);
     gsap.set(highlight, target);
+    draw?.(target.xPercent);
     return;
   }
   // Stryker: sobrevivientes equivalentes — `ease` y `overwrite` son ajuste visual: el estado
-  // final del resaltado (left/width) es idéntico con cualquiera de los dos valores.
-  gsap.to(highlight, { ...target, duration: HIGHLIGHT_DURATION, ease: 'power2.out', overwrite: true });
+  // final del resaltado (transform) es idéntico con cualquiera de los dos valores.
+  gsap.to(highlight, {
+    ...target,
+    duration: HIGHLIGHT_DURATION,
+    ease: 'power2.out',
+    overwrite: true,
+    onUpdate: draw ? () => draw(Number(gsap.getProperty(highlight, 'xPercent'))) : undefined
+  });
 }
 
 /**
@@ -82,6 +96,7 @@ function revealEntries(panel: HTMLElement | null): void {
   // con la lista vacía dejaría a GSAP sin objetivos que tocar.
   if (entries.length === 0) return;
 
+  gsap.killTweensOf(entries);
   if (prefersReducedMotion()) {
     gsap.set(entries, ENTRY_TO);
     return;
@@ -98,11 +113,23 @@ function revealEntries(panel: HTMLElement | null): void {
   });
 }
 
+/**
+ * Una pestaña ya seleccionada solo recupera el foco: repetir el clic o la flecha sobre ella no
+ * reinicia el trazado ni vuelve a hacer entrar sus notas.
+ */
+function keepSelection(tab: HTMLButtonElement, focus: boolean): boolean {
+  if (tab.getAttribute('aria-selected') !== 'true') return false;
+  if (focus) tab.focus();
+  return true;
+}
+
 function activateTab(root: HTMLElement, tab: HTMLButtonElement, options: { animate: boolean; focus: boolean }): void {
   const tabs = getTabs(root);
   // Stryker: sobreviviente equivalente — `activateTab` solo recibe pestañas salidas de `getTabs`.
-  if (!tabs.includes(tab)) return;
+  if (!tabs.includes(tab) || keepSelection(tab, options.focus)) return;
 
+  // Detener también las entradas salientes cuando se cambia rápidamente de tema.
+  gsap.killTweensOf(root.querySelectorAll(ENTRY_SELECTOR));
   paintSelection(root, tabs, tab);
   // Las entradas del panel recién visible entran con el fade; las de los paneles ocultos, no.
   revealEntries(getPanel(root, tab));
@@ -142,7 +169,19 @@ function handleClick(root: HTMLElement, event: MouseEvent): void {
   if (tab) activateTab(root, tab, { animate: true, focus: false });
 }
 
+/**
+ * Monta el trazado continuo de la superficie y deja su función de dibujo a nombre del resaltado,
+ * que es quien lleva el recorrido. Sin trazado el archivo se queda con la silueta en CSS.
+ */
+function prepareSurface(root: HTMLElement): HTMLElement | null {
+  const highlight = root.querySelector<HTMLElement>(HIGHLIGHT_SELECTOR);
+  const draw = initBlogSurface(root);
+  if (highlight && draw) surfaces.set(highlight, draw);
+  return highlight;
+}
+
 function initRoot(root: HTMLElement): void {
+  const highlight = prepareSurface(root);
   const tabs = getTabs(root);
   // Stryker: sobrevivientes equivalentes — el marcado servido ya trae la primera pestaña con
   // `aria-selected="true"`, así que cualquier variante de esta búsqueda acaba en `tabs[0]`.
@@ -153,7 +192,6 @@ function initRoot(root: HTMLElement): void {
   // incompleto que `BlogSection` nunca emite.
   if (initial) {
     paintSelection(root, tabs, initial);
-    const highlight = root.querySelector<HTMLElement>(HIGHLIGHT_SELECTOR);
     if (highlight) moveHighlight(highlight, initial, false);
   }
 
