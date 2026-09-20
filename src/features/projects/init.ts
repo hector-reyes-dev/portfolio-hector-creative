@@ -14,8 +14,16 @@ function setMotionPolicy(root: HTMLElement): void {
   root.style.setProperty('--showcase-duration', reduced ? '0ms' : '420ms');
 }
 
+/**
+ * Rearma la entrada en cada activación: las capas que entran vuelven a su pose de entrada
+ * (`data-project-transitioning="enter"`, sin transición) y en el mismo fotograma se sueltan a su
+ * pose de reposo (`"true"`), que sí transiciona. Una transición y no un `@keyframes`: al encadenar
+ * selecciones el navegador interpola hacia la pose nueva desde el valor vigente, sin una línea de
+ * tiempo fija que haya que reiniciar a mano.
+ */
 function restartTransition(root: HTMLElement): void {
   root.removeAttribute('data-project-transitioning');
+  root.dataset.projectTransitioning = 'enter';
   void root.offsetWidth;
   root.dataset.projectTransitioning = 'true';
 }

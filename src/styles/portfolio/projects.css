@@ -17,6 +17,36 @@
   padding-inline: clamp(4px, 1.5vw, 12px);
 }
 
+/*
+ * El bloque de texto mide el contenido real: la capa de medida apila la composición completa de
+ * cada proyecto (etiquetas, título y descripción con el mismo espaciado) en una sola celda, y la
+ * capa viva comparte esa celda, alineada arriba. Así el alto sale de una medida del contenido —la
+ * variante más alta al ancho vigente, nunca la suma de máximos por línea— y el hueco de las
+ * variantes más largas queda al final del bloque: el marco de imagen y los selectores no se mueven
+ * y las líneas vivas se separan sólo por el espaciado del bloque.
+ */
+.project-showcase__copy > *,
+.project-showcase__measure > * {
+  grid-area: 1 / 1;
+}
+
+/* Cada variante de la capa de medida y la capa viva son la misma composición: el ritmo del bloque
+   de texto (`gap`) y la alineación arriba, para que midan lo mismo. */
+.project-showcase__copy-block {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+}
+
+/* Conserva su caja (mide) pero no se pinta, no se anuncia y no recibe punteros. */
+.project-showcase__measure {
+  display: grid;
+  align-content: start;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
 .project-showcase__eyebrow {
   color: var(--accent-ink);
   font-family: var(--font-display);
@@ -55,20 +85,28 @@
   object-fit: cover;
 }
 
-@keyframes project-showcase-fade {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/*
+ * Entrada del intercambio. Al activar un proyecto, la capa viva y el marco de imagen vuelven a su
+ * pose de entrada —`data-project-transitioning="enter"`, sin transición, así que el salto no llega
+ * a pintarse: ocurre en el mismo fotograma— y se sueltan a su pose de reposo, que sí transiciona.
+ * Transición y no `@keyframes`: al encadenar selecciones el navegador interpola hacia la pose nueva
+ * desde el valor vigente, sin una línea de tiempo fija que reiniciar. Sólo opacidad y
+ * transformación —alto, márgenes o relleno recalcularían el layout y moverían lo que va debajo—,
+ * con la curva de salida y la duración que el componente ya publica para el intercambio: el
+ * contenido se vuelve legible en el primer tercio y el desplazamiento termina de asentarse después.
+ */
+.project-showcase__live,
+.project-showcase__media {
+  transition:
+    opacity var(--showcase-duration) var(--ease-out),
+    transform var(--showcase-duration) var(--ease-out);
 }
 
-.project-showcase[data-project-transitioning="true"] .project-showcase__copy,
-.project-showcase[data-project-transitioning="true"] .project-showcase__media img {
-  animation: project-showcase-fade var(--showcase-duration) var(--ease-out);
+.project-showcase[data-project-transitioning="enter"] .project-showcase__live,
+.project-showcase[data-project-transitioning="enter"] .project-showcase__media {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: none;
 }
 
 .project-showcase__selectors {
@@ -79,7 +117,7 @@
 
 .project-showcase__selector {
   min-width: 0;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border: 0;
   border-radius: var(--r-sm);
@@ -119,6 +157,13 @@
 .project-showcase[data-reduced-motion="true"] *::after {
   animation-duration: 0ms !important;
   transition-duration: 0ms !important;
+}
+
+/* Con movimiento reducido se omite el único desplazamiento no esencial (el realce del selector al
+   pasar el foco o al enfocarlo); el cambio de opacidad sigue comunicando el estado. */
+.project-showcase[data-reduced-motion="true"] .project-showcase__selector:hover,
+.project-showcase[data-reduced-motion="true"] .project-showcase__selector:focus-visible {
+  transform: none;
 }
 
 @media (max-width: 900px) {

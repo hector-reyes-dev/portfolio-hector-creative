@@ -8,6 +8,7 @@ interface Props {
 const { projects } = Astro.props;
 const showcase = projects.filter(Boolean);
 const initial = showcase[0];
+const tagLine = (project: Project): string => project.tags.join(' · ');
 ---
 
 {initial && (
@@ -24,9 +25,30 @@ const initial = showcase[0];
       aria-atomic="true"
     >
       <div class="project-showcase__copy">
-        <p class="project-showcase__eyebrow" data-project-tags>{initial.tags.join(' · ')}</p>
-        <h3 class="project-showcase__title" data-project-title>{initial.full}</h3>
-        <p class="project-showcase__description" data-project-description>{initial.desc}</p>
+        {/*
+          El bloque de texto mide el contenido real y no un número de líneas adivinado. La capa de
+          medida (`project-showcase__measure`, invisible y fuera del árbol accesible) apila la
+          composición completa de cada proyecto —etiquetas, título y descripción con el mismo
+          espaciado— en una sola celda, y la capa viva comparte esa celda alineada arriba. Así el
+          bloque mide la variante más alta al ancho vigente en lugar de la suma de máximos: el
+          marco de imagen y los selectores no se mueven al cambiar de proyecto, y el hueco que
+          dejan las variantes más largas se acumula al final del bloque en vez de intercalarse
+          entre las líneas del proyecto seleccionado. Nada se recorta ni se elipsa.
+        */}
+        <div class="project-showcase__measure" aria-hidden="true">
+          {showcase.map((project) => (
+            <div class="project-showcase__copy-block">
+              <p class="project-showcase__eyebrow">{tagLine(project)}</p>
+              <h3 class="project-showcase__title">{project.full}</h3>
+              <p class="project-showcase__description">{project.desc}</p>
+            </div>
+          ))}
+        </div>
+        <div class="project-showcase__copy-block project-showcase__live">
+          <p class="project-showcase__eyebrow" data-project-tags>{tagLine(initial)}</p>
+          <h3 class="project-showcase__title" data-project-title>{initial.full}</h3>
+          <p class="project-showcase__description" data-project-description>{initial.desc}</p>
+        </div>
       </div>
       <div class={`project-showcase__media card__media--${initial.slug}`} data-project-media>
         <img
