@@ -1,25 +1,22 @@
 ---
 import SectionHeader from '@molecules/SectionHeader.astro';
-import ProjectCard from '@molecules/ProjectCard.astro';
+import ProjectShowcase from '@molecules/ProjectShowcase.astro';
 import type { Project } from '../../types/site';
 
 interface Props {
-  cases: Project[];
+  projects: Project[];
 }
 
-const { cases } = Astro.props;
+const { projects } = Astro.props;
+const showcase = projects.slice(0, 6);
 ---
 
 <section class="section" id="trabajo">
   <div class="container">
     <SectionHeader
       title="Casos documentados"
-      lead="Tres casos con las mismas seis preguntas: problema, restricciones, descartes, decisión, resultado y qué haría distinto. La curaduría también es parte del trabajo."
+      lead="Seis proyectos reales, de aplicaciones a sitios completos. Los documentados abren su caso; el resto enlaza a su ficha."
     />
-    <div class="card-grid card-grid--trabajo">
-      {cases.map((project) => (
-        <ProjectCard project={project} class="card--case" />
-      ))}
-    </div>
+    <ProjectShowcase projects={showcase} />
   </div>
 </section>
