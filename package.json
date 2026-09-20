@@ -14,7 +14,7 @@
     "check": "astro check",
     "test": "vitest run",
     "test:mutation": "stryker run",
-    "test:complexity": "eslintcc \"src/**/*.ts\" \"src/**/*.js\" --rules complexity --max-rank A",
+    "report:complexity": "eslintcc \"src/**/*.ts\" \"src/**/*.js\" --rules complexity --max-rank A",
     "check:boundaries": "depcruise src --config .dependency-cruiser.cjs"
   },
   "dependencies": {

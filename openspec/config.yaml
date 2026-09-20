@@ -5,13 +5,16 @@ context: |
   Atomic Modular Stack: UI en src/components; estado/persistencia en src/features;
   fetching, inicializadores y utilidades en src/lib. Alias @atoms, @molecules,
   @organisms, @features, @layouts, @lib. Arquitectura en .omp/AGENTS.md.
-  Harness OMP. Roles/permisos en .omp/config.yml; instrucciones en .omp/AGENTS.md.
-  Luna coordina; Astra propone en un worktree; revisión humana; Flash o Sonnet
-  aplica en el mismo worktree; comprobaciones; archive/sync.
-  Propose solo escribe artefactos. Cambios triviales no requieren OpenSpec.
-  test_command: pnpm check && pnpm build
-  test_command es una convención dentro de context, no un campo nativo ejecutado por
-  OpenSpec. agent:verify lo ejecuta mediante pnpm agent:test.
+  Harness: Pi (sesión única, sin worktrees ni coordinación multi-agente Orca).
+  Propose solo escribe artefactos de planeación, nunca código de producción.
+  Tras la revisión humana de los artefactos, apply implementa las tareas de
+  tasks.md una por una en la misma sesión; puede delegar la implementación de
+  una historia al pipeline gherkin→tdd→harden (subagentes globales de Pi) si
+  el humano lo pide, pero no es obligatorio. Cambios triviales no requieren
+  OpenSpec.
+  test_command: pnpm agent:test (equivale a pnpm check && pnpm build).
+  test_command es una convención dentro de context, no un campo nativo ejecutado
+  por OpenSpec — quien aplique debe correrlo manualmente al cerrar tasks.md.
   No existe suite unitaria/e2e: check analiza Astro/TypeScript; build compila.
   Cambios visuales/interactivos requieren evidencia adicional de accesibilidad,
   responsive y comportamiento en navegador.
@@ -26,4 +29,4 @@ rules:
     - En este pipeline spec-driven siempre producir design.md, aunque sea breve.
   tasks:
     - Incluir implementación y validación concreta; no marcar done sin ejecución.
-    - Cerrar con pnpm agent:verify <nombre> y la revisión funcional pertinente.
+    - Cerrar con pnpm agent:test y la revisión funcional pertinente.

@@ -64,7 +64,7 @@ Todo entre D y H ocurre **en un solo turno** del coordinador, vía subagentes in
 |---|---|---|---|
 | Gherkin | `.omp/agents/gherkin.md` | Escribe `*.test.ts` con escenarios Gherkin (comentario estructurado) e `it.skip` por escenario. | No toca código de producción. |
 | TDD | `.omp/agents/tdd.md` | Convierte cada `it.skip` en `it` real e implementa hasta que pase. Sin rojo confirmado obligatorio por línea — el criterio es de resultado, no de proceso. | No refactoriza más allá de lo necesario, no corre mutation testing. |
-| Harden | `.omp/agents/harden.md` | Mutation testing acotado a lo tocado, complejidad ciclomática, frontera de dependencias, `check && build`. | No cambia comportamiento observable. |
+| Harden | `.omp/agents/harden.md` | Mutation testing acotado a lo tocado, frontera de dependencias, `check && build`. | No cambia comportamiento observable. |
 | Scout | embebido (solo lectura) | Resume archivos tocados e imports nuevos entre capas atómicas. | No persiste a archivo — texto en el mismo turno. |
 
 ## 4. Gates de `harden`, en orden
@@ -73,9 +73,13 @@ Todo entre D y H ocurre **en un solo turno** del coordinador, vía subagentes in
 2. Escribe esa lista en `mutate` de `stryker.config.json` (estado efímero de este worktree).
 3. `pnpm test:mutation` — Stryker.
 4. Por sobreviviente: test que lo mata, o `// Stryker: sobreviviente equivalente — <razón>`. **Sin gate numérico** — el mutation score es informativo.
-5. `pnpm test:complexity` (`eslintcc`, rank `A` = complejidad ≤ 5 por función; sube a rank `B` = ≤ 10 si `A` es demasiado agresivo) — este sí falla la etapa si una función lo excede.
-6. `pnpm check:boundaries` (`dependency-cruiser`) — `src/components/**` no puede importar `src/features/**`. Gate determinista.
-7. `pnpm check && pnpm build` — si falla, la historia no se cierra.
+5. `pnpm check:boundaries` (`dependency-cruiser`) — `src/components/**` no puede importar `src/features/**`. Gate determinista.
+6. `pnpm check && pnpm build` — si falla, la historia no se cierra.
+
+La complejidad ciclomática **no es un gate de este proyecto** ni un paso obligatorio de `harden`.
+`pnpm report:complexity` queda como diagnóstico manual opcional: conserva el umbral A y su
+exit code no cero cuando lo excede, pero no bloquea el ciclo ni exige refactorizar deuda ajena.
+La métrica orienta revisiones de mantenibilidad; no demuestra corrección funcional.
 
 Runtime esperado de Stryker: minutos (mutate acotado). Si el timeout de bash lo corta, correr con `timeout: 0`, no recortar el alcance. Un timeout de Stryker es fallo de `harden`, no "sobreviviente no detectado".
 
@@ -121,15 +125,15 @@ No hay archivo de recibo (`verification.json`): la salida de las herramientas en
 
 ## 8. Fuera de alcance (a propósito)
 
-- No hay `ready`/`approve`/`verify` como en OpenSpec: el gate es que `pnpm test`, `pnpm test:mutation`, `pnpm test:complexity`, `pnpm check:boundaries` y `pnpm check && pnpm build` corran en verde en el mismo turno.
+- No hay `ready`/`approve`/`verify` como en OpenSpec: el gate es que `pnpm test`, `pnpm test:mutation`, `pnpm check:boundaries` y `pnpm check && pnpm build` corran en verde en el mismo turno.
 - Nadie automatiza "¿esta historia amerita OpenSpec?" — esa decisión es tuya.
-- No se calcula ni optimiza un score CRAP combinado (cobertura × complejidad en una fórmula). Mutation score y complejidad ciclomática quedan como dos ejes independientes.
+- No se calcula ni optimiza un score CRAP combinado (cobertura × complejidad en una fórmula). El mutation score es informativo y la complejidad ciclomática es un diagnóstico manual opcional.
 
 ## Comandos sueltos, por si los necesitas fuera del ciclo
 
 ```bash
 pnpm test              # vitest run
 pnpm test:mutation     # stryker run (usa el `mutate` vigente en stryker.config.json)
-pnpm test:complexity   # eslintcc "src/**/*.ts" "src/**/*.js" --rules complexity --max-rank A
+pnpm report:complexity # diagnóstico opcional; puede salir con código 1, no es gate
 pnpm check:boundaries  # depcruise src --config .dependency-cruiser.cjs
 ```

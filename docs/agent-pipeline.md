@@ -14,4 +14,4 @@ Contrato general del pipeline, arquitectura del repo y reglas de agentes: `.omp/
 
 ## 2. Por qué el ciclo ágil TDD es el default
 
-El pipeline OpenSpec de 4 artefactos resuelve bien cambios con riesgo real, pero genera documento de más para historias chicas. El ciclo ágil TDD (Gherkin → TDD asistido → endurecimiento → inspección arquitectónica humana) cubre ese tamaño de tarea con menos fricción y sin sacrificar los gates que importan: tests en verde, mutation testing, complejidad ciclomática y fronteras de dependencias.
+El pipeline OpenSpec de 4 artefactos resuelve bien cambios con riesgo real, pero genera documento de más para historias chicas. El ciclo ágil TDD (Gherkin → TDD asistido → endurecimiento → inspección arquitectónica humana) cubre ese tamaño de tarea con menos fricción y sin sacrificar los gates que importan: tests en verde, mutation testing, fronteras de dependencias y check/build. La complejidad ciclomática queda como diagnóstico manual opcional (`pnpm report:complexity`), no como gate bloqueante.
