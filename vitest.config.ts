@@ -1,7 +1,10 @@
+/// <reference types="vitest/config" />
 import { fileURLToPath } from 'node:url';
-import { defineConfig } from 'vitest/config';
+import { getViteConfig } from 'astro/config';
 
-export default defineConfig({
+// `getViteConfig` (en lugar de `defineConfig` de Vitest) añade el plugin de Vite que compila
+// los `.astro`, necesario para los tests que rinden componentes reales con `astro/container`.
+export default getViteConfig({
   resolve: {
     alias: {
       '@atoms': fileURLToPath(new URL('./src/components/atoms', import.meta.url)),
