@@ -71,6 +71,8 @@ button {
   width: min(var(--col), calc(100% - 2 * var(--gutter)));
   margin-inline: auto;
 }
+/* Contenedor ancho: piezas que necesitan más superficie que la columna de lectura. */
+.container--wide { width: min(69rem, calc(100% - 2 * var(--gutter))); }
 
 .section { padding-block: clamp(64px, 9vw, 116px); }
 .section + .section { scroll-margin-top: 24px; }
