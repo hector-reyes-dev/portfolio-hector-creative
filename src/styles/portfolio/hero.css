@@ -74,6 +74,90 @@
 }
 .hero__cta { margin-top: clamp(24px, 4vh, 36px); }
 
+/* ── Hover letra→tile del nombre (controller: hero-name-hover.ts) ──
+   Contrato de imágenes futuras (read-only): cada tile podrá sustituirse por
+   una imagen real en `public/assets/hero-name/NN-V.webp` (URL servida
+   `/assets/hero-name/NN-V.webp`, NN = slot 00–10, V = variante 0|1) cambiando
+   SOLO las 22 reglas visuales de la matriz de abajo: `background-image:`,
+   `background-size: cover`, `background-position: center`, conservando el
+   tile absoluto recortado y `--tile-surface` como fallback. Markup, sorteo
+   aleatorio, timers (delay de restauración de 180 ms) y listeners viven en el
+   JS y no cambian. Los tiles son decorativos: `aria-hidden`, sin foco ni
+   `:hover`; solo `--accent`, `--accent-soft`, `--fill`, `--ink` y `--bg-soft`. */
+.hero__name-letter {
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+  transition: color .15s var(--ease-out);
+}
+/* Estado activo: la letra conserva caja y texto accesible; su tinta se va a
+   transparente mientras el tile seleccionado cruza su opacidad (feedback). */
+.hero__name-letter[data-active] { color: transparent; }
+
+.hero__name-tile {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  background: var(--tile-surface, transparent);
+  opacity: 0;
+  transition: opacity .15s var(--ease-out);
+  pointer-events: none;
+  user-select: none;
+}
+.hero__name-letter[data-active][data-active-variant="0"] > .hero__name-tile[data-variant="0"],
+.hero__name-letter[data-active][data-active-variant="1"] > .hero__name-tile[data-variant="1"] {
+  opacity: 1;
+}
+
+/* Marca geométrica sin contenido textual: variante 0 centrada redondeada,
+   variante 1 franja diagonal recortada por la caja local (overflow + inset). */
+.hero__name-tile::after {
+  content: "";
+  position: absolute;
+  background: var(--tile-mark, transparent);
+}
+.hero__name-tile[data-variant="0"]::after {
+  top: 50%;
+  left: 50%;
+  width: .3em;
+  height: .3em;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.hero__name-tile[data-variant="1"]::after {
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: .18em;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* Matriz de 22 combinaciones (11 slots × 2 variantes): superficie/marca según
+   design.md, exclusivamente con tokens de rol ya definidos en tokens.css. */
+[data-slot="00"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--accent-soft); --tile-mark: var(--accent); }
+[data-slot="00"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--fill); --tile-mark: var(--ink); }
+[data-slot="01"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--fill); --tile-mark: var(--accent); }
+[data-slot="01"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--accent-soft); --tile-mark: var(--ink); }
+[data-slot="02"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--bg-soft); --tile-mark: var(--accent); }
+[data-slot="02"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--fill); --tile-mark: var(--accent); }
+[data-slot="03"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--accent-soft); --tile-mark: var(--ink); }
+[data-slot="03"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--bg-soft); --tile-mark: var(--accent); }
+[data-slot="04"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--fill); --tile-mark: var(--ink); }
+[data-slot="04"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--accent-soft); --tile-mark: var(--accent); }
+[data-slot="05"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--bg-soft); --tile-mark: var(--ink); }
+[data-slot="05"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--fill); --tile-mark: var(--accent); }
+[data-slot="06"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--accent-soft); --tile-mark: var(--accent); }
+[data-slot="06"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--bg-soft); --tile-mark: var(--ink); }
+[data-slot="07"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--fill); --tile-mark: var(--accent); }
+[data-slot="07"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--accent-soft); --tile-mark: var(--ink); }
+[data-slot="08"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--bg-soft); --tile-mark: var(--accent); }
+[data-slot="08"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--fill); --tile-mark: var(--ink); }
+[data-slot="09"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--accent-soft); --tile-mark: var(--ink); }
+[data-slot="09"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--bg-soft); --tile-mark: var(--accent); }
+[data-slot="10"] > .hero__name-tile[data-variant="0"] { --tile-surface: var(--fill); --tile-mark: var(--ink); }
+[data-slot="10"] > .hero__name-tile[data-variant="1"] { --tile-surface: var(--accent-soft); --tile-mark: var(--accent); }
+
 @media (max-width: 767px) {
   .hero { padding-top: calc(24px + env(safe-area-inset-top, 0px)); }
   .hero-portrait { --portrait-size: 90px; }
@@ -87,4 +171,17 @@
 
 @media (max-width: 430px) {
   .hero__name { letter-spacing: -0.03em; }
+}
+
+/* Salvaguardas CSS del hover del nombre: respaldo si la media query cambia
+   antes del cleanup del JS. Bajo touch/puntero grueso o movimiento reducido,
+   las capas quedan invisibles y el texto vuelve al color heredado sin
+   transición. Nunca se activa con `:hover` (un tap híbrido no pega tiles). */
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hero__name-tile { display: none; }
+  .hero__name-letter,
+  .hero__name-letter[data-active] {
+    color: inherit;
+    transition: none;
+  }
 }

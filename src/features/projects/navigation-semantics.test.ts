@@ -206,7 +206,11 @@ function normalize(value: string | undefined): string | undefined {
 }
 
 function compact(html: string): string {
-  return html.replace(/>\s+</g, '><').replace(/\s+/g, ' ').replace(/=""/g, '');
+  // Solo se colapsa el whitespace de formato (contiene salto de línea). Los nodos de
+  // texto de un solo espacio entre etiquetas inline son semánticos —p. ej. el espacio
+  // real entre las palabras del `h1.hero__name`— y deben sobrevivir a la compactación
+  // para que la extracción de texto verifique el nombre exacto «Héctor Reyes».
+  return html.replace(/>\s*\n\s*</g, '><').replace(/\s+/g, ' ').replace(/=""/g, '');
 }
 
 function occurrences(html: string, fragment: string): number {
@@ -584,6 +588,24 @@ describe('Navegación y semántica de la landing', () => {
     // Then encuentra exactamente un h1
     expect(outline.filter((heading) => heading.level === 1)).toHaveLength(1);
     expect(outline[0]).toMatchObject({ level: 1, text: 'Héctor Reyes' });
+
+    // And el nombre accesible del h1 es explícito y exacto: observado en navegador real,
+    // los navegadores calculan el nombre de un encabezado de spans inline-block letra a
+    // letra («H é c t o r R e y e s») aunque el texto visible sea exacto. El `aria-label`
+    // servido —derivado de la misma lista de letras— restaura el nombre «Héctor Reyes»,
+    // coincide byte a byte con el texto visible (Label in Name, WCAG 2.5.3) y, sin
+    // `aria-labelledby` ni texto oculto, no duplica el nombre.
+    const h1 = elementAt(page, outline[0].start, 'h1').html;
+    expect(h1).toContain('aria-label="Héctor Reyes"');
+    expect(h1).not.toContain('aria-labelledby');
+    // El espacio real entre las palabras sobrevive como único nodo de texto: exactamente
+    // un espacio entre `</span>` y `<span`, sin spacing artificial.
+    expect(occurrences(h1, '</span> <span')).toBe(1);
+    // Las letras no son paradas de teclado ni controles, y ningún tile decorativo se sirve
+    // en el HTML inicial: se crean solo en hover fino permitido (Unidad B).
+    expect(h1).not.toContain('tabindex');
+    expect(h1).not.toContain('role=');
+    expect(h1).not.toContain('hero__name-tile');
 
     // And cada sección de primer nivel tiene su encabezado h2
     ['inicio', 'trabajo', 'blog', 'servicios', 'por-que', 'contacto', 'window'].forEach((id) => {

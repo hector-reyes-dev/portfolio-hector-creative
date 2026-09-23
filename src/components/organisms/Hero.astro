@@ -9,12 +9,44 @@ interface Props {
 }
 
 const { hero } = Astro.props;
+
+// Once letras fijas del nombre con slot estable de dos dígitos: la clave no es el
+// glifo, así las dos «e» se distinguen sin partir una cadena Unicode en bytes.
+const nameLetters = [
+  { slot: '00', glyph: 'H' },
+  { slot: '01', glyph: 'é' },
+  { slot: '02', glyph: 'c' },
+  { slot: '03', glyph: 't' },
+  { slot: '04', glyph: 'o' },
+  { slot: '05', glyph: 'r' },
+  { slot: '06', glyph: 'R' },
+  { slot: '07', glyph: 'e' },
+  { slot: '08', glyph: 'y' },
+  { slot: '09', glyph: 'e' },
+  { slot: '10', glyph: 's' },
+] as const;
+
+// Nombre accesible explícito del h1, derivado de la misma lista de letras. Observado en
+// navegador real: con spans inline-block por letra, el nombre accesible calculado era
+// «H é c t o r R e y e s» aunque `textContent` fuera exacto. El `aria-label` restaura el
+// nombre exacto y, al coincidir byte a byte con el texto visible, no lo duplica ni rompe
+// Label in Name (WCAG 2.5.3). Derivarlo de `nameLetters` evita que pueda divergir del DOM.
+const heroName = [
+  nameLetters.slice(0, 6).map(({ glyph }) => glyph).join(''),
+  nameLetters.slice(6).map(({ glyph }) => glyph).join('')
+].join(' ');
 ---
 
 <section class="hero" id="inicio">
   <div class="container">
     <HeroPortrait />
-    <h1 class="hero__name">Héctor Reyes</h1>
+    <h1 class="hero__name" data-hero-name aria-label={heroName}>
+      {nameLetters.slice(0, 6).map(({ slot, glyph }) => (
+        <span class="hero__name-letter" data-hero-name-letter data-slot={slot}>{glyph}</span>
+      ))}{' '}{nameLetters.slice(6).map(({ slot, glyph }) => (
+        <span class="hero__name-letter" data-hero-name-letter data-slot={slot}>{glyph}</span>
+      ))}
+    </h1>
     <h2 class="section-title hero__section-title">Acerca de mí</h2>
     <p class="hero__role">{hero.role}</p>
     <div class="hero__bio">
@@ -27,3 +59,9 @@ const { hero } = Astro.props;
     </Button>
   </div>
 </section>
+
+<script>
+  import { initHeroNameHover } from '@lib/core/hero-name-hover';
+
+  initHeroNameHover();
+</script>
