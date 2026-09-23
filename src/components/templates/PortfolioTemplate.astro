@@ -2,8 +2,8 @@
 import SkipLink from '@atoms/SkipLink.astro';
 import IconSprite from '@atoms/IconSprite.astro';
 import Scrim from '@atoms/Scrim.astro';
+import SectionHeader from '@molecules/SectionHeader.astro';
 import Hero from '@organisms/Hero.astro';
-import ExperienceSection from '@organisms/ExperienceSection.astro';
 import CasesSection from '@organisms/CasesSection.astro';
 import ProjectsSection from '@organisms/ProjectsSection.astro';
 import ServicesSection from '@organisms/ServicesSection.astro';
@@ -24,12 +24,18 @@ const cases = documentedProjects();
 
 <main>
   <Hero hero={siteContent.hero} />
-  <ExperienceSection experiences={siteContent.experiences} />
-  <CasesSection projects={siteContent.projects} />
-  <ProjectsSection cases={cases} />
-  <ServicesSection services={siteContent.services} />
-  <ExperimentsSection />
+
+  <section class="section section--group" id="trabajo">
+    <div class="container">
+      <SectionHeader title="Mi trabajo" />
+      <CasesSection projects={siteContent.projects} />
+      <ProjectsSection cases={cases} />
+      <ExperimentsSection />
+    </div>
+  </section>
+
   <BlogSection />
+  <ServicesSection services={siteContent.services} experiences={siteContent.experiences} />
   <ReasonsSection reasons={siteContent.reasons} testimonials={siteContent.testimonials} />
   <ContactSection contact={siteContent.contact} />
 </main>

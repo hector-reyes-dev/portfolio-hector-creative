@@ -291,40 +291,34 @@ const rawSiteContent = {
   navigation: [
     {
       id: 'inicio',
-      label: 'About',
+      label: 'Acerca de mí',
       icon: 'i-about',
       idlePath: 'M 12 11.6 Q 9.3 11.6 9.3 8.3 Q 9.3 5 12 5 Q 14.7 5 14.7 8.3 Q 14.7 11.6 12 11.6 Z M 5.5 19.5 Q 5.5 13.6 12 13.6 Q 18.5 13.6 18.5 19.5',
       activePath: 'M 12 12.6 Q 8.8 12.6 8.8 8.3 Q 8.8 4 12 4 Q 15.2 4 15.2 8.3 Q 15.2 12.6 12 12.6 Z M 4.5 20.5 Q 4.5 12.6 12 12.6 Q 19.5 12.6 19.5 20.5'
     },
     {
       id: 'trabajo',
-      label: 'Trabajo',
+      label: 'Mi trabajo',
       icon: 'i-trabajo',
       idlePath: 'M 3.5 9.8 Q 3.5 8 5.3 8 L 18.7 8 Q 20.5 8 20.5 9.8 L 20.5 16.7 Q 20.5 18.5 18.7 18.5 L 5.3 18.5 Q 3.5 18.5 3.5 16.7 Z M 9 8 L 9 6.2 Q 9 4.4 10.8 4.4 L 13.2 4.4 Q 15 4.4 15 6.2 L 15 8 M 3.5 13.2 L 20.5 13.2',
       activePath: 'M 3.5 11.8 Q 3.5 10 5.3 10 L 18.7 10 Q 20.5 10 20.5 11.8 L 20.5 16.7 Q 20.5 18.5 18.7 18.5 L 5.3 18.5 Q 3.5 18.5 3.5 16.7 Z M 9 10 L 9 4.8 Q 9 3 10.8 3 L 13.2 3 Q 15 3 15 4.8 L 15 10 M 12 13.2 L 12 13.2'
     },
     {
-      id: 'proyectos',
-      label: 'Proyectos',
+      id: 'blog',
+      label: 'Mis notas',
       icon: 'i-proyectos',
       idlePath: 'M 5.5 4 L 9 4 Q 10.5 4 10.5 5.5 L 10.5 9 Q 10.5 10.5 9 10.5 L 5.5 10.5 Q 4 10.5 4 9 L 4 5.5 Q 4 4 5.5 4 Z M 15 4 L 18.5 4 Q 20 4 20 5.5 L 20 9 Q 20 10.5 18.5 10.5 L 15 10.5 Q 13.5 10.5 13.5 9 L 13.5 5.5 Q 13.5 4 15 4 Z M 5.5 13.5 L 9 13.5 Q 10.5 13.5 10.5 15 L 10.5 18.5 Q 10.5 20 9 20 L 5.5 20 Q 4 20 4 18.5 L 4 15 Q 4 13.5 5.5 13.5 Z M 15 13.5 L 18.5 13.5 Q 20 13.5 20 15 L 20 18.5 Q 20 20 18.5 20 L 15 20 Q 13.5 20 13.5 18.5 L 13.5 15 Q 13.5 13.5 15 13.5 Z',
       activePath: 'M 4 6 L 20 6 Q 20 6 20 6 L 20 6 Q 20 6 20 6 L 4 6 Q 4 6 4 6 L 4 6 Q 4 6 4 6 Z M 4 10 L 20 10 Q 20 10 20 10 L 20 10 Q 20 10 20 10 L 4 10 Q 4 10 4 10 L 4 10 Q 4 10 4 10 Z M 4 14 L 20 14 Q 20 14 20 14 L 20 14 Q 20 14 20 14 L 4 14 Q 4 14 4 14 L 4 14 Q 4 14 4 14 Z M 4 18 L 20 18 Q 20 18 20 18 L 20 18 Q 20 18 20 18 L 4 18 Q 4 18 4 18 L 4 18 Q 4 18 4 18 Z'
     },
     {
       id: 'servicios',
-      label: 'Servicios',
+      label: 'Trabaja conmigo',
       icon: 'i-servicios',
       idlePath: 'M 11 5.5 L 12.45 9.55 L 16.5 11 L 12.45 12.45 L 11 16.5 L 9.55 12.45 L 5.5 11 L 9.55 9.55 Z M 18 4 L 18.7 5.9 L 20.6 6.6 L 18.7 7.3 L 18 9.2 L 17.3 7.3 L 15.4 6.6 L 17.3 5.9 Z',
       activePath: 'M 11 3.5 L 12.6 9.4 L 18.5 11 L 12.6 12.6 L 11 18.5 L 9.4 12.6 L 3.5 11 L 9.4 9.4 Z M 18.5 2.5 L 19.3 5.1 L 21.9 5.9 L 19.3 6.7 L 18.5 9.3 L 17.7 6.7 L 15.1 5.9 L 17.7 5.1 Z'
     },
     {
-      id: 'experimentos',
-      label: 'Experimentos',
-      icon: 'i-experimentos',
-      idlePath: 'M 9.5 3.5 L 14.5 3.5 M 7.6 15 L 16.4 15 M 10.3 3.5 L 10.3 8.8 L 6.4 16.9 Q 5.6 18.5 7.3 19 L 8.8 19.4 Q 12 20.4 15.2 19.4 L 16.7 19 Q 18.4 18.5 17.6 16.9 L 13.7 8.8 L 13.7 3.5',
-      activePath: 'M 8.8 3.5 L 15.2 3.5 M 6.5 10.9 L 17.5 10.9 M 10.3 3.5 L 10.3 8.8 L 6.4 16.9 Q 5.6 18.5 7.3 19 L 8.8 19.4 Q 12 20.4 15.2 19.4 L 16.7 19 Q 18.4 18.5 17.6 16.9 L 13.7 8.8 L 13.7 3.5'
-    },
-    {
+      // Contacto cierra la navegación porque cierra la página: es el último destino del documento.
       id: 'contacto',
       label: 'Contacto',
       icon: 'i-bubble',

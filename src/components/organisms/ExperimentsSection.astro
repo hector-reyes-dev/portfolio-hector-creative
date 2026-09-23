@@ -1,46 +1,40 @@
 ---
-import SectionHeader from '@molecules/SectionHeader.astro';
 import DemoFrame from '@molecules/DemoFrame.astro';
 import Button from '@atoms/Button.astro';
 
 const marqueeRepeats = [0, 1, 2, 3];
 ---
 
-<section class="section" id="experimentos">
-  <div class="container">
-    <SectionHeader
-      title="Cosas pequeñas, hechas bien"
-      lead="Piezas breves para probar una idea: movimiento, tipografía y detalle de interacción. Sin librerías."
-    />
-    <div class="demo-grid">
-      <DemoFrame label="Hover magnético" caption="Un botón que se inclina hacia el cursor. Transform y transition, sin librerías.">
-        <Button variant="pill" class="magnet" data-magnet>Hover magnético</Button>
-      </DemoFrame>
+<div class="subsection" id="experimentos" aria-labelledby="experimentos-titulo">
+  <h3 id="experimentos-titulo" class="sr-only">Cosas pequeñas hechas bien</h3>
+  <div class="demo-grid">
+    <DemoFrame label="Hover magnético" caption="Un botón que se inclina hacia el cursor. Transform y transition, sin librerías.">
+      <Button variant="pill" class="magnet" data-magnet>Hover magnético</Button>
+    </DemoFrame>
 
-      <DemoFrame label="Toggle con muelle" caption="Un solo cubic-bezier con rebote hace todo el trabajo.">
-        <div class="switch-wrap">
-          <button class="switch" type="button" role="switch" aria-checked="false" aria-label="Interruptor de ejemplo">
-            <span class="switch__knob"></span>
-          </button>
-        </div>
-      </DemoFrame>
+    <DemoFrame label="Toggle con muelle" caption="Un solo cubic-bezier con rebote hace todo el trabajo.">
+      <div class="switch-wrap">
+        <button class="switch" type="button" role="switch" aria-checked="false" aria-label="Interruptor de ejemplo">
+          <span class="switch__knob"></span>
+        </button>
+      </div>
+    </DemoFrame>
 
-      <DemoFrame label="Marquesina tipográfica" caption="Eudoxus Sans y la serif del cuerpo en movimiento: la misma frase, dos voces." edge>
-        <p class="sr-only">Héctor Reyes — Ingeniero de Producto</p>
-        <div class="marquee" aria-hidden="true">
-          <div class="marquee__track">
-            {marqueeRepeats.map(() => (
-              <span>Héctor Reyes <b>·</b> Ingeniero de Producto <b>·</b></span>
-            ))}
-          </div>
+    <DemoFrame label="Marquesina tipográfica" caption="Eudoxus Sans y la serif del cuerpo en movimiento: la misma frase, dos voces." edge>
+      <p class="sr-only">Héctor Reyes — Ingeniero de Producto</p>
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          {marqueeRepeats.map(() => (
+            <span>Héctor Reyes <b>·</b> Ingeniero de Producto <b>·</b></span>
+          ))}
         </div>
-      </DemoFrame>
+      </div>
+    </DemoFrame>
 
-      <DemoFrame label="Foco de acento" caption="Un foco de color que sigue al cursor. Variables CSS y pointer events.">
-        <div class="spot" data-spot>
-          <span class="spot__label">Mueve el cursor</span>
-        </div>
-      </DemoFrame>
-    </div>
+    <DemoFrame label="Foco de acento" caption="Un foco de color que sigue al cursor. Variables CSS y pointer events.">
+      <div class="spot" data-spot>
+        <span class="spot__label">Mueve el cursor</span>
+      </div>
+    </DemoFrame>
   </div>
-</section>
+</div>

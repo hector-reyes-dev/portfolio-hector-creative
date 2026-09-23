@@ -71,16 +71,20 @@ button {
   width: min(var(--col), calc(100% - 2 * var(--gutter)));
   margin-inline: auto;
 }
-/* Contenedor ancho: piezas que necesitan más superficie que la columna de lectura. */
+/* Contenedor ancho: superficies que necesitan más anchura que la columna de lectura. Su uso es
+   deliberado y acotado —la ventana de caso, que muestra imagen y rejilla de preguntas—, así que
+   ninguna columna de lectura del portafolio lo usa: Mi trabajo y las secciones contiguas siguen
+   con `.container`, y la anchura amplia se acota aquí al viewport menos los gutters. */
 .container--wide { width: min(69rem, calc(100% - 2 * var(--gutter))); }
-
-.section { padding-block: clamp(64px, 9vw, 116px); }
+.section { padding-block: var(--section-space); }
 .section + .section { scroll-margin-top: 24px; }
-section[id] { scroll-margin-top: 24px; }
+section[id], .subsection[id] { scroll-margin-top: 24px; }
 
-.section-head { max-width: none; margin-bottom: clamp(28px, 4vw, 48px); display: grid; gap: 10px; }
+.section-head { max-width: none; margin-bottom: var(--section-head-space); display: grid; gap: 10px; }
+.section-head--subsection { margin-bottom: var(--subsection-head-space); }
 
 .section-title { font-size: 28px; letter-spacing: -0.028em; }
+.section-head--subsection .section-title { font-size: clamp(21px, 2.5vw, 25px); }
 
 .lead {
   font-size: 16px;
@@ -89,12 +93,20 @@ section[id] { scroll-margin-top: 24px; }
   max-width: 100%;
 }
 
-.subsection { margin-top: clamp(48px, 6vw, 72px); }
-.subsection__title { font-size: 18px; letter-spacing: -0.015em; margin-bottom: 20px; }
+/* La subsección que abre una sección ya está separada por el hueco del encabezado: el ritmo
+   entre subsecciones empieza a partir de la segunda. La adyacencia con el encabezado es el
+   criterio —no la posición entre hermanos—, para que una subsección precedida de contenido
+   propio (Testimonios tras la rejilla de razones) conserve su separación. */
+.subsection { margin-top: var(--subsection-space); }
+.section-head + .subsection { margin-top: 0; }
 
 .od-fill { flex: 1 1 0; min-width: 0; }
 
 @media (max-width: 767px) {
   .section-title { font-size: 22px; }
+  /* El salto de nivel también tiene que leerse en móvil: con la escala fluida sola, la
+     subsección (21px) y la sección (22px) quedan a un píxel y la jerarquía se aplana.
+     Se conserva la proporción entre niveles del escritorio (25/28). */
+  .section-head--subsection .section-title { font-size: 19px; }
   .footer__inner { justify-content: flex-start; }
 }

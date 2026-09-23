@@ -32,3 +32,5 @@ coverage/
 
 # Stryker mutation testing sandboxes
 .stryker-tmp/
+# Local Pi runtime state
+.atl/

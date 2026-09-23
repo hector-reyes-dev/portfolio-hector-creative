@@ -15,13 +15,14 @@ const { hero } = Astro.props;
   <div class="container">
     <HeroPortrait />
     <h1 class="hero__name">Héctor Reyes</h1>
+    <h2 class="section-title hero__section-title">Acerca de mí</h2>
     <p class="hero__role">{hero.role}</p>
     <div class="hero__bio">
       {hero.bio.map((paragraph) => (
         <p>{paragraph}</p>
       ))}
     </div>
-    <Button href="#proyectos" variant="accent" class="hero__cta">
+    <Button href="#trabajo" variant="accent" class="hero__cta">
       Ver proyectos <Icon id="i-folder-heart" />
     </Button>
   </div>

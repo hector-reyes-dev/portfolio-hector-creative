@@ -12,8 +12,10 @@ const { label, caption, edge = false } = Astro.props;
   <div class={`demo__stage${edge ? ' demo__stage--edge' : ''}`}>
     <slot />
   </div>
-  <div class="demo__info">
-    <p class="demo__label">{label}</p>
-    <p class="demo__caption">{caption}</p>
-  </div>
+  {/*
+    El detalle se presenta sólo con su demostración: ni el nombre ni la nota se pintan como
+    contenedor visible. Se conservan como texto para lectores de pantalla, que no reciben el
+    control en contexto sin ellos.
+  */}
+  <p class="sr-only">{label}. {caption}</p>
 </article>

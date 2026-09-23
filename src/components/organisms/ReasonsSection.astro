@@ -21,7 +21,7 @@ const { reasons, testimonials } = Astro.props;
       ))}
     </div>
     <div class="subsection">
-      <h3 class="subsection__title" data-reveal>Testimonios</h3>
+      <SectionHeader title="Testimonios" level={3} />
       <div class="testimonials">
         {testimonials.map((testimonial) => (
           <TestimonialItem testimonial={testimonial} />

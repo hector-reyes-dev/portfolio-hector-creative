@@ -615,7 +615,9 @@ describe('Selectores cuadrados y continuidad del showcase', () => {
     // nunca lo recorta ni lo solapa.
     expect(allDeclarationsFor(css, '.project-showcase__region')['min-height']).toBeUndefined();
     expect(allDeclarationsFor(css, '.project-showcase__copy')['min-height']).toBeUndefined();
-    expect(normalize(baseDeclarationsFor(css, '.project-showcase__media')['aspect-ratio'])).toBe('1024/494');
+    // La proporción del marco es la vigente (4:3, ancho:alto) y se declara una sola vez en la regla
+    // base: ningún breakpoint la cambia, así que la estabilidad vale en cualquier ancho.
+    expect(normalize(baseDeclarationsFor(css, '.project-showcase__media')['aspect-ratio'])).toBe('4/3');
 
     // And a cada ancho fijo el marco de imagen y los selectores permanecen estables entre proyectos
     // El marco de imagen saca su alto de su propia relación de aspecto (no del texto) y la huella de
@@ -854,10 +856,11 @@ describe('Alto natural del texto y animación del cambio de proyecto', () => {
     });
 
     // And ni el CSS ni los estilos en línea fijan alto, alto mínimo o relación de aspecto a esas cajas de texto
+    // (la línea de etiquetas es hoy `.project-showcase__tags`: el eyebrow ya no existe)
     [
       '.project-showcase__copy',
       '.project-showcase__region',
-      '.project-showcase__eyebrow',
+      '.project-showcase__tags',
       '.project-showcase__title',
       '.project-showcase__description',
       '.project-showcase__live'
@@ -909,8 +912,8 @@ describe('Alto natural del texto y animación del cambio de proyecto', () => {
       expect(belowCopyStructure(root)).toEqual(structureBefore);
     });
 
-    // El alto del marco de imagen lo fija su propia relación de aspecto, no el texto que tiene encima.
-    expect(normalize(baseDeclarationsFor(css, '.project-showcase__media')['aspect-ratio'])).toBe('1024/494');
+    // El alto del marco de imagen lo fija su propia relación de aspecto (4:3, ancho:alto), no el texto que tiene encima.
+    expect(normalize(baseDeclarationsFor(css, '.project-showcase__media')['aspect-ratio'])).toBe('4/3');
 
     // And la animación del cambio no mueve ni redimensiona la caja de ningún elemento
     const motion = panelMotionProperties(css);
@@ -946,10 +949,11 @@ describe('Alto natural del texto y animación del cambio de proyecto', () => {
     });
 
     // And ninguna regla recorta, desborda ni elipsa esos textos
+    // (la línea de etiquetas es hoy `.project-showcase__tags`: el eyebrow ya no existe)
     [
       '.project-showcase__copy',
       '.project-showcase__region',
-      '.project-showcase__eyebrow',
+      '.project-showcase__tags',
       '.project-showcase__title',
       '.project-showcase__description',
       '.project-showcase__live'

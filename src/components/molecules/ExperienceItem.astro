@@ -11,7 +11,7 @@ const { experience } = Astro.props;
 <article class="experience-item" data-reveal>
   <p class="experience-item__period">{experience.period}</p>
   <div class="experience-item__copy">
-    <h3>{experience.role}</h3>
+    <h4>{experience.role}</h4>
     <p>{experience.company}</p>
   </div>
   <span class={`experience-item__logo experience-item__logo--${experience.tone}`} aria-label={experience.company}>

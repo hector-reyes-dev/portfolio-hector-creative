@@ -6,6 +6,24 @@
   --showcase-duration: 420ms;
 }
 
+/*
+ * El título de Casos documentados sigue en el HTML y en el esquema accesible —la página conserva
+ * su H3 y el nombre de la subsección para lectores de pantalla—, pero no se pinta: el showcase
+ * abre la subsección por sí solo. La clase del encabezado no cambia (la comparte con Proyectos),
+ * así que el ocultamiento se declara desde la región con la técnica de la utilidad `sr-only`.
+ */
+#casos > .section-head > .section-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .project-showcase__panel {
   display: grid;
   gap: 24px;
@@ -47,18 +65,20 @@
   user-select: none;
 }
 
-.project-showcase__eyebrow {
-  color: var(--accent-ink);
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
+/* Título de proyecto: la serif cursiva del cuerpo, igual que los títulos de Mis notas
+   (`.blog__title`), y la escala de pieza de H4 que comparte con las tarjetas (18px). Al ser la
+   regla base, el tamaño se mantiene igual en escritorio y en móvil.
+   El interletrado y el interlineado son los del par al que pertenece (`.card__title`, y la misma
+   familia que `.blog__title`), no los que pedía el titular de display que había antes: a 18px en
+   serif cursiva, el -.025em de aquel tamaño cierra las letras y el 1.15 que hereda de la base
+   junta las líneas cuando el nombre del proyecto ocupa dos. */
 .project-showcase__title {
-  font-size: clamp(24px, 4vw, 34px);
-  letter-spacing: -.025em;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .project-showcase__description {
@@ -70,7 +90,7 @@
 
 .project-showcase__media {
   position: relative;
-  aspect-ratio: 1024 / 494;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border: 1px solid var(--card-border);
   border-radius: 32px;

@@ -6,6 +6,11 @@
   padding: calc(var(--dock-space) + 40px) 0 clamp(40px, 7vh, 88px);
 }
 
+/* Comparte la escala del encabezado de sección (`.section-title`); aquí solo se separa del H1. */
+.hero__section-title {
+  margin-top: clamp(12px, 2vh, 20px);
+}
+
 .hero-portrait {
   --portrait-size: 120px;
   position: relative;

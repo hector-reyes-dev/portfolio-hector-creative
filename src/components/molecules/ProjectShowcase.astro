@@ -38,15 +38,22 @@ const tagLine = (project: Project): string => project.tags.join(' · ');
         <div class="project-showcase__measure" aria-hidden="true">
           {showcase.map((project) => (
             <div class="project-showcase__copy-block">
-              <p class="project-showcase__eyebrow">{tagLine(project)}</p>
-              <h3 class="project-showcase__title">{project.full}</h3>
+              <p class="project-showcase__tags sr-only">{tagLine(project)}</p>
+              <h4 class="project-showcase__title">{project.full}</h4>
               <p class="project-showcase__description">{project.desc}</p>
             </div>
           ))}
         </div>
         <div class="project-showcase__copy-block project-showcase__live">
-          <p class="project-showcase__eyebrow" data-project-tags>{tagLine(initial)}</p>
-          <h3 class="project-showcase__title" data-project-title>{initial.full}</h3>
+          {/*
+            La línea de etiquetas ya no se pinta como eyebrow: el título del proyecto abre la
+            ficha. Se conserva como texto para lectores de pantalla porque describe el proyecto
+            seleccionado y porque el panel se repinta completo o no se repinta (`init.ts` exige
+            todas sus partes). Las dos capas —medida y viva— llevan la misma composición para que
+            sigan midiendo lo mismo.
+          */}
+          <p class="project-showcase__tags sr-only" data-project-tags>{tagLine(initial)}</p>
+          <h4 class="project-showcase__title" data-project-title>{initial.full}</h4>
           <p class="project-showcase__description" data-project-description>{initial.desc}</p>
         </div>
       </div>

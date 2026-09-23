@@ -24,7 +24,7 @@
 }
 
 /* ── CTA final ──────────────────────────────────────────── */
-.section--cta { background: var(--bg-soft); padding-block: clamp(72px, 10vw, 128px); }
+.section--cta { background: var(--bg-soft); padding-block: var(--section-space); }
 
 .cta-panel {
   padding: 0;

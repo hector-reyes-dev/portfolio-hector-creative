@@ -10,16 +10,15 @@ interface Props {
 const { cases } = Astro.props;
 ---
 
-<section class="section" id="proyectos">
-  <div class="container">
-    <SectionHeader
-      title="Proyectos"
-      lead="Tres casos con las mismas seis preguntas: problema, restricciones, descartes, decisión, resultado y qué haría distinto. La curaduría también es parte del trabajo."
-    />
-    <div class="card-grid card-grid--trabajo">
-      {cases.map((project) => (
-        <ProjectCard project={project} class="card--case" />
-      ))}
-    </div>
+<div class="subsection" id="proyectos">
+  <SectionHeader
+    title="Proyectos"
+    lead="Tres casos con las mismas seis preguntas: problema, restricciones, descartes, decisión, resultado y qué haría distinto. La curaduría también es parte del trabajo."
+    level={3}
+  />
+  <div class="card-grid card-grid--trabajo">
+    {cases.map((project) => (
+      <ProjectCard project={project} class="card--case" />
+    ))}
   </div>
-</section>
+</div>

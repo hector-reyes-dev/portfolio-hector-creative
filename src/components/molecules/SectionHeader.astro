@@ -2,12 +2,13 @@
 interface Props {
   title: string;
   lead?: string;
+  level?: 2 | 3;
 }
 
-const { title, lead } = Astro.props;
+const { title, lead, level = 2 } = Astro.props;
 ---
 
-<header class="section-head" data-reveal>
-  <h2 class="section-title">{title}</h2>
+<header class:list={['section-head', { 'section-head--subsection': level === 3 }]} data-reveal>
+  {level === 3 ? <h3 class="section-title">{title}</h3> : <h2 class="section-title">{title}</h2>}
   {lead && <p class="lead">{lead}</p>}
 </header>

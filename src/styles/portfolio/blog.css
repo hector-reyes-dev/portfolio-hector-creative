@@ -28,7 +28,7 @@
   gap: 0;
 }
 .blog__empty { font-size: 16px; color: var(--ink-2); }
-#blog { padding-block: clamp(32px, 4vw, 52px); }
+#blog { padding-block: var(--section-space); }
 
 /* El resaltado penetra un radio en el panel para cerrar la unión con él. Se recortan solo
    los laterales, conservando ese solape inferior. El relleno lateral es el margen que las

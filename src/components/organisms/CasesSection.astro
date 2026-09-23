@@ -11,12 +11,11 @@ const { projects } = Astro.props;
 const showcase = projects.slice(0, 6);
 ---
 
-<section class="section" id="trabajo">
-  <div class="container">
-    <SectionHeader
-      title="Casos documentados"
-      lead="Seis proyectos reales, de aplicaciones a sitios completos. Los documentados abren su caso; el resto enlaza a su ficha."
-    />
-    <ProjectShowcase projects={showcase} />
-  </div>
-</section>
+<div class="subsection" id="casos">
+  <SectionHeader
+    title="Casos documentados"
+    lead="Seis proyectos reales, de aplicaciones a sitios completos. Los documentados abren su caso; el resto enlaza a su ficha."
+    level={3}
+  />
+  <ProjectShowcase projects={showcase} />
+</div>

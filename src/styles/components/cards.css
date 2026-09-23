@@ -66,12 +66,19 @@
   letter-spacing: .04em;
   color: var(--accent-ink);
 }
+/* Título de proyecto: serif cursiva ligera, el mismo estilo que los títulos de Mis notas
+   (`.blog__title`). El peso va explícito porque el encabezado hereda el 600 de la base y la
+   cursiva serif está pensada en su peso de texto, no en el de un titular de display. La escala es
+   la misma que la del título del showcase (18px): los dos son piezas de H4 y se leen en el mismo
+   nivel, también en móvil (no hay breakpoint que la reescale). */
 .card__title {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 20px;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 400;
   line-height: 1.25;
   letter-spacing: -0.01em;
 }
@@ -79,7 +86,11 @@
 .card__cta { margin-top: 16px; }
 
 .card-grid { display: grid; gap: 24px; grid-template-columns: 1fr; }
-.card-grid--trabajo { grid-template-columns: 1fr; }
+.card-grid--trabajo { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (max-width: 767px) {
+  .card-grid--trabajo { grid-template-columns: 1fr; }
+}
 
 @media (min-width: 768px) {
   .card-grid:not(.card-grid--trabajo) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -121,6 +132,8 @@
 .service-card__icon .i,
 .reason__icon .i { width: 24px; height: 24px; }
 .service-card__body { display: grid; gap: 8px; align-content: start; }
-.service-card__head h3 { font-size: 20px; line-height: 1.3; letter-spacing: -0.015em; }
+/* El servicio titula una tarjeta dentro de la subsección Cómo puedo ayudarte (H3): un nivel
+   por debajo, con la misma escala de siempre. */
+.service-card__head h4 { font-size: 20px; line-height: 1.3; letter-spacing: -0.015em; }
 .service-card__body p { color: var(--desc); font-size: 16px; line-height: 1.6; }
 .service-grid + .btn { margin-top: 24px; }

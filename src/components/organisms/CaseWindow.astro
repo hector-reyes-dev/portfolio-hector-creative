@@ -14,7 +14,10 @@ interface Props {
 const { documentedProjects, cases, caseQuestions } = Astro.props;
 ---
 
-<section class="window" id="window" role="dialog" aria-modal="true" aria-labelledby="windowTitle" tabindex="-1" hidden>
+{/* La ventana usa el contenedor ancho: su contenido —imagen del caso y rejilla de preguntas—
+    necesita más superficie que la columna de lectura. El resto del portafolio conserva
+    `.container`; ver la justificación en `base.css` y `dock-window.css`. */}
+<section class="window container--wide" id="window" role="dialog" aria-modal="true" aria-labelledby="windowTitle" tabindex="-1" hidden>
   <header class="window__head">
     <span class="window__icon"><Icon id="i-trabajo" /></span>
     <h2 class="window__title" id="windowTitle" tabindex="-1">Trabajo</h2>
@@ -35,6 +38,7 @@ const { documentedProjects, cases, caseQuestions } = Astro.props;
             <IconTile icon={project.icon} />
             <div class="od-fill">
               <p class="case__num">#{project.num}</p>
+              {/* El título del caso es el h3 de la región del diálogo: sus seis preguntas bajan a h4. */}
               <h3 class="case__title">{project.full}</h3>
             </div>
           </div>

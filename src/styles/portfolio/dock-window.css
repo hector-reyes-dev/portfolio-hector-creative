@@ -102,13 +102,16 @@
 }
 .scrim.is-open { opacity: 1; }
 
+/* La ventana de caso es la superficie ancha del portafolio: usa `.container--wide` porque su
+   contenido —la imagen del caso y la rejilla de seis preguntas— necesita más anchura que la
+   columna de lectura. Por eso no fija aquí su ancho en escritorio: lo pone el contenedor ancho.
+   En móvil conserva el ancho de viewport de la media query, sin mínimos que desborden. */
 .window {
   position: fixed;
   z-index: 60;
   top: clamp(14px, 4.5vh, 56px);
   bottom: var(--dock-space);
   left: 50%;
-  width: min(var(--col), calc(100vw - 32px));
   display: flex;
   flex-direction: column;
   overflow: hidden;

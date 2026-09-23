@@ -3,26 +3,44 @@ import Button from '@atoms/Button.astro';
 import Icon from '@atoms/Icon.astro';
 import SectionHeader from '@molecules/SectionHeader.astro';
 import ServiceCard from '@molecules/ServiceCard.astro';
-import type { Service } from '../../types/site';
+import ExperienceItem from '@molecules/ExperienceItem.astro';
+import type { Experience, Service } from '../../types/site';
 
 interface Props {
   services: Service[];
+  experiences: Experience[];
 }
 
-const { services } = Astro.props;
+const { services, experiences } = Astro.props;
 ---
 
 <section class="section" id="servicios">
   <div class="container">
-    <SectionHeader
-      title="Cómo puedo ayudarte"
-      lead="Tres formas de aportar a tu producto. Elige la que necesites o escríbeme y lo vemos juntos."
-    />
-    <div class="service-grid">
-      {services.map((service) => (
-        <ServiceCard service={service} />
-      ))}
+    <SectionHeader title="Servicios y experiencia" />
+
+    <div class="subsection" id="experiencia">
+      <SectionHeader title="Experiencia" level={3} />
+      <div class="experience-list">
+        {experiences.map((experience) => <ExperienceItem experience={experience} />)}
+        <div class="experience-item experience-item--placeholder" data-reveal>
+          <p class="experience-item__period">Próximamente</p>
+          <p class="experience-item__copy">Más experiencias por añadir</p>
+        </div>
+      </div>
     </div>
-    <Button variant="accent" href="#contacto">Hablemos de servicios <Icon id="i-handshake" /></Button>
+
+    <div class="subsection" id="como-ayudarte">
+      <SectionHeader
+        title="Cómo puedo ayudarte"
+        lead="Tres formas de aportar a tu producto. Elige la que necesites o escríbeme y lo vemos juntos."
+        level={3}
+      />
+      <div class="service-grid">
+        {services.map((service) => (
+          <ServiceCard service={service} />
+        ))}
+      </div>
+      <Button variant="accent" href="#contacto">Hablemos de servicios <Icon id="i-handshake" /></Button>
+    </div>
   </div>
 </section>
